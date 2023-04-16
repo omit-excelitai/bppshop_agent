@@ -1,5 +1,6 @@
 
 
+import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -13,31 +14,28 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
 
-
-// Core
+  /// Core
 //   sl.registerLazySingleton(() => NetworkInfo(sl()));
-     sl.registerLazySingleton(() => DioClient(AppConstants.BASE_URL, sl(), loggingInterceptor: sl(), sharedPreferences: sl()));
+     sl.registerLazySingleton(() => DioClient(AppConstants.baseUrl, sl(), loggingInterceptor: sl(), sharedPreferences: sl()));
 
-//Repository
+  ///Repository
 
 //   sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
-
-
 //   sl.registerLazySingleton(() => ShopRepo(dioClient: sl(), sharedPreferences: sl()));
 
 
   /// Provider
 
-   // sl.registerFactory(() => ProductPageProvider(sharedPreferences: sl()));
-   // sl.registerFactory(() => ProductSearchProvider(productSearchRepo: sl()));
+   sl.registerFactory(() => AgentProfileProvider(sharedPreferences: sl()));
+   sl.registerFactory(() => ProductSearchProvider(productSearchRepo: sl()));
 
 
 
-  //// External
+  /// External
    final sharedPreferences = await SharedPreferences.getInstance();
    sl.registerLazySingleton(() => sharedPreferences);
    sl.registerLazySingleton(() => Dio());
    sl.registerLazySingleton(() => LoggingInterceptor());
-//   sl.registerLazySingleton(() => Connectivity());
+   //sl.registerLazySingleton(() => Connectivity());
 
 }

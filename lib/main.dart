@@ -36,7 +36,14 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
-  runApp( MyApp(),
+  runApp( MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context)=> BottomNavigationBarProvider()),
+        ChangeNotifierProvider(create: (context)=> AgentProfileProvider()),
+        ChangeNotifierProvider(create: (context)=> AgentDashboardProvider()),
+        ChangeNotifierProvider(create: (context)=> DistrictProvider()),
+      ],
+      child: MyApp()),
   );
 
   configLoading();
@@ -74,42 +81,34 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (context)=> BottomNavigationBarProvider()),
-              ChangeNotifierProvider(create: (context)=> AgentProfileProvider()),
-              ChangeNotifierProvider(create: (context)=> AgentDashboardProvider()),
-              ChangeNotifierProvider(create: (context)=> DistrictProvider()),
-            ],
-            child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: AppConstants.APP_NAME,
-              builder: EasyLoading.init(),
-              theme: ThemeData(
-                primarySwatch: AppColorResources.primaryMaterial,
-              ),
-              initialRoute: SigninPage.routeName,
-              routes: {
-                SignUpPage.routeName : (context) => SignUpPage(),
-                SigninPage.routeName : (context) => SigninPage(),
-                AddCustomerPage.routeName : (context) => AddCustomerPage(),
-                AgentProfilePage.routeName : (context) => AgentProfilePage(),
-                HomePage.routeName:(context)=>HomePage(),
-                OrderHistoryPage.routeName:(context)=>OrderHistoryPage(),
-                AgentUpdateProfile.routeName:(context)=>AgentUpdateProfile(),
-                CommissionHistoryPage.routeName:(context)=>CommissionHistoryPage(),
-                CustomerListPage.routeName:(context)=>CustomerListPage(),
-                CustomerPage.routeName:(context)=>CustomerPage(),
-                CustomerProfilePage.routeName:(context)=>CustomerProfilePage(),
-                DashboardPage.routeName:(context)=>DashboardPage(),
-                MyCommissionPage.routeName:(context)=>MyCommissionPage(),
-                PendingCommissionPage.routeName:(context)=>PendingCommissionPage(),
-                UpdateCustomerPage.routeName:(context)=>UpdateCustomerPage(),
-                WalletPage.routeName:(context)=>WalletPage(),
-                MyDrawerPage.routeName:(context)=>MyDrawerPage(),
-                LandingPage.routeName:(context)=>LandingPage()
-              },
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: AppConstants.APP_NAME,
+            builder: EasyLoading.init(),
+            theme: ThemeData(
+              primarySwatch: AppColorResources.primaryMaterial,
             ),
+            initialRoute: SigninPage.routeName,
+            routes: {
+              SignUpPage.routeName : (context) => SignUpPage(),
+              SigninPage.routeName : (context) => SigninPage(),
+              AddCustomerPage.routeName : (context) => AddCustomerPage(),
+              AgentProfilePage.routeName : (context) => AgentProfilePage(),
+              HomePage.routeName:(context)=>HomePage(),
+              OrderHistoryPage.routeName:(context)=>OrderHistoryPage(),
+              AgentUpdateProfile.routeName:(context)=>AgentUpdateProfile(),
+              CommissionHistoryPage.routeName:(context)=>CommissionHistoryPage(),
+              CustomerListPage.routeName:(context)=>CustomerListPage(),
+              CustomerPage.routeName:(context)=>CustomerPage(),
+              CustomerProfilePage.routeName:(context)=>CustomerProfilePage(),
+              DashboardPage.routeName:(context)=>DashboardPage(),
+              MyCommissionPage.routeName:(context)=>MyCommissionPage(),
+              PendingCommissionPage.routeName:(context)=>PendingCommissionPage(),
+              UpdateCustomerPage.routeName:(context)=>UpdateCustomerPage(),
+              WalletPage.routeName:(context)=>WalletPage(),
+              MyDrawerPage.routeName:(context)=>MyDrawerPage(),
+              LandingPage.routeName:(context)=>LandingPage()
+            },
           );
         });
   }

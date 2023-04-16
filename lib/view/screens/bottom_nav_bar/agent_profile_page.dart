@@ -61,6 +61,7 @@ class ProfileSection extends StatefulWidget {
 }
 
 class _ProfileSectionState extends State<ProfileSection> {
+
   @override
   void initState() {
     Provider.of<AgentProfileProvider>(context, listen: false).getAgentProfileData();
