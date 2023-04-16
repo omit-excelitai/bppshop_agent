@@ -1,5 +1,8 @@
 
+import 'package:bppshop_agent/provider/agent_dashboard_provider.dart';
+import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/bottom_navigation_bar_provider.dart';
+import 'package:bppshop_agent/provider/district_provider.dart';
 import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:bppshop_agent/view/screens/agent_update_profile.dart';
@@ -7,7 +10,6 @@ import 'package:bppshop_agent/view/screens/auth/login_page.dart';
 import 'package:bppshop_agent/view/screens/auth/signup_page.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/add_customer_page.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/agent_profile_page.dart';
-import 'package:bppshop_agent/view/screens/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/home_page.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/order_history_page.dart';
 import 'package:bppshop_agent/view/screens/commission_history_page.dart';
@@ -75,6 +77,9 @@ class MyApp extends StatelessWidget {
           return MultiProvider(
             providers: [
               ChangeNotifierProvider(create: (context)=> BottomNavigationBarProvider()),
+              ChangeNotifierProvider(create: (context)=> AgentProfileProvider()),
+              ChangeNotifierProvider(create: (context)=> AgentDashboardProvider()),
+              ChangeNotifierProvider(create: (context)=> DistrictProvider()),
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
@@ -89,7 +94,6 @@ class MyApp extends StatelessWidget {
                 SigninPage.routeName : (context) => SigninPage(),
                 AddCustomerPage.routeName : (context) => AddCustomerPage(),
                 AgentProfilePage.routeName : (context) => AgentProfilePage(),
-                BottomNavBar.routeName:(context)=>BottomNavBar(),
                 HomePage.routeName:(context)=>HomePage(),
                 OrderHistoryPage.routeName:(context)=>OrderHistoryPage(),
                 AgentUpdateProfile.routeName:(context)=>AgentUpdateProfile(),
