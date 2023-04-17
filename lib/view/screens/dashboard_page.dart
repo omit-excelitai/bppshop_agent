@@ -22,17 +22,17 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
 
-  @override
-  void initState() {
-    Provider.of<AgentDashboardProvider>(context, listen: false).getAgentDashboardData();
-    super.initState();
-  }
-
-  List<AgentDashboardModel> agentDashboardData = [];
+  // @override
+  // void initState() {
+  //   Provider.of<AgentDashboardProvider>(context, listen: false).getAgentDashboardData();
+  //   super.initState();
+  // }
+  //
+  // List<AgentDashboardModel> agentDashboardData = [];
 
   @override
   Widget build(BuildContext context) {
-    agentDashboardData = Provider.of<AgentDashboardProvider>(context).agentDashboardData;
+    //agentDashboardData = Provider.of<AgentDashboardProvider>(context).agentDashboardData;
     return Consumer<BottomNavigationBarProvider>(
       builder: (context, bottomNavigationBarProvider, child){
         return Scaffold(
@@ -49,60 +49,60 @@ class _DashboardPageState extends State<DashboardPage> {
                 child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
             title: Text("Dashboard", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
           ),
-          body: agentDashboardData.isNotEmpty?Container(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ProfileSection(),
-                  Container(
-                    margin: EdgeInsets.only(bottom: 12.h),
-                    padding: EdgeInsets.all(12),
-                    width: double.infinity,
-                    color: AppColorResources.primaryWhite,
-                    child: Column(
-                      children: [
-                        Row(children: [
-                          Expanded(
-                            flex: 2,
-                            child: DashboardCustomContainer(onTap: (){}, title: "Total Customer", amount: "${agentDashboardData[0].data!.totalCustomers}", image: "images/totalcustomer.png", color: AppColorResources.primaryOrange,),
-                          ),
-                          SizedBox(width: 12.w,),
-                          Expanded(
-                            flex: 2,
-                            child: DashboardCustomContainer(onTap: (){}, title: "Total Withdraw", amount: "${agentDashboardData[0].data!.totalWithdraw}", image: "images/withdraw.png", color: AppColorResources.primaryNaviBlue,),),
-                        ],),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 12.h),
-                          child: Row(children: [
-                            Expanded(
-                              flex: 2,
-                              child: DashboardCustomContainer(onTap: (){}, title: "Total Sale Amount", amount: "৳${agentDashboardData[0].data!.totalSaleAmount}", image: "images/cashcoin.png", color: AppColorResources.primaryGreen,),
-                            ),
-                            SizedBox(width: 12.w,),
-                            Expanded(
-                              flex: 2,
-                              child: DashboardCustomContainer(onTap: (){}, title: "Total Orders", amount: "${agentDashboardData[0].data!.totalOrders}", image: "images/cartcheck.png", color: AppColorResources.beguniColor,),),
-                          ],),
-                        ),
-                        Row(children: [
-                          Expanded(
-                            flex: 2,
-                            child: DashboardCustomContainer(onTap: (){}, title: "Total Commission", amount: "৳${agentDashboardData[0].data!.totalCommission}", image: "images/cashstack.png", color: AppColorResources.lightGreen,),
-                          ),
-                          SizedBox(width: 12.w,),
-                          Expanded(
-                            flex: 2,
-                            child: DashboardCustomContainer(onTap: (){}, title: "Total Purchase", amount: "${agentDashboardData[0].data!.totalPurchase}", image: "images/cartplus.png", color: AppColorResources.secondaryRed,),),
-                        ],),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ):Center(
-            child: customCircularProgressIndicator(),
-          ),
+          // body: agentDashboardData.isNotEmpty?Container(
+          //   child: SingleChildScrollView(
+          //     child: Column(
+          //       children: [
+          //         ProfileSection(),
+          //         Container(
+          //           margin: EdgeInsets.only(bottom: 12.h),
+          //           padding: EdgeInsets.all(12),
+          //           width: double.infinity,
+          //           color: AppColorResources.primaryWhite,
+          //           child: Column(
+          //             children: [
+          //               Row(children: [
+          //                 Expanded(
+          //                   flex: 2,
+          //                   child: DashboardCustomContainer(onTap: (){}, title: "Total Customer", amount: "${agentDashboardData[0].data!.totalCustomers}", image: "images/totalcustomer.png", color: AppColorResources.primaryOrange,),
+          //                 ),
+          //                 SizedBox(width: 12.w,),
+          //                 Expanded(
+          //                   flex: 2,
+          //                   child: DashboardCustomContainer(onTap: (){}, title: "Total Withdraw", amount: "${agentDashboardData[0].data!.totalWithdraw}", image: "images/withdraw.png", color: AppColorResources.primaryNaviBlue,),),
+          //               ],),
+          //               Padding(
+          //                 padding: EdgeInsets.symmetric(vertical: 12.h),
+          //                 child: Row(children: [
+          //                   Expanded(
+          //                     flex: 2,
+          //                     child: DashboardCustomContainer(onTap: (){}, title: "Total Sale Amount", amount: "৳${agentDashboardData[0].data!.totalSaleAmount}", image: "images/cashcoin.png", color: AppColorResources.primaryGreen,),
+          //                   ),
+          //                   SizedBox(width: 12.w,),
+          //                   Expanded(
+          //                     flex: 2,
+          //                     child: DashboardCustomContainer(onTap: (){}, title: "Total Orders", amount: "${agentDashboardData[0].data!.totalOrders}", image: "images/cartcheck.png", color: AppColorResources.beguniColor,),),
+          //                 ],),
+          //               ),
+          //               Row(children: [
+          //                 Expanded(
+          //                   flex: 2,
+          //                   child: DashboardCustomContainer(onTap: (){}, title: "Total Commission", amount: "৳${agentDashboardData[0].data!.totalCommission}", image: "images/cashstack.png", color: AppColorResources.lightGreen,),
+          //                 ),
+          //                 SizedBox(width: 12.w,),
+          //                 Expanded(
+          //                   flex: 2,
+          //                   child: DashboardCustomContainer(onTap: (){}, title: "Total Purchase", amount: "${agentDashboardData[0].data!.totalPurchase}", image: "images/cartplus.png", color: AppColorResources.secondaryRed,),),
+          //               ],),
+          //             ],
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ):Center(
+          //   child: customCircularProgressIndicator(),
+          // ),
           bottomNavigationBar: bottomNavigationBarProvider.bottomNavigationBar(context,false),
         );
       }

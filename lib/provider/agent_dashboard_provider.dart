@@ -3,10 +3,10 @@ import 'package:bppshop_agent/data/model/response_model/agent_dashboard_response
 import 'package:flutter/material.dart';
 
 class AgentDashboardProvider with ChangeNotifier{
-  List<AgentDashboardModel> agentDashboardData = [];
-
-  getAgentDashboardData() async {
-    agentDashboardData = await AgentDashboardHttpRequest.fetchAgentDashboardData();
-    notifyListeners();
-  }
+  // List<AgentDashboardModel> agentDashboardData = [];
+  //
+  // getAgentDashboardData() async {
+  //   agentDashboardData = await AgentDashboardHttpRequest.fetchAgentDashboardData();
+  //   notifyListeners();
+  // }
 }

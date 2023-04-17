@@ -26,8 +26,8 @@ Future<void> init() async {
 
   /// Provider
 
-   sl.registerFactory(() => AgentProfileProvider(sharedPreferences: sl()));
-   sl.registerFactory(() => ProductSearchProvider(productSearchRepo: sl()));
+   // sl.registerFactory(() => AgentProfileProvider(sharedPreferences: sl()));
+   // sl.registerFactory(() => ProductSearchProvider(productSearchRepo: sl()));
 
 
 
