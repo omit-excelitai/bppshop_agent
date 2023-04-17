@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:bppshop_agent/provider/auth_provider.dart';
 import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:bppshop_agent/view/screens/auth/signup_page.dart';
 import 'package:bppshop_agent/view/screens/landing_page.dart';
 import 'package:bppshop_agent/view/widgets/custom_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
@@ -32,55 +34,55 @@ class _SigninPageState extends State<SigninPage> {
   FocusNode numberFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
 
-  getLoginData() async {
-    try {
-      setState(() {
-        isLoading = true;
-      });
-      String urlLink = "${AppConstants.baseUrl}login";
-      var response = await http.post(Uri.parse(urlLink), body: {
-        "agent_mobile_number": numberController.text.trim(),
-        "password": passwordController.text.trim()
-      });
-      setState(() {
-        isLoading = false;
-      });
-      if(response.statusCode==200){
-        var data = jsonDecode(response.body);
-        if (data["token"] != null ) {
-          print("Token is ${data["token"]}");
-          sharedPreferences = await SharedPreferences.getInstance();
-          sharedPreferences!.setString("token", data["token"]);
-          //Provider.of<AuthProvider>(context ,listen: false);
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> LandingPage()), (route) => false);
-          showToastMessage("Login Successfully");
-        } else {
-          showToastMessage("Email or Password doesn't match");
-        }
-      }else{
-        showToastMessage("Email or Password doesn't match");
-      }
-    } catch (e) {
-      print("Problem is ------ ${e}");
-    }
-  }
-
-  // isLoggedIn()async{
-  //   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-  //   var token=sharedPreferences.getString("token");
-  //   if(token!=null){
-  //     Provider.of<AuthProvider>(context,listen: false).setToken=token;
-  //     Navigator.of(context).pushNamedAndRemoveUntil(LandingPage.routeName, (route) => false);
-  //   }else{
-  //       Navigator.of(context).pushReplacementNamed(SigninPage.routeName);
+  // getLoginData() async {
+  //   try {
+  //     setState(() {
+  //       isLoading = true;
+  //     });
+  //     String urlLink = "${AppConstants.baseUrl}login";
+  //     var response = await http.post(Uri.parse(urlLink), body: {
+  //       "agent_mobile_number": numberController.text.trim(),
+  //       "password": passwordController.text.trim()
+  //     });
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //     if(response.statusCode==200){
+  //       var data = jsonDecode(response.body);
+  //       if (data["token"] != null ) {
+  //         print("Token is ${data["token"]}");
+  //         sharedPreferences = await SharedPreferences.getInstance();
+  //         sharedPreferences!.setString("token", data["token"]);
+  //         //Provider.of<AuthProvider>(context ,listen: false);
+  //         Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> LandingPage()), (route) => false);
+  //         showToastMessage("Login Successfully");
+  //       } else {
+  //         showToastMessage("Email or Password doesn't match");
+  //       }
+  //     }else{
+  //       showToastMessage("Email or Password doesn't match");
+  //     }
+  //   } catch (e) {
+  //     print("Problem is ------ ${e}");
   //   }
   // }
-  //
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  // }
+
+  /// For getUserLoginData
+  getUserLoginData() async{
+    _formKey!.currentState!.save();
+
+    await Provider.of<AuthProvider>(context, listen: false).login(
+        number: numberController.text.trim(),
+        password: passwordController.text.trim(),
+        context: context).then((value) {
+          if(value == 'success'){
+            // if(kDebugMode){
+            //   print("Clicked");
+            // }
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> LandingPage()), (route) => false);
+          }
+    });
+  }
 
   @override
   void dispose() {
@@ -200,7 +202,7 @@ class _SigninPageState extends State<SigninPage> {
                         SizedBox(height: 25.h,),
                         customButton(() {
                           if(_formKey.currentState!.validate()) {
-                            getLoginData();
+                            getUserLoginData();
                           }
                         }, "Login"),
                         SizedBox(height: 10.h,),
