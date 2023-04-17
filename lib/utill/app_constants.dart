@@ -6,7 +6,7 @@ class AppConstants {
   static const String baseUrl = "https://agentapi.bppshop.com.bd/api/";
   static const String imageUrl = "https://agentapi.bppshop.com.bd/";
 
-  static const String APP_NAME = 'E-Laundry';
+  static const String APP_NAME = 'BppShop Agent';
   static const String APP_VERSION = '1.0.0';
   static const String BASE_URL = 'https://backend.bppshop.com.bd';
 

@@ -1,6 +1,7 @@
 
 import 'package:bppshop_agent/provider/agent_dashboard_provider.dart';
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
+import 'package:bppshop_agent/provider/auth_provider.dart';
 import 'package:bppshop_agent/provider/bottom_navigation_bar_provider.dart';
 import 'package:bppshop_agent/provider/district_provider.dart';
 import 'package:bppshop_agent/utill/app_color_resources.dart';
@@ -42,6 +43,7 @@ void main() async {
         ChangeNotifierProvider(create: (context)=> AgentProfileProvider()),
         ChangeNotifierProvider(create: (context)=> AgentDashboardProvider()),
         ChangeNotifierProvider(create: (context)=> DistrictProvider()),
+        ChangeNotifierProvider(create: (context)=> AuthProvider()),
       ],
       child: MyApp()),
   );
