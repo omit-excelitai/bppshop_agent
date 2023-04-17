@@ -21,9 +21,6 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController numberController = TextEditingController();
-  TextEditingController districtController = TextEditingController();
-  TextEditingController thanaController = TextEditingController();
-  TextEditingController areaController = TextEditingController();
 
   final districtItems = ["Dhaka", "Bogura", "Rangpur"];
   final thanaItems = ["Mirpur", "Nandigram", "Kaonia"];
@@ -31,6 +28,16 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
   String ?_selectedDistrict;
   String ?_selectedThana;
   String ?_selectedArea;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    nameController.dispose();
+    emailController.dispose();
+    numberController.dispose();
+    addressController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

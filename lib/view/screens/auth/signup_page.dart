@@ -20,9 +20,6 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController numberController = TextEditingController();
-  TextEditingController districtController = TextEditingController();
-  TextEditingController thanaController = TextEditingController();
-  TextEditingController areaController = TextEditingController();
   bool _obscureText = true;
 
   final districtItems = ["Dhaka", "Bogura", "Rangpur"];
@@ -31,6 +28,16 @@ class _SignUpPageState extends State<SignUpPage> {
   String ?_selectedDistrict;
   String ?_selectedThana;
   String ?_selectedArea;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    nameController.dispose();
+    emailController.dispose();
+    numberController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
 
   @override

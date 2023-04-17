@@ -22,9 +22,6 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController numberController = TextEditingController();
-  TextEditingController districtController = TextEditingController();
-  TextEditingController thanaController = TextEditingController();
-  TextEditingController areaController = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
 
   final districtItems = ["Dhaka", "Bogura", "Rangpur"];
@@ -33,6 +30,17 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
   String? _selectedDistrict;
   String ?_selectedThana;
   String ?_selectedArea;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    nameController.dispose();
+    emailController.dispose();
+    numberController.dispose();
+    addressController.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
