@@ -6,6 +6,7 @@ class AppConstants {
   static const String baseUrl = "https://agentapi.bppshop.com.bd/api/";
   static const String imageUrl = "https://agentapi.bppshop.com.bd/";
   static const String loginUrl = "login";
+  static const String agentProfileUrl = "agent/profile";
 
   /// SharePreference
 

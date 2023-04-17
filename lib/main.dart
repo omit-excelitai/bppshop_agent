@@ -40,7 +40,7 @@ void main() async {
   runApp( MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context)=> BottomNavigationBarProvider()),
-        ChangeNotifierProvider(create: (context)=> AgentProfileProvider()),
+        ChangeNotifierProvider(create: (context)=> di.sl<AgentProfileProvider>()),
         ChangeNotifierProvider(create: (context)=> AgentDashboardProvider()),
         ChangeNotifierProvider(create: (context)=> DistrictProvider()),
         ChangeNotifierProvider(create: (context)=> di.sl<AuthProvider>()),
