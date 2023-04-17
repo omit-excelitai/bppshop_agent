@@ -69,7 +69,7 @@ class _SigninPageState extends State<SigninPage> {
 
   /// For getUserLoginData
   getUserLoginData() async{
-    _formKey!.currentState!.save();
+    _formKey.currentState!.save();
 
     await Provider.of<AuthProvider>(context, listen: false).login(
         number: numberController.text.trim(),
@@ -231,8 +231,3 @@ class _SigninPageState extends State<SigninPage> {
     );
   }
 }
-
-// saveUserToken() async{
-//   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-//   return sharedPreferences!.getString("token");
-// }
