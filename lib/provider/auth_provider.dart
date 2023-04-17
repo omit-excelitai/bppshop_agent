@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider with ChangeNotifier{
-  final DioClient dioClient;
+  DioClient dioClient;
   final AuthRepo authRepo;
   AuthProvider({required this.dioClient, required this.authRepo});
 

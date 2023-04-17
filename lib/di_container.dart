@@ -1,6 +1,8 @@
 
 
+import 'package:bppshop_agent/data/repositories/auth_repo.dart';
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
+import 'package:bppshop_agent/provider/auth_provider.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -20,15 +22,12 @@ Future<void> init() async {
 
   ///Repository
 
-//   sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
-//   sl.registerLazySingleton(() => ShopRepo(dioClient: sl(), sharedPreferences: sl()));
+     sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
 
 
   /// Provider
 
-   // sl.registerFactory(() => AgentProfileProvider(sharedPreferences: sl()));
-   // sl.registerFactory(() => ProductSearchProvider(productSearchRepo: sl()));
-
+  sl.registerFactory(() => AuthProvider(authRepo: sl(),dioClient: sl()));
 
 
   /// External

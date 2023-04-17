@@ -11,7 +11,7 @@ class AppConstants {
 
   static const String token = 'token';
 
-  // static const String APP_NAME = 'BppShop Agent';
+  static const String APP_NAME = 'BppShop Agent';
   // static const String APP_VERSION = '1.0.0';
   // static const String BASE_URL = 'https://agentapi.bppshop.com.bd/api/';
   //

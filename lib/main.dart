@@ -43,7 +43,7 @@ void main() async {
         ChangeNotifierProvider(create: (context)=> AgentProfileProvider()),
         ChangeNotifierProvider(create: (context)=> AgentDashboardProvider()),
         ChangeNotifierProvider(create: (context)=> DistrictProvider()),
-        ChangeNotifierProvider(create: (context)=> AuthProvider()),
+        ChangeNotifierProvider(create: (context)=> di.sl<AuthProvider>()),
       ],
       child: MyApp()),
   );
