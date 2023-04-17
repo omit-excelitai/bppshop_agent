@@ -39,8 +39,8 @@ class _SigninPageState extends State<SigninPage> {
       });
       String urlLink = "${AppConstants.baseUrl}login";
       var response = await http.post(Uri.parse(urlLink), body: {
-        "agent_mobile_number": numberController.text.toString(),
-        "password": passwordController.text.toString()
+        "agent_mobile_number": numberController.text.trim(),
+        "password": passwordController.text.trim()
       });
       setState(() {
         isLoading = false;
@@ -79,7 +79,6 @@ class _SigninPageState extends State<SigninPage> {
   // @override
   // void initState() {
   //   // TODO: implement initState
-  //     isLoggedIn();
   //   super.initState();
   // }
 

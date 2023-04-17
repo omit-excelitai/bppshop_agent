@@ -55,8 +55,6 @@ class DioClient{
 
     Map<String, dynamic>? queryParameters,
 
-
-
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
