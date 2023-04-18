@@ -1,4 +1,5 @@
 
+import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
 import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,6 +31,16 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
   String? _selectedDistrict;
   String ?_selectedThana;
   String ?_selectedArea;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).getDistrict(true, context);
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).getThana(true, context);
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).getArea(true, context);
+    });
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -142,32 +153,31 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                           SizedBox(height: 10.h,),
                           Text("Customer District",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           SizedBox(height: 4.h,),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 12.w,),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
-                                color: AppColorResources.textFieldColor),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                iconDisabledColor: AppColorResources.secondaryBlack,
-                                iconEnabledColor: AppColorResources.secondaryBlack,
-                                isExpanded: true,
-                                hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
-                                value: _selectedDistrict,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    _selectedDistrict = newValue as String?;
-                                  });
-                                },
-                                items: districtItems.map((district) {
-                                  //print("turfuygrtfuytuy--------------${district.data.toString()}");
-                                  return DropdownMenuItem(
-                                    child: Text("", style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),),
-                                    //value: district.data![0].id
-                                  );
-                                }).toList(),
+                          Consumer<DistrictThanaAreaProvider>(builder: (context, districtThanaAreaProvider, child){
+                            return districtThanaAreaProvider.districtDataList!.isNotEmpty?Container(
+                              padding: EdgeInsets.symmetric(horizontal: 12.w,),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
+                                  color: AppColorResources.textFieldColor),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  iconDisabledColor: AppColorResources.secondaryBlack,
+                                  iconEnabledColor: AppColorResources.secondaryBlack,
+                                  isExpanded: true,
+                                  hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
+                                  value: districtThanaAreaProvider.districtDropdownValue,
+                                  onChanged: (value) {
+                                    districtThanaAreaProvider.changeDistrictDropDownValue(value!);
+                                  },
+                                  items: districtThanaAreaProvider.districtDataList!.map((district) {
+                                    return DropdownMenuItem(
+                                      child: Text("${district.name}", style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),),
+                                      value: district.id
+                                    );
+                                  }).toList(),
+                                ),
                               ),
-                            ),
-                          ),
+                            ):Center(child: SizedBox.shrink());
+                          }),
                           SizedBox(height: 10.h,),
                           Text("Customer Thana",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           SizedBox(height: 4.h,),
