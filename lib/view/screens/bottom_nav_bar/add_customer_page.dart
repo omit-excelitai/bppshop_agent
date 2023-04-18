@@ -1,6 +1,7 @@
 
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
 import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
+import 'package:bppshop_agent/view/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -164,19 +165,19 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                   iconEnabledColor: AppColorResources.secondaryBlack,
                                   isExpanded: true,
                                   hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
-                                  value: districtThanaAreaProvider.districtDropdownValue,
+                                  value: districtThanaAreaProvider.getDistrictDropdownValue,
                                   onChanged: (value) {
-                                    districtThanaAreaProvider.changeDistrictDropDownValue(value as String);
+                                    districtThanaAreaProvider.changeDistrictDropDownValue(value);
                                   },
                                   items: districtThanaAreaProvider.districtDataList!.map((district) {
                                     return DropdownMenuItem(
                                       child: Text("${district.name}", style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),),
-                                      value: district.id
+                                      value: district.name
                                     );
                                   }).toList(),
                                 ),
                               ),
-                            ):Center(child: SizedBox.shrink());
+                            ): Center(child: customCircularProgressIndicator());
                           }),
                           SizedBox(height: 10.h,),
                           Text("Customer Thana",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
@@ -204,36 +205,36 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                   }).toList(),
                                 ),
                               ),
-                            ):Center(child: SizedBox.shrink());
+                            ):Center(child: customCircularProgressIndicator());
                           }),
                           SizedBox(height: 10.h,),
                           Text("Customer Area",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           SizedBox(height: 4.h,),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 12.w,),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
-                                color: AppColorResources.textFieldColor),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                iconDisabledColor: AppColorResources.secondaryBlack,
-                                iconEnabledColor: AppColorResources.secondaryBlack,
-                                isExpanded: true,
-                                hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
-                                value: _selectedArea,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    _selectedArea = newValue!;
-                                  });
-                                },
-                                items: areaItems.map((areaItems) {
-                                  return DropdownMenuItem(
-                                    child: Text(areaItems, style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),),
-                                    value: areaItems,
-                                  );
-                                }).toList(),
+                          Consumer<DistrictThanaAreaProvider>(builder: (context, districtThanaAreaProvider, child){
+                            return districtThanaAreaProvider.areaDataList != null?Container(
+                              padding: EdgeInsets.symmetric(horizontal: 12.w,),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
+                                  color: AppColorResources.textFieldColor),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  iconDisabledColor: AppColorResources.secondaryBlack,
+                                  iconEnabledColor: AppColorResources.secondaryBlack,
+                                  isExpanded: true,
+                                  hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
+                                  value: districtThanaAreaProvider.areaDropdownValue,
+                                  onChanged: (newValue) {
+                                    districtThanaAreaProvider.changeAreaDropDownValue(newValue as String);
+                                  },
+                                  items: districtThanaAreaProvider.areaDataList!.map((areaData) {
+                                    return DropdownMenuItem(
+                                      child: Text("${areaData.name}", style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),),
+                                      value: areaData.id,
+                                    );
+                                  }).toList(),
+                                ),
                               ),
-                            ),
-                          ),
+                            ):Center(child: customCircularProgressIndicator());
+                          }),
                           SizedBox(height: 10.h,),
                           Text("Customer Local Address",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           SizedBox(height: 4.h,),

@@ -71,6 +71,13 @@ void configLoading() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  bool checktoken(dynamic token) {
+    if (token == null || token == "") {
+      return false;
+    } else {
+      return true;
+    }
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -83,33 +90,37 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: AppConstants.APP_NAME,
-            builder: EasyLoading.init(),
-            theme: ThemeData(
-              primarySwatch: AppColorResources.primaryMaterial,
-            ),
-            initialRoute: SigninPage.routeName,
-            routes: {
-              SignUpPage.routeName : (context) => SignUpPage(),
-              SigninPage.routeName : (context) => SigninPage(),
-              AddCustomerPage.routeName : (context) => AddCustomerPage(),
-              AgentProfilePage.routeName : (context) => AgentProfilePage(),
-              HomePage.routeName:(context)=>HomePage(),
-              OrderHistoryPage.routeName:(context)=>OrderHistoryPage(),
-              AgentUpdateProfile.routeName:(context)=>AgentUpdateProfile(),
-              CommissionHistoryPage.routeName:(context)=>CommissionHistoryPage(),
-              CustomerListPage.routeName:(context)=>CustomerListPage(),
-              CustomerPage.routeName:(context)=>CustomerPage(),
-              CustomerProfilePage.routeName:(context)=>CustomerProfilePage(),
-              DashboardPage.routeName:(context)=>DashboardPage(),
-              MyCommissionPage.routeName:(context)=>MyCommissionPage(),
-              PendingCommissionPage.routeName:(context)=>PendingCommissionPage(),
-              UpdateCustomerPage.routeName:(context)=>UpdateCustomerPage(),
-              WalletPage.routeName:(context)=>WalletPage(),
-              MyDrawerPage.routeName:(context)=>MyDrawerPage(),
-              LandingPage.routeName:(context)=>LandingPage()
+          return Consumer<AuthProvider>(
+            builder: (BuildContext context, authProvider, Widget? child) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: AppConstants.APP_NAME,
+                builder: EasyLoading.init(),
+                theme: ThemeData(
+                  primarySwatch: AppColorResources.primaryMaterial,
+                ),
+                initialRoute: checktoken(authProvider.getUserToken()) != false?LandingPage.routeName:SigninPage.routeName,
+                routes: {
+                  SignUpPage.routeName : (context) => SignUpPage(),
+                  SigninPage.routeName : (context) => SigninPage(),
+                  AddCustomerPage.routeName : (context) => AddCustomerPage(),
+                  AgentProfilePage.routeName : (context) => AgentProfilePage(),
+                  HomePage.routeName:(context)=>HomePage(),
+                  OrderHistoryPage.routeName:(context)=>OrderHistoryPage(),
+                  AgentUpdateProfile.routeName:(context)=>AgentUpdateProfile(),
+                  CommissionHistoryPage.routeName:(context)=>CommissionHistoryPage(),
+                  CustomerListPage.routeName:(context)=>CustomerListPage(),
+                  CustomerPage.routeName:(context)=>CustomerPage(),
+                  CustomerProfilePage.routeName:(context)=>CustomerProfilePage(),
+                  DashboardPage.routeName:(context)=>DashboardPage(),
+                  MyCommissionPage.routeName:(context)=>MyCommissionPage(),
+                  PendingCommissionPage.routeName:(context)=>PendingCommissionPage(),
+                  UpdateCustomerPage.routeName:(context)=>UpdateCustomerPage(),
+                  WalletPage.routeName:(context)=>WalletPage(),
+                  MyDrawerPage.routeName:(context)=>MyDrawerPage(),
+                  LandingPage.routeName:(context)=>LandingPage()
+                },
+              );
             },
           );
         });

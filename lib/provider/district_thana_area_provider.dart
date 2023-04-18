@@ -25,6 +25,7 @@ class DistrictThanaAreaProvider with ChangeNotifier{
   DistrictData? get selectedDistrictData => _selectedDistrictData;
   final List<String> _districtNameList = [];
   String? districtDropdownValue;
+  String? get getDistrictDropdownValue=> districtDropdownValue;
   int? districtId;
   List<String>? get districtNameList => _districtNameList;
   int? _selectedDistrictIndex = 0;
@@ -57,18 +58,17 @@ class DistrictThanaAreaProvider with ChangeNotifier{
   int? areaId;
   String? areaDropdownValue;
 
-  /// For Select District
-  void selectDistrictIndex(int index) {
-    _selectedDistrictIndex = index;
-    notifyListeners();
-  }
-
-  /// For Select Area
-  void selectAreaIndex(int index) {
-    _selectedAreaIndex = index;
-    notifyListeners();
-  }
-
+  // /// For Select District
+  // void selectDistrictIndex(int index) {
+  //   _selectedDistrictIndex = index;
+  //   notifyListeners();
+  // }
+  //
+  // /// For Select Area
+  // void selectAreaIndex(int index) {
+  //   _selectedAreaIndex = index;
+  //   notifyListeners();
+  // }
 
   /// Fetch District Data
   Future<void> getDistrict(bool reload, BuildContext context) async {
@@ -103,7 +103,7 @@ class DistrictThanaAreaProvider with ChangeNotifier{
   Future<void> getThana(bool reload, BuildContext context) async {
     //  _thanaNameList=[];
     // _thanaNameList.clear();
-    EasyLoading.show(status: 'Thana loading...');
+    EasyLoading.show(status: 'loading...');
     if (_thanaModel == null || reload) {
       ApiResponse apiResponse = await districtThanaAreaRepo.getAllThanaData(districtId: districtId);
       if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
@@ -132,7 +132,7 @@ class DistrictThanaAreaProvider with ChangeNotifier{
   Future<void> getArea(bool reload, BuildContext context) async {
     //  _thanaNameList=[];
     // _thanaNameList.clear();
-    EasyLoading.show(status: 'Area loading...');
+    EasyLoading.show(status: 'loading...');
     if (_areaModel == null || reload) {
       ApiResponse apiResponse = await districtThanaAreaRepo.getAllAreaData(thanaId: thanaId);
       if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
@@ -157,8 +157,8 @@ class DistrictThanaAreaProvider with ChangeNotifier{
     }
   }
 
-  changeDistrictDropDownValue(String dropdownValue) {
-    districtDropdownValue = dropdownValue;
+  changeDistrictDropDownValue(dynamic dropdownValue) {
+    districtDropdownValue = dropdownValue.toString();
     notifyListeners();
     _selectedDistrictData = _districtModel!.data!.firstWhere((element) => element.name!.contains(dropdownValue));
 

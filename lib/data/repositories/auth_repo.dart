@@ -12,7 +12,6 @@ class AuthRepo{
   AuthRepo({required this.dioClient, required this.sharedPreferences});
 
   /// For Login
-
   Future<ApiResponse> login({required String number, required String password}) async{
     try{
       Response response = await dioClient.post(
@@ -28,8 +27,7 @@ class AuthRepo{
     }
   }
 
-  /// for user token
-
+  /// For save user token
   Future<void> saveUserToken(String token) async {
     dioClient.updateHeader(token, "");
     try {
@@ -39,6 +37,31 @@ class AuthRepo{
     } catch (e) {
       throw e;
     }
+  }
+
+  /// get user token
+  getUserToken() {
+    SharedPreferences.getInstance();
+    return sharedPreferences.getString(AppConstants.token) ?? "";
+  }
+
+  /// Save auth token
+  Future<void> saveAuthToken(String token) async {
+    dioClient.token = token;
+    dioClient.dio!.options.headers = {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $token'
+    };
+    try {
+      await sharedPreferences.setString(AppConstants.token, token);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  /// Get auth token
+  String getAuthToken() {
+    return sharedPreferences.getString(AppConstants.token) ?? "";
   }
 
 

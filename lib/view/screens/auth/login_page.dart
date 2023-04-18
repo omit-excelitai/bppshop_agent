@@ -103,7 +103,7 @@ class _SigninPageState extends State<SigninPage> {
                                   if (value == null) {
                                     return "Phone Number required.";
                                   }
-                                  else if (value?.length != 11){
+                                  else if (value.length != 11){
                                     return 'Phone Number must be of 11 digit.';
                                   }
                                   return null;

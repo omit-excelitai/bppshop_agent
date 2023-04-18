@@ -95,4 +95,17 @@ class AuthProvider with ChangeNotifier{
     }
     return apiResponse.response!.data["status"];
   }
+
+  /// For auth token
+  Future authToken(String authToken ) async{
+    authRepo.saveAuthToken(authToken);
+    notifyListeners();
+  }
+
+  /// Get user token
+  dynamic getUserToken(){
+    print(authRepo.getUserToken());
+    return authRepo.getUserToken();
+  }
+
 }
