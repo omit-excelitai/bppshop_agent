@@ -67,14 +67,15 @@ class _ProfileSectionState extends State<ProfileSection> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _loadAgentProfileData(context, true);
+      //_loadAgentProfileData(context, true);
+      Provider.of<AgentProfileProvider>(context, listen: false).getAgentProfileData(context);
     });
     super.initState();
   }
 
-  _loadAgentProfileData(BuildContext context, bool reload) async{
-    await Provider.of<AgentProfileProvider>(context, listen: false).getAgentProfileData(context);
-  }
+  // _loadAgentProfileData(BuildContext context, bool reload) async{
+  //   await
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -142,38 +143,6 @@ class _ProfileSectionState extends State<ProfileSection> {
                     Text("Role: ${agentProfileProvider.agentProfileModelData!.role}", style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w600),),
                     SizedBox(height: 8.h,),
                     Text("CONTACT INFORMATION:", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                    // SizedBox(height: 12.h,),
-                    // Row(children: [
-                    //   Image(image: AssetImage("images/call.png"),),
-                    //   SizedBox(width: 12.w,),
-                    //   Column(
-                    //     crossAxisAlignment: CrossAxisAlignment.start,
-                    //     children: [
-                    //       Text("Mobile", style: myStyleMontserrat(14.sp, homeItemColor, FontWeight.w600),),
-                    //       Text("01711369672", style: myStyleMontserrat(14.sp, homeItemColor, FontWeight.w600),),
-                    //     ],
-                    //   )
-                    // ],),Row(children: [
-                    //   Image(image: AssetImage("images/mail.png"),),
-                    //   SizedBox(width: 12.w,),
-                    //   Column(
-                    //     crossAxisAlignment: CrossAxisAlignment.start,
-                    //     children: [
-                    //       Text("Email", style: myStyleMontserrat(14.sp, homeItemColor, FontWeight.w600),),
-                    //       Text("mahmum@gmail.com", style: myStyleMontserrat(14.sp, homeItemColor, FontWeight.w600),),
-                    //     ],
-                    //   )
-                    // ],),Row(children: [
-                    //   Image(image: AssetImage("images/call.png"),),
-                    //   SizedBox(width: 12.w,),
-                    //   Column(
-                    //     crossAxisAlignment: CrossAxisAlignment.start,
-                    //     children: [
-                    //       Text("Address", style: myStyleMontserrat(14.sp, homeItemColor, FontWeight.w600),),
-                    //       subtitle: Text("16/1 (9th Floor), Alhaz Shamsuddin Mansion, New Eskaton Garden Road,", style: myStyleMontserrat(14.sp, homeItemColor, FontWeight.w600),),
-                    //     ],
-                    //   )
-                    // ],),
                     ListTile(
                       leading: Padding(
                           padding: EdgeInsets.only(top: 10.h),
