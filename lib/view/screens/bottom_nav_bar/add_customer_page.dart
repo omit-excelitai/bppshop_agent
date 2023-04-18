@@ -154,7 +154,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                           Text("Customer District",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           SizedBox(height: 4.h,),
                           Consumer<DistrictThanaAreaProvider>(builder: (context, districtThanaAreaProvider, child){
-                            return districtThanaAreaProvider.districtDataList!.isNotEmpty?Container(
+                            return districtThanaAreaProvider.districtDataList != null?Container(
                               padding: EdgeInsets.symmetric(horizontal: 12.w,),
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
                                   color: AppColorResources.textFieldColor),
