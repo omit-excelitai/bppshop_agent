@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import '../../../provider/agent_profile_provider.dart';
 import '../../../utill/app_color_resources.dart';
 import '../../../utill/app_style.dart';
-import '../../widgets/custom_circular_progress_indicator.dart';
 
 class AgentProfilePage extends StatefulWidget {
   static const String routeName = '/agent_profile_page';
@@ -55,6 +54,8 @@ class _AgentProfilePageState extends State<AgentProfilePage> {
   }
 }
 
+
+
 class ProfileSection extends StatefulWidget {
 
   @override
@@ -71,12 +72,9 @@ class _ProfileSectionState extends State<ProfileSection> {
     super.initState();
   }
 
-  // List<AgentProfileModel> agentProfileData = [];
-
   _loadAgentProfileData(BuildContext context, bool reload) async{
     await Provider.of<AgentProfileProvider>(context, listen: false).getAgentProfileData(context);
   }
-
 
   @override
   Widget build(BuildContext context) {
