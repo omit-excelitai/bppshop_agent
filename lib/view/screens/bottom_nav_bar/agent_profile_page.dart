@@ -23,8 +23,6 @@ class _AgentProfilePageState extends State<AgentProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    //final authProvider = Provider.of<AuthProvider>(context);
-
     return Scaffold(
       drawer: MyDrawerPage(),
       key: _scaffoldkey,

@@ -5,11 +5,16 @@ class AppConstants {
 
   static const String baseUrl = "https://agentapi.bppshop.com.bd/api/";
   static const String imageUrl = "https://agentapi.bppshop.com.bd/";
+
+  /// Bpp Shop Agent
   static const String loginUrl = "login";
   static const String agentProfileUrl = "agent/profile";
+  static const String agentDashboardUrl = "agent/dashboard";
+  static const String districtUrl = "location/districts";
+  static const String thanaUrl = "location/thanas/";
+  static const String areaUrl = "location/areas/";
 
   /// SharePreference
-
   static const String token = 'token';
 
   static const String APP_NAME = 'BppShop Agent';

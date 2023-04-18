@@ -1,11 +1,15 @@
+// To parse this JSON data, do
+//
+//     final areaResponseModel = areaResponseModelFromJson(jsonString);
+
 import 'dart:convert';
 
-AreaModel areaModelFromJson(String str) => AreaModel.fromJson(json.decode(str));
+AreaResponseModel areaResponseModelFromJson(String str) => AreaResponseModel.fromJson(json.decode(str));
 
-String areaModelToJson(AreaModel data) => json.encode(data.toJson());
+String areaResponseModelToJson(AreaResponseModel data) => json.encode(data.toJson());
 
-class AreaModel {
-  AreaModel({
+class AreaResponseModel {
+  AreaResponseModel({
     this.status,
     this.message,
     this.data,
@@ -13,17 +17,37 @@ class AreaModel {
 
   final String? status;
   final String? message;
-  final List<dynamic>? data;
+  final List<AreaData>? data;
 
-  factory AreaModel.fromJson(Map<String, dynamic> json) => AreaModel(
+  factory AreaResponseModel.fromJson(Map<String, dynamic> json) => AreaResponseModel(
     status: json["status"],
     message: json["message"],
-    data: json["data"] == null ? [] : List<dynamic>.from(json["data"]!.map((x) => x)),
+    data: json["data"] == null ? [] : List<AreaData>.from(json["data"]!.map((x) => AreaData.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "status": status,
     "message": message,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x)),
+    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+  };
+}
+
+class AreaData {
+  AreaData({
+    this.id,
+    this.name,
+  });
+
+  final int? id;
+  final String? name;
+
+  factory AreaData.fromJson(Map<String, dynamic> json) => AreaData(
+    id: json["id"],
+    name: json["name"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
   };
 }

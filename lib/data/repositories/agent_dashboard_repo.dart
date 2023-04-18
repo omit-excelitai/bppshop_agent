@@ -5,19 +5,19 @@ import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AgentProfileRepo{
+class AgentDashboardRepo{
   final DioClient dioClient;
   final SharedPreferences sharedPreferences;
-  AgentProfileRepo({required this.dioClient, required this.sharedPreferences});
+  AgentDashboardRepo({required this.dioClient, required this.sharedPreferences});
 
-  Future<ApiResponse> getAgentProfileData() async{
+  Future<ApiResponse> getAgentDashboardData() async{
     try{
-      Response response = await dioClient.get(AppConstants.agentProfileUrl,
-      options: Options(headers:{
-        "Content-Type": "application/json",
-        "Authorization":
-        "Bearer ${sharedPreferences.getString(AppConstants.token) ?? ""}",
-      }));
+      Response response = await dioClient.get(AppConstants.agentDashboardUrl,
+          options: Options(headers:{
+            "Content-Type": "application/json",
+            "Authorization":
+            "Bearer ${sharedPreferences.getString(AppConstants.token) ?? ""}",
+          }));
       return ApiResponse.withSuccess(response);
     }catch(e){
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

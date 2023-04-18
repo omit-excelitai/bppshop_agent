@@ -3,7 +3,7 @@ import 'package:bppshop_agent/provider/agent_dashboard_provider.dart';
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/auth_provider.dart';
 import 'package:bppshop_agent/provider/bottom_navigation_bar_provider.dart';
-import 'package:bppshop_agent/provider/district_provider.dart';
+import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
 import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:bppshop_agent/view/screens/agent_update_profile.dart';
@@ -41,8 +41,8 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context)=> BottomNavigationBarProvider()),
         ChangeNotifierProvider(create: (context)=> di.sl<AgentProfileProvider>()),
-        ChangeNotifierProvider(create: (context)=> AgentDashboardProvider()),
-        ChangeNotifierProvider(create: (context)=> DistrictProvider()),
+        ChangeNotifierProvider(create: (context)=> di.sl<AgentDashboardProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<DistrictThanaAreaProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<AuthProvider>()),
       ],
       child: MyApp()),
