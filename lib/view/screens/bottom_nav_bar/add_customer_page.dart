@@ -166,7 +166,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                   hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
                                   value: districtThanaAreaProvider.districtDropdownValue,
                                   onChanged: (value) {
-                                    districtThanaAreaProvider.changeDistrictDropDownValue(value!);
+                                    districtThanaAreaProvider.changeDistrictDropDownValue(value as String);
                                   },
                                   items: districtThanaAreaProvider.districtDataList!.map((district) {
                                     return DropdownMenuItem(
@@ -181,31 +181,31 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                           SizedBox(height: 10.h,),
                           Text("Customer Thana",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           SizedBox(height: 4.h,),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 12.w,),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
-                                color: AppColorResources.textFieldColor),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                iconDisabledColor: AppColorResources.secondaryBlack,
-                                iconEnabledColor: AppColorResources.secondaryBlack,
-                                isExpanded: true,
-                                hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
-                                value: _selectedThana,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    _selectedThana = newValue!;
-                                  });
-                                },
-                                items: thanaItems.map((thanaItems) {
-                                  return DropdownMenuItem(
-                                    child: Text(thanaItems, style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),),
-                                    value: thanaItems,
-                                  );
-                                }).toList(),
+                          Consumer<DistrictThanaAreaProvider>(builder: (context, districtThanaAreaProvider, child){
+                            return districtThanaAreaProvider.thanaDataList != null?Container(
+                              padding: EdgeInsets.symmetric(horizontal: 12.w,),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
+                                  color: AppColorResources.textFieldColor),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  iconDisabledColor: AppColorResources.secondaryBlack,
+                                  iconEnabledColor: AppColorResources.secondaryBlack,
+                                  isExpanded: true,
+                                  hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
+                                  value: districtThanaAreaProvider.thanaDropdownValue,
+                                  onChanged: (newValue) {
+                                    districtThanaAreaProvider.changeThanaDropDownValue(newValue as String);
+                                  },
+                                  items: districtThanaAreaProvider.thanaDataList!.map((thanaData) {
+                                    return DropdownMenuItem(
+                                      child: Text("${thanaData.name}", style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),),
+                                      value: thanaData.id,
+                                    );
+                                  }).toList(),
+                                ),
                               ),
-                            ),
-                          ),
+                            ):Center(child: SizedBox.shrink());
+                          }),
                           SizedBox(height: 10.h,),
                           Text("Customer Area",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           SizedBox(height: 4.h,),

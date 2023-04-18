@@ -157,7 +157,7 @@ class DistrictThanaAreaProvider with ChangeNotifier{
     }
   }
 
-  changeDistrictDropDownValue(dynamic dropdownValue) {
+  changeDistrictDropDownValue(String dropdownValue) {
     districtDropdownValue = dropdownValue;
     notifyListeners();
     _selectedDistrictData = _districtModel!.data!.firstWhere((element) => element.name!.contains(dropdownValue));
