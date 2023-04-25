@@ -35,31 +35,31 @@ class Data {
     this.total,
     this.page,
     this.noOfRows,
-    this.data,
+    this.pendingCommissionList,
   });
 
   final int? total;
   final String? page;
   final int? noOfRows;
-  final List<Datum>? data;
+  final List<PendingCommissionData>? pendingCommissionList;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     total: json["total"],
     page: json["page"],
     noOfRows: json["no_of_rows"],
-    data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+    pendingCommissionList: json["data"] == null ? [] : List<PendingCommissionData>.from(json["data"]!.map((x) => PendingCommissionData.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "total": total,
     "page": page,
     "no_of_rows": noOfRows,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "data": pendingCommissionList == null ? [] : List<dynamic>.from(pendingCommissionList!.map((x) => x.toJson())),
   };
 }
 
-class Datum {
-  Datum({
+class PendingCommissionData {
+  PendingCommissionData({
     this.customerId,
     this.orderId,
     this.totalProducts,
@@ -77,7 +77,7 @@ class Datum {
   final String? deliveryStatus;
   final String? orderDate;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory PendingCommissionData.fromJson(Map<String, dynamic> json) => PendingCommissionData(
     customerId: json["customer_id"],
     orderId: json["order_id"],
     totalProducts: json["total_products"],

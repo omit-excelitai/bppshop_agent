@@ -24,7 +24,7 @@ class DistrictThanaAreaRepo{
   /// For get all thana data
   Future<ApiResponse> getAllThanaData({required int? districtId}) async{
     try{
-      Response response = await dioClient.get("${AppConstants.thanaUrl}${districtId}");
+      Response response = await dioClient.get("${AppConstants.thanaUrl}$districtId");
       return ApiResponse.withSuccess(response);
     }catch(e){
       print(e.toString());
@@ -35,7 +35,7 @@ class DistrictThanaAreaRepo{
   /// For get all area data
   Future<ApiResponse> getAllAreaData({required int? thanaId}) async{
     try{
-      Response response = await dioClient.get("${AppConstants.thanaUrl}${thanaId}");
+      Response response = await dioClient.get("${AppConstants.areaUrl}$thanaId");
       return ApiResponse.withSuccess(response);
     }catch(e){
       print(e.toString());

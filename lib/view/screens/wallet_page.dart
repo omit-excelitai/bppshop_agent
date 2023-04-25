@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../provider/agent_dashboard_provider.dart';
+import '../../provider/agent_profile_provider.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
@@ -18,11 +20,20 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends State<WalletPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<AgentProfileProvider>(context, listen: false).getAgentProfileData(context);
+    });
+    super.initState();
+  }
+
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return Consumer<BottomNavigationBarProvider>(
-      builder: (context, bottomNavigationBarProvider, child){
+    return Consumer2<BottomNavigationBarProvider, AgentProfileProvider>(
+      builder: (context, bottomNavigationBarProvider, agentProfileProvider, child){
         return SafeArea(
           child: Scaffold(
             drawer: MyDrawerPage(),
@@ -38,7 +49,7 @@ class _WalletPageState extends State<WalletPage> {
                   child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
               title: Text("Wallet", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
             ),
-            body: Container(
+            body: agentProfileProvider.agentProfileModelData != null?Container(
               padding: EdgeInsets.symmetric(vertical: 12.h),
               child: SingleChildScrollView(
                 child: Column(
@@ -55,7 +66,7 @@ class _WalletPageState extends State<WalletPage> {
                           Row(
                             children: [
                               Text("Tk. ", style: myStyleMontserrat(24, AppColorResources.homeItemColor, FontWeight.w400),),
-                              Text("568619825656", style: myStyleMontserrat(24, AppColorResources.homeItemColor, FontWeight.w600),),
+                              Text("${agentProfileProvider.agentProfileModelData!.data!.walletBalance}", style: myStyleMontserrat(24, AppColorResources.homeItemColor, FontWeight.w600),),
                             ],
                           ),
                           SizedBox(height: 40.h,),
@@ -150,7 +161,7 @@ class _WalletPageState extends State<WalletPage> {
                   ],
                 ),
               ),
-            ),
+            ):Center(child: SizedBox.shrink()),
             bottomNavigationBar: bottomNavigationBarProvider.bottomNavigationBar(context,false),
           ),
         );
