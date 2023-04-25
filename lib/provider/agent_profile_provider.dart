@@ -23,7 +23,7 @@ class AgentProfileProvider with ChangeNotifier{
   AgentProfileModel? get agentProfileModelData => _agentProfileModelData;
 
   Future<String?> getAgentProfileData(BuildContext context) async{
-    EasyLoading.show(status: 'Profile loading...');
+    EasyLoading.show(status: 'loading...');
     _isLoading = true;
     notifyListeners();
     ApiResponse apiResponse = await agentProfileRepo.getAgentProfileData();
