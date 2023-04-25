@@ -5,6 +5,7 @@ import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/auth_provider.dart';
 import 'package:bppshop_agent/provider/bottom_navigation_bar_provider.dart';
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
+import 'package:bppshop_agent/provider/pending_commission_provider.dart';
 import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:bppshop_agent/view/screens/agent_update_profile.dart';
@@ -46,6 +47,7 @@ void main() async {
         ChangeNotifierProvider(create: (context)=> di.sl<DistrictThanaAreaProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<AuthProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<AddCustomerProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<PendingCommissionProvider>()),
       ],
       child: MyApp()),
   );

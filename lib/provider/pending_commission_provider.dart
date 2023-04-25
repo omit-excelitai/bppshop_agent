@@ -1,32 +1,36 @@
+
+
 import 'package:bppshop_agent/data/datasource/remote/dio/dio_client.dart';
-import 'package:bppshop_agent/data/repositories/add_customer_repo.dart';
-import 'package:bppshop_agent/utill/app_color_resources.dart';
+import 'package:bppshop_agent/data/model/request_model/pending_commission_request_model.dart';
+import 'package:bppshop_agent/data/repositories/pending_commission_repo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../data/model/base_model/api_response.dart';
 import '../data/model/base_model/error_response.dart';
+import '../utill/app_color_resources.dart';
 
-class AddCustomerProvider with ChangeNotifier{
+class PendingCommissionProvider with ChangeNotifier{
   final DioClient dioClient;
-  final AddCustomerRepo addCustomerRepo;
-  AddCustomerProvider({required this.dioClient, required this.addCustomerRepo});
+  final PendingCommissionRepo pendingCommissionRepo;
+  PendingCommissionProvider({required this.dioClient, required this.pendingCommissionRepo});
 
-  Future<String?> createNewCustomer({required String customerName, required String customerEmail, required String customerMobile,
-    required String customerAddress, required dynamic districtId, required dynamic thanaId, required dynamic areaId, required BuildContext context}) async{
+  PendingCommissionRequestModel? _pendingCommissionRequestModel;
+  List<PendingCommissionData>? _pendingCommissionList;
+  PendingCommissionData? _pendingCommissionData;
+
+  PendingCommissionRequestModel? get pendingCommissionRequestModel => _pendingCommissionRequestModel;
+  List<PendingCommissionData>? get pendingCommissionList => _pendingCommissionList;
+  PendingCommissionData? get pendingCommissionData => _pendingCommissionData;
+
+
+
+  Future<String?> pendingCommission({required dynamic pageNo, required dynamic no_of_rows, required BuildContext context}) async{
 
     EasyLoading.show(status: 'Loading...');
     notifyListeners();
-    ApiResponse apiResponse = await addCustomerRepo.addNewCustomerData(
-        customerName: customerName,
-        customerEmail: customerEmail,
-        customerMobile: customerMobile,
-        customerAddress: customerAddress,
-        districtId: districtId,
-        thanaId: thanaId,
-        areaId: areaId
-    );
+    ApiResponse apiResponse = await pendingCommissionRepo.pendingCommissionHistory(pageNo: pageNo, no_of_rows: 5);
 
     if(kDebugMode){
       print("addNewAddress statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
@@ -67,6 +71,6 @@ class AddCustomerProvider with ChangeNotifier{
       notifyListeners();
       return apiResponse.response!.data["status"];
     }
-
   }
+
 }
