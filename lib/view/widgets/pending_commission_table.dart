@@ -166,7 +166,7 @@ class _MyHomePageState extends State<ReusableCustomerTablePage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<PendingCommissionProvider>(context, listen: false).pendingCommissionData;
+    Provider.of<PendingCommissionProvider>(context, listen: false).pendingCommissionList;
     employees = getEmployeeData();
     employeeDataSource = EmployeeDataSource(employeeData: employees);
   }
@@ -238,6 +238,7 @@ class _MyHomePageState extends State<ReusableCustomerTablePage> {
   }
 
   List<Employee> getEmployeeData() {
+
     return [
       Employee("#100470", "#100470", "2568848150", "৳252668123626", "৳252668123626"),
       Employee("#100470", "#100470", "2568848150", "৳252668123626", "৳252668123626"),

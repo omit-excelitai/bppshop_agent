@@ -9,6 +9,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../data/model/base_model/api_response.dart';
 import '../data/model/base_model/error_response.dart';
+import '../helper/api_checker.dart';
 import '../utill/app_color_resources.dart';
 
 class PendingCommissionProvider with ChangeNotifier{
@@ -19,7 +20,9 @@ class PendingCommissionProvider with ChangeNotifier{
   PendingCommissionRequestModel? _pendingCommissionRequestModel;
   List<PendingCommissionData>? _pendingCommissionList;
   PendingCommissionData? _pendingCommissionData;
+  List<String> _pendingCommissionAllList = [];
 
+  List<String>? get pendingCommissionAllList => _pendingCommissionAllList;
   PendingCommissionRequestModel? get pendingCommissionRequestModel => _pendingCommissionRequestModel;
   List<PendingCommissionData>? get pendingCommissionList => _pendingCommissionList;
   PendingCommissionData? get pendingCommissionData => _pendingCommissionData;
@@ -33,44 +36,30 @@ class PendingCommissionProvider with ChangeNotifier{
     ApiResponse apiResponse = await pendingCommissionRepo.pendingCommissionHistory(pageNo: pageNo, no_of_rows: 5);
 
     if(kDebugMode){
-      print("addNewAddress statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
+      print("pending commission statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
     }
 
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
+      _pendingCommissionRequestModel = PendingCommissionRequestModel.fromJson(apiResponse.response!.data);
 
-      EasyLoading.dismiss();
+      _pendingCommissionList = _pendingCommissionRequestModel!.data as List<PendingCommissionData>?;
 
-      notifyListeners();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(apiResponse.response!.data["message"]),
-        backgroundColor: AppColorResources.primaryOrange,
-      ));
-      notifyListeners();
-      return apiResponse.response!.data["status"];
-    }
-    else {
-      EasyLoading.dismiss();
-      notifyListeners();
-      String errorMessage;
-      if (apiResponse.error is String) {
-        print(apiResponse.error.toString());
-        errorMessage = apiResponse.error.toString();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(errorMessage),
-          backgroundColor: Colors.red,
-        ));
-      } else {
-        ErrorResponse errorResponse = apiResponse.error;
-        print(errorResponse.error![0].message);
-        errorMessage = errorResponse.error![0].message;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(errorMessage),
-          backgroundColor: Colors.red,
-        ));
+      for (var element in _pendingCommissionList!) {
+        _pendingCommissionAllList.add(element.totalCommission as String);
       }
+
+      if (kDebugMode) {
+        print("getDistrictTest>>>>>>>>>>>>>>>${_pendingCommissionRequestModel!.data}");
+        print("_districtNameList+++++++++++++++++${_pendingCommissionAllList}");
+      }
+
       notifyListeners();
-      return apiResponse.response!.data["status"];
+      EasyLoading.dismiss();
+    } else {
+      EasyLoading.dismiss();
+      ApiChecker.checkApi(context, apiResponse);
     }
+
   }
 
 }
