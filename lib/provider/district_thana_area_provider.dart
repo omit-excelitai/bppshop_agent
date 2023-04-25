@@ -72,7 +72,8 @@ class DistrictThanaAreaProvider with ChangeNotifier{
 
   /// Fetch District Data
   Future<void> getDistrict(bool reload, BuildContext context) async {
-    _districtNameList.clear();
+    //_districtNameList.clear();
+    clearData();
     EasyLoading.show(status: 'loading...');
     if (_districtModel == null || reload) {
       ApiResponse apiResponse = await districtThanaAreaRepo.getAllDistrictData();
@@ -157,12 +158,12 @@ class DistrictThanaAreaProvider with ChangeNotifier{
     }
   }
 
-  changeDistrictDropDownValue(dynamic dropdownValue) {
-    districtDropdownValue = dropdownValue.toString();
+  changeDistrictDropDownValue(String dropdownValue) {
+    districtDropdownValue = dropdownValue;
     notifyListeners();
     _selectedDistrictData = _districtModel!.data!.firstWhere((element) => element.name!.contains(dropdownValue));
 
-    districtId = int.parse(_selectedDistrictData!.id as String);
+    districtId = int.parse(_selectedDistrictData!.id.toString());
 
     if(kDebugMode){
       print("Selected_DistrictId>>>>>> $districtId");
@@ -175,7 +176,7 @@ class DistrictThanaAreaProvider with ChangeNotifier{
     notifyListeners();
     _selectedThanaData = _thanaModel!.data!.firstWhere((element) => element.name!.contains(dropdownValue));
 
-    thanaId = int.parse(_selectedThanaData!.id as String);
+    thanaId = int.parse(_selectedThanaData!.id.toString());
 
     if(kDebugMode){
       print("Selected_ThanaId>>>>>> $thanaId");
@@ -189,7 +190,7 @@ class DistrictThanaAreaProvider with ChangeNotifier{
     notifyListeners();
     _selectedAreaData = _areaModel!.data!.firstWhere((element) => element.name!.contains(dropdownValue));
 
-    areaId = int.parse(_selectedAreaData!.id as String);
+    areaId = int.parse(_selectedAreaData!.id.toString());
 
     if(kDebugMode){
       print("Selected_ThanaId>>>>>> $areaId");

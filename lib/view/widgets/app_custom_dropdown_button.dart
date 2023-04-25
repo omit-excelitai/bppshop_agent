@@ -1,6 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
+import '../../utill/app_color_resources.dart';
+
 class CustomDropDown extends StatelessWidget {
   double? height;
   double? width;
@@ -23,6 +25,7 @@ class CustomDropDown extends StatelessWidget {
   double? boxBorderRadius;
   double? paddingLeft;
   ValueChanged<String?>? onChanged;
+  bool? isExpanded;
 
   CustomDropDown(
       {@required this.items,
@@ -46,6 +49,7 @@ class CustomDropDown extends StatelessWidget {
         this.boxBorderRadius,
         this.paddingLeft,
         this.hintStyle,
+        this.isExpanded,
         Key? key})
       : super(key: key);
 
@@ -57,32 +61,24 @@ class CustomDropDown extends StatelessWidget {
           advanced == false
               ? DropdownMenuItem<String>(
             value: item,
-            child: Padding(
-              padding:
-              EdgeInsets.symmetric(horizontal: paddingLeft ?? 16),
-              child: Text(
-                item,
-                style: selectedStyle ??
-                    TextStyle(
-                        fontSize: fontSize ?? 16,
-                        fontWeight: FontWeight.w400,
-                        color: textColor ?? Color(0xFF666666)),
-              ),
+            child: Text(
+              item,
+              style: selectedStyle ??
+                  TextStyle(
+                      fontSize: fontSize ?? 16,
+                      fontWeight: FontWeight.w400,
+                      color: textColor ?? Color(0xFF666666)),
             ),
           )
               : DropdownMenuItem<String>(
             value: item,
-            child: Padding(
-              padding:
-              EdgeInsets.symmetric(horizontal: paddingLeft ?? 16,vertical: 10),
-              child: Text(
-                item,
-                style: selectedStyle ??
-                    TextStyle(
-                        fontSize: fontSize ?? 16,
-                        fontWeight: FontWeight.w400,
-                        color: getColor(item)),
-              ),
+            child: Text(
+              item,
+              style: selectedStyle ??
+                  TextStyle(
+                      fontSize: fontSize ?? 16,
+                      fontWeight: FontWeight.w400,
+                      color: getColor(item)),
             ),
           ),
           //If it's last item, we will not add Divider after it.
@@ -90,7 +86,7 @@ class CustomDropDown extends StatelessWidget {
             DropdownMenuItem<String>(
               enabled: false,
               child: Divider(
-                thickness: 1,
+                //thickness: 1,
                 color: boxColor ?? Colors.white,
               ),
             ),
@@ -130,9 +126,11 @@ class CustomDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
         child: DropdownButton2(
+          iconDisabledColor: AppColorResources.secondaryBlack,
+          iconEnabledColor: AppColorResources.secondaryBlack,
           buttonDecoration: decoration ??
               BoxDecoration(
-                color: buttonBackground ?? Colors.white,
+                //color: buttonBackground ?? Colors.white,
                 //border: Border.all(color: Colors.grey.shade500),
                 // border: Border.all(color: Color(0XFFDCDADA)),
                 borderRadius: BorderRadius.circular(boxBorderRadius ?? 0),
@@ -144,18 +142,15 @@ class CustomDropDown extends StatelessWidget {
                 //  border: Border.all(color:  Color(0XFFDCDADA)),
                 borderRadius: BorderRadius.circular(boxBorderRadius ?? 0),
               ),
-          dropdownElevation: 0,
-          isExpanded: true,
-          hint: Padding(
-            padding: EdgeInsets.symmetric(horizontal: paddingLeft ?? 16),
-            child: Text(
-              hint ?? 'Select Item',
-              style: hintStyle ??
-                  TextStyle(
-                    fontSize: fontSize ?? 16,
-                    color: Color(0xFF666666),
-                  ),
-            ),
+          dropdownElevation: 8,
+          //isExpanded: true,
+          hint: Text(
+            hint ?? 'Select Item',
+            style: hintStyle ??
+                TextStyle(
+                  fontSize: fontSize ?? 16,
+                  color: Color(0xFF666666),
+                ),
           ),
           items: _addDividersAfterItems(items!),
           customItemsHeights: _getCustomItemsHeights(),
@@ -163,7 +158,7 @@ class CustomDropDown extends StatelessWidget {
           value: selectedValue,
           onChanged: onChanged,
           buttonHeight: height ?? 60,
-          itemHeight: itemHeight ?? 60,
+          itemHeight: itemHeight ?? 50,
           dropdownMaxHeight: dropdownMaxHeight ?? 200,
           buttonWidth: width ?? 200,
           itemPadding: const EdgeInsets.symmetric(horizontal: 8.0),
