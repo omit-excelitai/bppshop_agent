@@ -13,6 +13,8 @@ class AppConstants {
   static const String districtUrl = "location/districts";
   static const String thanaUrl = "location/thanas/";
   static const String areaUrl = "location/areas/";
+  static const String pendingCommissionUrl = "agent/commission/pending";
+  static const String addCustomerUrl = "agent/customer/create?customer_name&customer_email&customer_mobile&customer_address&district_id&thana_id&area_id";
 
   /// SharePreference
   static const String token = 'token';

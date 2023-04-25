@@ -80,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.next,
                               controller: nameController,
-                              style: TextStyle(color: AppColorResources.secondaryBlack),
+                              style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(left: 12.w, right: 12.w),
                                 hintText: "Name",
@@ -99,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               keyboardType: TextInputType.number,
                               textInputAction: TextInputAction.next,
                               controller: numberController,
-                              style: TextStyle(color: AppColorResources.secondaryBlack),
+                              style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(left: 12.w, right: 12.w),
                                 hintText: "Phone Number",
@@ -118,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               keyboardType: TextInputType.emailAddress,
                               textInputAction: TextInputAction.next,
                               controller: emailController,
-                              style: TextStyle(color: AppColorResources.secondaryBlack),
+                              style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(left: 12.w, right: 12.w),
                                 hintText: "Email",
@@ -138,7 +138,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               textInputAction: TextInputAction.next,
                               obscureText: _obscureText,
                               controller: passwordController,
-                              style: TextStyle(color: AppColorResources.secondaryBlack),
+                              style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                               decoration: InputDecoration(
                                 suffixIcon: GestureDetector(
                                   onTap: (){

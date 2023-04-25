@@ -1,9 +1,11 @@
 
 
+import 'package:bppshop_agent/data/repositories/add_customer_repo.dart';
 import 'package:bppshop_agent/data/repositories/agent_dashboard_repo.dart';
 import 'package:bppshop_agent/data/repositories/agent_profile_repo.dart';
 import 'package:bppshop_agent/data/repositories/auth_repo.dart';
 import 'package:bppshop_agent/data/repositories/district_thana_area_repo.dart';
+import 'package:bppshop_agent/provider/add_customer_provider.dart';
 import 'package:bppshop_agent/provider/agent_dashboard_provider.dart';
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/auth_provider.dart';
@@ -30,6 +32,7 @@ Future<void> init() async {
      sl.registerLazySingleton(() => AgentProfileRepo(dioClient: sl(), sharedPreferences: sl()));
      sl.registerLazySingleton(() => AgentDashboardRepo(dioClient: sl(), sharedPreferences: sl()));
      sl.registerLazySingleton(() => DistrictThanaAreaRepo(dioClient: sl(), sharedPreferences: sl()));
+     sl.registerLazySingleton(() => AddCustomerRepo(dioClient: sl(), sharedPreferences: sl()));
 
 
   /// Provider
@@ -37,6 +40,7 @@ Future<void> init() async {
      sl.registerFactory(() => AgentProfileProvider(agentProfileRepo: sl(), dioClient: sl()));
      sl.registerFactory(() => AgentDashboardProvider(agentDashboardRepo: sl(), dioClient: sl()));
      sl.registerFactory(() => DistrictThanaAreaProvider(districtThanaAreaRepo: sl(), dioClient: sl()));
+     sl.registerFactory(() => AddCustomerProvider(addCustomerRepo: sl(), dioClient: sl()));
 
 
   /// External

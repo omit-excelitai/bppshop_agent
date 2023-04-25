@@ -1,4 +1,5 @@
 
+import 'package:bppshop_agent/provider/add_customer_provider.dart';
 import 'package:bppshop_agent/provider/agent_dashboard_provider.dart';
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/auth_provider.dart';
@@ -44,6 +45,7 @@ void main() async {
         ChangeNotifierProvider(create: (context)=> di.sl<AgentDashboardProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<DistrictThanaAreaProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<AuthProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<AddCustomerProvider>()),
       ],
       child: MyApp()),
   );

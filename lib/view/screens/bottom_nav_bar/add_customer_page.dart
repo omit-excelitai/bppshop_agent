@@ -1,4 +1,5 @@
 
+import 'package:bppshop_agent/provider/add_customer_provider.dart';
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
 import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
 import 'package:bppshop_agent/view/widgets/custom_circular_progress_indicator.dart';
@@ -27,13 +28,6 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
   TextEditingController numberController = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
 
-  final districtItems = ["Dhaka", "Bogura", "Rangpur"];
-  final thanaItems = ["Mirpur", "Nandigram", "Kaonia"];
-  final areaItems = ["Shewrapara", "Nagorkandi", "Kaonia"];
-  String? _selectedDistrict;
-  String ?_selectedThana;
-  String ?_selectedArea;
-
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -42,6 +36,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
       // Provider.of<DistrictThanaAreaProvider>(context, listen: false).getArea(true, context);
       //Provider.of<DistrictThanaAreaProvider>(context, listen: false).clearData();
       _load(true, context);
+      createNewCustomer();
     });
     super.initState();
   }
@@ -49,6 +44,19 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
   _load(bool reload, BuildContext context) async {
     await Provider.of<DistrictThanaAreaProvider>(context, listen: false)
         .getDistrict(reload, context);
+  }
+
+  createNewCustomer() async {
+    await Provider.of<AddCustomerProvider>(context, listen: false)
+        .createNewCustomer(
+        customerName: nameController.text.trim(),
+        customerEmail: emailController.text.trim(),
+        customerMobile: numberController.text.trim(),
+        customerAddress: addressController.text.trim(),
+        districtId:Provider.of<DistrictThanaAreaProvider>(context, listen: false).districtId,
+        thanaId: Provider.of<DistrictThanaAreaProvider>(context, listen: false).thanaId,
+        areaId: Provider.of<DistrictThanaAreaProvider>(context, listen: false).areaId,
+        context: context);
   }
 
   @override
@@ -111,7 +119,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
                                 controller: nameController,
-                                style: TextStyle(color: AppColorResources.secondaryBlack),
+                                style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 12.w, right: 12.w),
                                   hintText: "Enter Name",
@@ -130,7 +138,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.next,
                                 controller: numberController,
-                                style: TextStyle(color: AppColorResources.secondaryBlack),
+                                style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 12.w, right: 12.w),
                                   hintText: "Enter Number",
@@ -149,7 +157,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
                                 controller: emailController,
-                                style: TextStyle(color: AppColorResources.secondaryBlack),
+                                style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 12.w, right: 12.w),
                                   hintText: "example@gmail.com",
@@ -314,9 +322,9 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
                                 controller: addressController,
-                                style: TextStyle(color: AppColorResources.secondaryBlack),
+                                style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                 decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 12.w, right: 12.w, top: 40.h, bottom: 40.h),
+                                  contentPadding: EdgeInsets.only(left: 12.w, right: 12.w, top: 30.h, bottom: 30.h),
                                   hintText: "16/1 (9th Floor), Alhaz Shamsuddin Mansion, New Eskaton Garden Road",
                                   hintStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                   hintMaxLines: 2,
@@ -334,7 +342,8 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                         Align(
                           alignment: Alignment.topRight,
                           child: AddandUpdateButton(onTap: (){
-                            Navigator.of(context).pushNamed(CustomerProfilePage.routeName);
+                            createNewCustomer();
+                            //Navigator.of(context).pushNamed(CustomerProfilePage.routeName);
                           }, title: "Add"),
                         )
                       ],

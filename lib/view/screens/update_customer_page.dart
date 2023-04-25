@@ -79,7 +79,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
                                 controller: nameController,
-                                style: TextStyle(color: AppColorResources.secondaryBlack),
+                                style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 12.w, right: 12.w),
                                   hintText: "Enter Name",
@@ -98,7 +98,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.next,
                                 controller: numberController,
-                                style: TextStyle(color: AppColorResources.secondaryBlack),
+                                style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 12.w, right: 12.w),
                                   hintText: "Enter Number",
@@ -117,7 +117,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
                                 controller: emailController,
-                                style: TextStyle(color: AppColorResources.secondaryBlack),
+                                style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 12.w, right: 12.w),
                                   hintText: "example@gmail.com",
@@ -218,9 +218,9 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
                                 controller: addressController,
-                                style: TextStyle(color: AppColorResources.secondaryBlack),
+                                style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                 decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 12.w, right: 12.w, top: 40.h, bottom: 40.h),
+                                  contentPadding: EdgeInsets.only(left: 12.w, right: 12.w, top: 30.h, bottom: 30.h),
                                   hintText: "16/1 (9th Floor), Alhaz Shamsuddin Mansion, New Eskaton Garden Road",
                                   hintStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                   hintMaxLines: 2,
