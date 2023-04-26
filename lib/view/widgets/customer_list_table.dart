@@ -11,7 +11,7 @@ import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
 
 class CustomerListTable extends StatefulWidget {
-  const CustomerListTable({Key? key}) : super(key: key);
+  CustomerListTable({Key? key}) : super(key: key);
 
   @override
   State<CustomerListTable> createState() => _CustomerListTableState();
@@ -169,7 +169,7 @@ class CustomerListTableDataSource extends DataGridSource {
               ),
               GestureDetector(
                 onTap: (){
-                  navigatorKey.currentState?.pushNamed(CustomerProfilePage.routeName, arguments: e.value);
+                  navigatorKey.currentState?.pushNamed(CustomerProfilePage.routeName);
                   //Navigator.of(context).pushNamed(CustomerProfilePage.routeName, arguments: e.value);
                   if(kDebugMode){
                     print("Check Customer ID------------${e.value}");

@@ -10,8 +10,8 @@ import '../widgets/customer_list_table.dart';
 
 class CustomerProfilePage extends StatefulWidget {
   static const String routeName = '/customer_profile_page';
-  CustomerListTable? customerListTable;
-  CustomerProfilePage({Key? key, required this.customerListTable}) : super(key: key);
+  //CustomerListTable? customerListTable;
+  //CustomerProfilePage(Key? key, this.customerListTable) : super(key: key);
 
   @override
   State<CustomerProfilePage> createState() => _CustomerProfilePageState();

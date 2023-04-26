@@ -4,6 +4,7 @@ import 'package:bppshop_agent/provider/agent_dashboard_provider.dart';
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/auth_provider.dart';
 import 'package:bppshop_agent/provider/bottom_navigation_bar_provider.dart';
+import 'package:bppshop_agent/provider/customer_details_provider.dart';
 import 'package:bppshop_agent/provider/customer_list_provider.dart';
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
 import 'package:bppshop_agent/provider/order_history_provider.dart';
@@ -52,6 +53,7 @@ void main() async {
         ChangeNotifierProvider(create: (context)=> di.sl<PendingCommissionProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<CustomerListProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<OrderHistoryProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<CustomerDetailsProvider>()),
       ],
       child: MyApp()),
   );
@@ -79,7 +81,7 @@ void configLoading() {
 class MyApp extends StatelessWidget {
  MyApp({Key? key}) : super(key: key);
 
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  //final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   bool checktoken(dynamic token) {
     if (token == null || token == "") {
@@ -91,6 +93,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: AppColorResources.primaryMaterial,
     ));
@@ -122,7 +125,7 @@ class MyApp extends StatelessWidget {
                   CommissionHistoryPage.routeName:(context)=>CommissionHistoryPage(),
                   CustomerListPage.routeName:(context)=>CustomerListPage(),
                   CustomerPage.routeName:(context)=>CustomerPage(),
-                  CustomerProfilePage.routeName:(context)=>CustomerProfilePage(customerListTable: null,),
+                  CustomerProfilePage.routeName:(context)=>CustomerProfilePage(),
                   DashboardPage.routeName:(context)=>DashboardPage(),
                   MyCommissionPage.routeName:(context)=>MyCommissionPage(),
                   PendingCommissionPage.routeName:(context)=>PendingCommissionPage(),
