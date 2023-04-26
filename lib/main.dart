@@ -77,7 +77,9 @@ void configLoading() {
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+ MyApp({Key? key}) : super(key: key);
+
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   bool checktoken(dynamic token) {
     if (token == null || token == "") {
@@ -103,6 +105,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: AppConstants.APP_NAME,
+                navigatorKey: navigatorKey,
                 builder: EasyLoading.init(),
                 theme: ThemeData(
                   primarySwatch: AppColorResources.primaryMaterial,
@@ -119,7 +122,7 @@ class MyApp extends StatelessWidget {
                   CommissionHistoryPage.routeName:(context)=>CommissionHistoryPage(),
                   CustomerListPage.routeName:(context)=>CustomerListPage(),
                   CustomerPage.routeName:(context)=>CustomerPage(),
-                  CustomerProfilePage.routeName:(context)=>CustomerProfilePage(),
+                  CustomerProfilePage.routeName:(context)=>CustomerProfilePage(customerListTable: null,),
                   DashboardPage.routeName:(context)=>DashboardPage(),
                   MyCommissionPage.routeName:(context)=>MyCommissionPage(),
                   PendingCommissionPage.routeName:(context)=>PendingCommissionPage(),

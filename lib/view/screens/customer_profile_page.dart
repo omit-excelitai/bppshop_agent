@@ -3,14 +3,15 @@ import 'package:bppshop_agent/view/screens/update_customer_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
+import '../widgets/customer_list_table.dart';
 
 class CustomerProfilePage extends StatefulWidget {
   static const String routeName = '/customer_profile_page';
-  const CustomerProfilePage({Key? key}) : super(key: key);
+  CustomerListTable? customerListTable;
+  CustomerProfilePage({Key? key, required this.customerListTable}) : super(key: key);
 
   @override
   State<CustomerProfilePage> createState() => _CustomerProfilePageState();
