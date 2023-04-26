@@ -19,11 +19,11 @@ class PendingCommissionRepo{
           'page': pageNo,
           'no_of_rows' : 5,
         },
-        options: Options(headers: {
-          "Content-Type": "application/json",
-          "Authorization":
-          "Bearer ${ sharedPreferences.getString(AppConstants.token) ?? ""}",
-        }),
+        // options: Options(headers: {
+        //   "Content-Type": "application/json",
+        //   "Authorization":
+        //   "Bearer ${ sharedPreferences.getString(AppConstants.token) ?? ""}",
+        // }),
       );
       return ApiResponse.withSuccess(response);
     }catch(e){

@@ -39,7 +39,7 @@ class Data {
   });
 
   final int? total;
-  final String? page;
+  final dynamic page;
   final int? noOfRows;
   final List<PendingCommissionData>? pendingCommissionList;
 

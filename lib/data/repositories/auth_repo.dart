@@ -42,6 +42,7 @@ class AuthRepo{
   /// get user token
   getUserToken() {
     SharedPreferences.getInstance();
+    dioClient.updateHeader(sharedPreferences.getString(AppConstants.token) ?? "", "");
     return sharedPreferences.getString(AppConstants.token) ?? "";
   }
 

@@ -10,19 +10,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../utill/app_style.dart';
-import '../../widgets/show_toast.dart';
 
-class SigninPage extends StatefulWidget {
+
+class SignInPage extends StatefulWidget {
   static const String routeName = '/sign-in_page';
-  SigninPage({Key? key}) : super(key: key);
+  SignInPage({Key? key}) : super(key: key);
 
   @override
-  State<SigninPage> createState() => _SigninPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SigninPageState extends State<SigninPage> {
+class _SignInPageState extends State<SignInPage> {
   TextEditingController numberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool _obscureText = true;

@@ -50,7 +50,7 @@ logoutAlert(BuildContext context){
                       ),
                       InkWell(
                         onTap: (){
-                          Navigator.of(context).pushNamedAndRemoveUntil(SigninPage.routeName, (route) => false);
+                          Navigator.of(context).pushNamedAndRemoveUntil(SignInPage.routeName, (route) => false);
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 28.w),

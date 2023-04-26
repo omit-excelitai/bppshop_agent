@@ -16,11 +16,8 @@ class DioClient{
   String? token;
   String? countryCode;
 
-  DioClient(this.baseUrl,Dio? dioC,{required this.loggingInterceptor,required this.sharedPreferences,}){
-    // token = sharedPreferences.getString(AppConstants.TOKEN);
-    // countryCode=sharedPreferences.getString(AppConstants.COUNTRY_CODE);
 
-    // print("......Token..... $token");
+  DioClient(this.baseUrl,Dio? dioC,{required this.loggingInterceptor,required this.sharedPreferences,}){
 
     dio = dioC ?? Dio();
     dio!
@@ -33,8 +30,8 @@ class DioClient{
       'Authorization': 'Bearer $token',
       //AppConstants.LANG_KEY : countryCode == 'US'? 'en':countryCode.toLowerCase(),
     };
-
     dio!.interceptors.add(loggingInterceptor);
+
   }
 
   void updateHeader(String token, String countryCode) {
@@ -51,10 +48,9 @@ class DioClient{
     };
   }
 
+
   Future<Response> get(String uri, {
-
     Map<String, dynamic>? queryParameters,
-
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,

@@ -103,10 +103,10 @@ class MyApp extends StatelessWidget {
                 theme: ThemeData(
                   primarySwatch: AppColorResources.primaryMaterial,
                 ),
-                initialRoute: checktoken(authProvider.getUserToken()) != false?LandingPage.routeName:SigninPage.routeName,
+                initialRoute: checktoken(authProvider.getUserToken()) != false?LandingPage.routeName:SignInPage.routeName,
                 routes: {
                   SignUpPage.routeName : (context) => SignUpPage(),
-                  SigninPage.routeName : (context) => SigninPage(),
+                  SignInPage.routeName : (context) => SignInPage(),
                   AddCustomerPage.routeName : (context) => AddCustomerPage(),
                   AgentProfilePage.routeName : (context) => AgentProfilePage(),
                   HomePage.routeName:(context)=>HomePage(),

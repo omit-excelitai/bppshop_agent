@@ -34,31 +34,31 @@ class Data {
     this.total,
     this.page,
     this.noOfRows,
-    this.data,
+    this.customerList,
   });
 
   final int? total;
   final String? page;
   final int? noOfRows;
-  final List<Datum>? data;
+  final List<CustomerListData>? customerList;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     total: json["total"],
     page: json["page"],
     noOfRows: json["no_of_rows"],
-    data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+    customerList: json["data"] == null ? [] : List<CustomerListData>.from(json["data"]!.map((x) => CustomerListData.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "total": total,
     "page": page,
     "no_of_rows": noOfRows,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "data": customerList == null ? [] : List<dynamic>.from(customerList!.map((x) => x.toJson())),
   };
 }
 
-class Datum {
-  Datum({
+class CustomerListData {
+  CustomerListData({
     this.id,
     this.customerName,
     this.customerEmail,
@@ -72,7 +72,7 @@ class Datum {
   final String? customerMobile;
   final String? customerAddress;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory CustomerListData.fromJson(Map<String, dynamic> json) => CustomerListData(
     id: json["id"],
     customerName: json["customer_name"],
     customerEmail: json["customer_email"],

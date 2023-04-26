@@ -6,18 +6,21 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AgentDashboardRepo{
+
   final DioClient dioClient;
   final SharedPreferences sharedPreferences;
   AgentDashboardRepo({required this.dioClient, required this.sharedPreferences});
 
+  /// Fetch agent dashboard data
   Future<ApiResponse> getAgentDashboardData() async{
     try{
       Response response = await dioClient.get(AppConstants.agentDashboardUrl,
-          options: Options(headers:{
-            "Content-Type": "application/json",
-            "Authorization":
-            "Bearer ${sharedPreferences.getString(AppConstants.token) ?? ""}",
-          }));
+          // options: Options(headers:{
+          //   "Content-Type": "application/json",
+          //   "Authorization":
+          //   "Bearer ${sharedPreferences.getString(AppConstants.token) ?? ""}",
+          // })
+      );
       return ApiResponse.withSuccess(response);
     }catch(e){
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
