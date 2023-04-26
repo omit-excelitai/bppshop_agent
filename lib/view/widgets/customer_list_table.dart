@@ -226,12 +226,13 @@ class _CustomerListTableState extends State<CustomerListTable> {
             isScrollbarAlwaysShown: true,
             frozenColumnsCount: 1,
             footerFrozenColumnsCount: 1,
-            defaultColumnWidth: 100.w,
+            //defaultColumnWidth: 100.w,
             source: customerListTableDataSource!,
             columnWidthMode: ColumnWidthMode.fill,
             columns: <GridColumn>[
               GridColumn(
                   columnName: 'customerID',
+                  width: 100.w,
                   label: Container(
                       color: AppColorResources.primaryDeepBlue,
                       padding: EdgeInsets.all(12),

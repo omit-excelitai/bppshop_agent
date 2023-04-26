@@ -29,12 +29,13 @@ class _CommissionHistoryTableState extends State<CommissionHistoryTable> {
       shrinkWrapRows: true,
       isScrollbarAlwaysShown: true,
       frozenColumnsCount: 1,
-      defaultColumnWidth: 102.w,
+      //defaultColumnWidth: 102.w,
       source: employeeDataSource,
       columnWidthMode: ColumnWidthMode.fill,
       columns: <GridColumn>[
         GridColumn(
             columnName: 'customerID',
+            width: 102.w,
             label: Container(
                 color: AppColorResources.primaryDeepBlue,
                 padding: EdgeInsets.all(12),

@@ -6,18 +6,21 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AgentProfileRepo{
+
   final DioClient dioClient;
   final SharedPreferences sharedPreferences;
   AgentProfileRepo({required this.dioClient, required this.sharedPreferences});
 
+  /// Get Agent Profile Data
   Future<ApiResponse> getAgentProfileData() async{
     try{
       Response response = await dioClient.get(AppConstants.agentProfileUrl,
-      options: Options(headers:{
-        "Content-Type": "application/json",
-        "Authorization":
-        "Bearer ${sharedPreferences.getString(AppConstants.token) ?? ""}",
-      }));
+      // options: Options(headers:{
+      //   "Content-Type": "application/json",
+      //   "Authorization":
+      //   "Bearer ${sharedPreferences.getString(AppConstants.token) ?? ""}",
+      // })
+      );
       return ApiResponse.withSuccess(response);
     }catch(e){
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

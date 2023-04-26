@@ -35,31 +35,31 @@ class Data {
     this.total,
     this.page,
     this.noOfRows,
-    this.data,
+    this.orderHistoryList,
   });
 
   final int? total;
-  final String? page;
+  final dynamic page;
   final int? noOfRows;
-  final List<Datum>? data;
+  final List<OrderHistoryData>? orderHistoryList;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     total: json["total"],
     page: json["page"],
     noOfRows: json["no_of_rows"],
-    data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+    orderHistoryList: json["data"] == null ? [] : List<OrderHistoryData>.from(json["data"]!.map((x) => OrderHistoryData.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "total": total,
     "page": page,
     "no_of_rows": noOfRows,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "data": orderHistoryList == null ? [] : List<dynamic>.from(orderHistoryList!.map((x) => x.toJson())),
   };
 }
 
-class Datum {
-  Datum({
+class OrderHistoryData {
+  OrderHistoryData({
     this.orderDate,
     this.orderId,
     this.customerId,
@@ -73,7 +73,7 @@ class Datum {
   final int? totalProducts;
   final int? totalAmount;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory OrderHistoryData.fromJson(Map<String, dynamic> json) => OrderHistoryData(
     orderDate: json["order_date"],
     orderId: json["order_id"],
     customerId: json["customer_id"],

@@ -32,22 +32,11 @@ class PendingCommissionProvider with ChangeNotifier{
     notifyListeners();
     ApiResponse apiResponse = await pendingCommissionRepo.pendingCommissionHistory(pageNo: pageNo, no_of_rows: 5);
 
-    // if(kDebugMode){
-    //   print("pending commission statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
-    // }
-
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
       _isLoading=false;
 
-
       _pendingCommissionRequestModel = PendingCommissionRequestModel.fromJson(apiResponse.response!.data);
       _pendingCommissionList = _pendingCommissionRequestModel!.data!.pendingCommissionList;
-
-
-      // if (kDebugMode) {
-      //   print("_pendingCommissionRequestModelTest>>>>>>>>>>>>>>>${_pendingCommissionRequestModel!.data}");
-      //   print("_pendingCommissionList+++++++++++++++++${_pendingCommissionAllList}");
-      // }
 
       notifyListeners();
       EasyLoading.dismiss();
@@ -55,7 +44,6 @@ class PendingCommissionProvider with ChangeNotifier{
 
       _isLoading=false;
       EasyLoading.dismiss();
-      // ApiChecker.checkApi(context, apiResponse);
       notifyListeners();
 
     }
