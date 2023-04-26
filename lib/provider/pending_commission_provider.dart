@@ -11,17 +11,15 @@ import '../data/model/base_model/api_response.dart';
 class PendingCommissionProvider with ChangeNotifier{
 
   final DioClient dioClient;
-  bool _isLoading=false;
+  bool _isLoading = false;
   final PendingCommissionRepo pendingCommissionRepo;
   PendingCommissionRequestModel? _pendingCommissionRequestModel;
   List<PendingCommissionData>? _pendingCommissionList;
   PendingCommissionData? _pendingCommissionData;
-  List<String> _pendingCommissionAllList = [];
 
   PendingCommissionProvider({required this.dioClient, required this.pendingCommissionRepo});
 
-  List<String>? get pendingCommissionAllList => _pendingCommissionAllList;
-  bool get isLoading=>_isLoading;
+  bool get isLoading => _isLoading;
   PendingCommissionRequestModel? get pendingCommissionRequestModel => _pendingCommissionRequestModel;
   List<PendingCommissionData>? get pendingCommissionList => _pendingCommissionList;
   PendingCommissionData? get pendingCommissionData => _pendingCommissionData;
@@ -61,6 +59,6 @@ class PendingCommissionProvider with ChangeNotifier{
       notifyListeners();
 
     }
+    return null;
   }
-
 }
