@@ -94,7 +94,7 @@ class _OrderHistoryTableState extends State<OrderHistoryTable> {
                         style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
               GridColumn(
                   columnWidthMode: ColumnWidthMode.auto,
-                  width: 65.w,
+                  width: 70.w,
                   columnName: 'action',
                   label: Container(
                       color: AppColorResources.primaryDeepBlue,
