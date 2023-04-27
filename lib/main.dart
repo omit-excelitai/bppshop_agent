@@ -29,6 +29,7 @@ import 'package:bppshop_agent/view/screens/my_commission.dart';
 import 'package:bppshop_agent/view/screens/pending_commission_page.dart';
 import 'package:bppshop_agent/view/screens/update_customer_page.dart';
 import 'package:bppshop_agent/view/screens/wallet_page.dart';
+import 'package:bppshop_agent/view/widgets/navigation_service_without_context.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'di_container.dart' as di;
@@ -86,7 +87,7 @@ class MyApp extends StatelessWidget {
 
   //final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  bool checktoken(dynamic token) {
+  bool checkToken(dynamic token) {
     if (token == null || token == "") {
       return false;
     } else {
@@ -111,12 +112,13 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: AppConstants.APP_NAME,
-                navigatorKey: navigatorKey,
+                navigatorKey: NavigationService.navigatorKey,
+                onGenerateRoute: RouteGenerator.generateRoutes,
                 builder: EasyLoading.init(),
                 theme: ThemeData(
                   primarySwatch: AppColorResources.primaryMaterial,
                 ),
-                initialRoute: checktoken(authProvider.getUserToken()) != false?LandingPage.routeName:SignInPage.routeName,
+                initialRoute: checkToken(authProvider.getUserToken()) != false?LandingPage.routeName:SignInPage.routeName,
                 routes: {
                   SignUpPage.routeName : (context) => SignUpPage(),
                   SignInPage.routeName : (context) => SignInPage(),

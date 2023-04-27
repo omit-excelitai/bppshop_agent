@@ -20,6 +20,7 @@ class CustomerProfilePage extends StatefulWidget {
 class _CustomerProfilePageState extends State<CustomerProfilePage> {
   @override
   Widget build(BuildContext context) {
+
     return Consumer<BottomNavigationBarProvider>(
       builder: (BuildContext context, bottomNavigationBarProvider, Widget? child) {
         return Scaffold(

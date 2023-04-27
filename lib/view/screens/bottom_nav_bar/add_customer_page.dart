@@ -26,7 +26,9 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController numberController = TextEditingController();
-  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
+  TextEditingController _searchController = TextEditingController();
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   void initState() {
@@ -77,14 +79,14 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
       builder: (BuildContext context, districtThanaAreaProvider, Widget? child) {
         return Scaffold(
           drawer: MyDrawerPage(),
-          key: _scaffoldkey,
+          key: _scaffoldKey,
           backgroundColor: AppColorResources.bgColor,
           appBar: AppBar(
             backgroundColor: AppColorResources.appBarColor,
             centerTitle: false,
             leading: InkWell(
                 onTap: (){
-                  _scaffoldkey.currentState!.openDrawer();
+                  _scaffoldKey.currentState!.openDrawer();
                 },
                 child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
             title: Text("Customer", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
@@ -201,6 +203,26 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
                                     color: AppColorResources.textFieldColor),
                                 child: CustomDropDown(
+                                  searchController: _searchController,
+                                  searchInnerWidget: TextFormField(
+                                    enabled: true,
+                                    controller: _searchController,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      hintText: 'Select mood...',
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8,),
+                                      filled: true,
+                                    ),
+                                  ),
+                                  searchMatchFn: (item, searchValue) {
+                                    return (item.value.toString().contains(searchValue));
+                                  },
+                                  onMenuStateChange: (isOpen) {
+                                    if (!isOpen) {
+                                      _searchController.clear();
+                                    }
+                                  },
+
                                   items: districtThanaAreaProvider.districtNameList,
                                   width: double.infinity,
                                   dropDownWidth: 280.w,

@@ -9,6 +9,7 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../data/model/request_model/customer_list_request_model.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
+import 'navigation_service_without_context.dart';
 
 class CustomerListTable extends StatefulWidget {
   CustomerListTable({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class CustomerListTable extends StatefulWidget {
 }
 
 class _CustomerListTableState extends State<CustomerListTable> {
+
   CustomerListTableDataSource? customerListTableDataSource;
 
   @override
@@ -145,7 +147,7 @@ class CustomerListTableDataSource extends DataGridSource {
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
-    final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+    NavigationService routeService = NavigationService();
     return DataGridRowAdapter(
       cells: row.getCells().map<Widget>((e) {
         return e.columnName == "action" ?Container(
@@ -169,8 +171,7 @@ class CustomerListTableDataSource extends DataGridSource {
               ),
               GestureDetector(
                 onTap: (){
-                  navigatorKey.currentState?.pushNamed(CustomerProfilePage.routeName);
-                  //Navigator.of(context).pushNamed(CustomerProfilePage.routeName, arguments: e.value);
+                  routeService.routeTo(CustomerProfilePage.routeName, arguments: e.value);
                   if(kDebugMode){
                     print("Check Customer ID------------${e.value}");
                   }

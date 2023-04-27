@@ -26,6 +26,10 @@ class CustomDropDown extends StatelessWidget {
   double? paddingLeft;
   ValueChanged<String?>? onChanged;
   bool? isExpanded;
+  TextEditingController? searchController;
+  Widget? searchInnerWidget;
+  bool Function(DropdownMenuItem<String>, String)? searchMatchFn;
+  void Function(bool)? onMenuStateChange;
 
   CustomDropDown(
       {@required this.items,
@@ -50,6 +54,10 @@ class CustomDropDown extends StatelessWidget {
         this.paddingLeft,
         this.hintStyle,
         this.isExpanded,
+        this.searchController,
+        this.searchInnerWidget,
+        this.searchMatchFn,
+        this.onMenuStateChange,
         Key? key})
       : super(key: key);
 
