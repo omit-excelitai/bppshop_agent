@@ -1,5 +1,6 @@
 
 import 'package:bppshop_agent/view/screens/update_customer_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -10,17 +11,23 @@ import '../widgets/customer_list_table.dart';
 
 class CustomerProfilePage extends StatefulWidget {
   static const String routeName = '/customer_profile_page';
-  //CustomerListTable? customerListTable;
-  //CustomerProfilePage(Key? key, this.customerListTable) : super(key: key);
+  // CustomerListTable? customerListTable;
+  // CustomerProfilePage(this.customerListTable);
 
   @override
   State<CustomerProfilePage> createState() => _CustomerProfilePageState();
 }
 
 class _CustomerProfilePageState extends State<CustomerProfilePage> {
+
+  //String customerId = ModalRoute.of(context)!.settings.arguments as String;
+
   @override
   Widget build(BuildContext context) {
-
+    String customerId = ModalRoute.of(context)!.settings.arguments as String;
+    if(kDebugMode){
+      print("Check customer ID +++++++++++++++++++++++++++${customerId}");
+    }
     return Consumer<BottomNavigationBarProvider>(
       builder: (BuildContext context, bottomNavigationBarProvider, Widget? child) {
         return Scaffold(
