@@ -1,4 +1,5 @@
 
+import 'package:bppshop_agent/provider/customer_details_provider.dart';
 import 'package:bppshop_agent/view/screens/update_customer_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,23 +7,29 @@ import 'package:provider/provider.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
-import '../widgets/customer_list_table.dart';
 
 class CustomerProfilePage extends StatefulWidget {
   static const String routeName = '/customer_profile_page';
-  //CustomerListTable? customerListTable;
-  //CustomerProfilePage(Key? key, this.customerListTable) : super(key: key);
 
   @override
   State<CustomerProfilePage> createState() => _CustomerProfilePageState();
 }
 
 class _CustomerProfilePageState extends State<CustomerProfilePage> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      dynamic customerId = ModalRoute.of(context)!.settings.arguments as String;
+      Provider.of<CustomerDetailsProvider>(context, listen: false).fetchCustomerDetailsData(context, id: customerId);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    return Consumer<BottomNavigationBarProvider>(
-      builder: (BuildContext context, bottomNavigationBarProvider, Widget? child) {
+    return Consumer2<BottomNavigationBarProvider, CustomerDetailsProvider>(
+      builder: (BuildContext context, bottomNavigationBarProvider, customerDetailsProvider, Widget? child) {
         return Scaffold(
           backgroundColor: AppColorResources.bgColor,
           appBar: AppBar(
@@ -35,7 +42,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                 child: Icon(Icons.arrow_back_outlined, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
             title: Text("Customer Profile", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
           ),
-          body: Container(
+          body: customerDetailsProvider.customerDetailsResponseModel != null?Container(
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -55,7 +62,8 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                                   height: 116.h,
                                   width: 116.w,
                                   decoration: BoxDecoration(shape: BoxShape.circle,
-                                      color: AppColorResources.primaryOrange),
+                                      //color: AppColorResources.primaryOrange,
+                                  image: DecorationImage(image: AssetImage("images/customerpic.png",)),),
                                 ),
                               ),
                               flex: 2,),
@@ -64,7 +72,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text("Customer ID:", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w400),),
-                                  Text("550", style: myStyleMontserrat(24.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                                  Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.id}", style: myStyleMontserrat(24.sp, AppColorResources.homeItemColor, FontWeight.w600),),
                                 ],
                               ),
                               flex: 2,),
@@ -78,25 +86,29 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                             children: [
                               Text("CONTACT INFORMATION:", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
                               ListTile(
-                                title: Text("Customer Name", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
-                                subtitle: Text("Farhan", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                                title: Text("Customer Name", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                                subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerName}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
                               ),
                               ListTile(
-                                title: Text("Email", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
-                                subtitle: Text("example@gmail.com", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                                title: Text("Email", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                                subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerEmail}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
                               ),
                               ListTile(
-                                title: Text("Mobile", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
-                                subtitle: Text("01711369672", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                                title: Text("Mobile", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                                subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerMobile}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
                               ),
                               ListTile(
-                                title: Text("Address", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
-                                subtitle: Text("16/1 (9th Floor), Alhaz Shamsuddin Mansion, New Eskaton Garden Road,", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                                title: Text("Address", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                                subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerAddress}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
                               ),
                               SizedBox(height: 12.h,),
                               InkWell(
                                 onTap: (){
-                                  Navigator.of(context).pushNamed(UpdateCustomerPage.routeName);
+                                  Navigator.of(context).pushNamed(UpdateCustomerPage.routeName, arguments: {
+                                    customerDetailsProvider.customerDetailsResponseModel!.data!.customerName,
+                                    customerDetailsProvider.customerDetailsResponseModel!.data!.customerAddress,
+                                    customerDetailsProvider.customerDetailsResponseModel!.data!.id,
+                                  });
                                 },
                                 child: Container(
                                   alignment: Alignment.center,
@@ -122,7 +134,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                 ],
               ),
             ),
-          ),
+          ):Center(child: SizedBox.shrink()),
           bottomNavigationBar: bottomNavigationBarProvider.bottomNavigationBar(context,false),
         );
       },

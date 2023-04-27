@@ -21,14 +21,14 @@ class CustomerDetailsProvider with ChangeNotifier{
   bool get isLoading => _isLoading;
 
   /// Fetch Customer Details Data
-  Future<void> fetchCustomerDetailsData(BuildContext context, ) async {
+  Future<void> fetchCustomerDetailsData(BuildContext context, {required dynamic id}) async {
     EasyLoading.show(status: 'loading...');
     _isLoading = true;
     notifyListeners();
       ApiResponse apiResponse = await customerDetailsRepo.getCustomerDetails(id: id);
       if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
-        _customerDetailsResponseModel = CustomerDetailsResponseModel.fromJson(apiResponse.response!.data);
 
+        _customerDetailsResponseModel = CustomerDetailsResponseModel.fromJson(apiResponse.response!.data);
         _customerDetailsResponseModel = _customerDetailsResponseModel;
 
         if(kDebugMode){

@@ -1,8 +1,8 @@
 
+import 'package:bppshop_agent/provider/update_customer_profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
@@ -28,6 +28,22 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
   String ?_selectedDistrict;
   String ?_selectedThana;
   String ?_selectedArea;
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      dynamic customerId = ModalRoute.of(context)!.settings.arguments as String;
+      dynamic customerName = ModalRoute.of(context)!.settings.arguments as String;
+      dynamic customerAddress = ModalRoute.of(context)!.settings.arguments as String;
+      Provider.of<UpdateCustomerProfileProvider>(context, listen: false).updateCustomerProfile(
+          customer_name: customerName,
+          customer_address: customerAddress,
+          customer_id: customerId,
+          context: context);
+    });
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -41,8 +57,8 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<BottomNavigationBarProvider>(
-      builder: (BuildContext context, bottomNavigationBarProvider, Widget? child) {
+    return Consumer2<BottomNavigationBarProvider, UpdateCustomerProfileProvider>(
+      builder: (BuildContext context, bottomNavigationBarProvider, updateCustomerProfileProvider, Widget? child) {
         return Scaffold(
           backgroundColor: AppColorResources.bgColor,
           appBar: AppBar(
