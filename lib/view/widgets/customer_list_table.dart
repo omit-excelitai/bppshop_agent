@@ -1,135 +1,142 @@
 
+import 'package:bppshop_agent/provider/customer_list_provider.dart';
+import 'package:bppshop_agent/view/screens/customer_profile_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-
+import '../../data/model/request_model/customer_list_request_model.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
+import 'navigation_service_without_context.dart';
 
 class CustomerListTable extends StatefulWidget {
-  const CustomerListTable({Key? key}) : super(key: key);
+  CustomerListTable({Key? key}) : super(key: key);
 
   @override
   State<CustomerListTable> createState() => _CustomerListTableState();
 }
 
 class _CustomerListTableState extends State<CustomerListTable> {
-  List<CustomerList> customerList = <CustomerList>[];
-  late CustomerListTableDataSource customerListTableDataSource;
+
+  CustomerListTableDataSource? customerListTableDataSource;
 
   @override
   void initState() {
     super.initState();
-    customerList = getCustomerListData();
-    customerListTableDataSource = CustomerListTableDataSource(customerListData: customerList);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<CustomerListProvider>(context, listen: false).customerAllList(pageNo: 1, no_of_rows: 5, context: context);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SfDataGrid(
-      shrinkWrapRows: true,
-      isScrollbarAlwaysShown: true,
-      frozenColumnsCount: 1,
-      footerFrozenColumnsCount: 1,
-      defaultColumnWidth: 100.w,
-      source: customerListTableDataSource,
-      columnWidthMode: ColumnWidthMode.fill,
-      columns: <GridColumn>[
-        GridColumn(
-            columnName: 'customerID',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Customer ID',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),
-                ))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'customerName',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Customer Name',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'customerEmail',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Customer Email',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),
-                ))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'mobileNumber',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Mobile Number',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'customerAddress',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Customer Address',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            minimumWidth: 96.w,
-            columnName: 'action',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.center,
-                child: Text('Action',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-      ],
+    return Consumer<CustomerListProvider>(
+      builder: (BuildContext context, customerListProvider, Widget? child) {
+        if(customerListProvider.customerList != null && customerListProvider.customerList!.length > 0) {
+          customerListTableDataSource = CustomerListTableDataSource(customerListData: customerListProvider.customerList!);
+          return SfDataGrid(
+            shrinkWrapRows: true,
+            isScrollbarAlwaysShown: true,
+            frozenColumnsCount: 1,
+            footerFrozenColumnsCount: 1,
+            //defaultColumnWidth: 100.w,
+            source: customerListTableDataSource!,
+            columnWidthMode: ColumnWidthMode.fill,
+            columns: <GridColumn>[
+              GridColumn(
+                  columnName: 'customerID',
+                  width: 100.w,
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Customer ID',
+                        style: myStyleMontserrat(
+                            12.sp, AppColorResources.countColor,
+                            FontWeight.w600),
+                      ))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'customerName',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Customer Name',
+                        style: myStyleMontserrat(
+                            12.sp, AppColorResources.countColor,
+                            FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'customerEmail',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Customer Email',
+                        style: myStyleMontserrat(
+                            12.sp, AppColorResources.countColor,
+                            FontWeight.w600),
+                      ))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'mobileNumber',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Mobile Number',
+                        style: myStyleMontserrat(
+                            12.sp, AppColorResources.countColor,
+                            FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'customerAddress',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Customer Address',
+                        style: myStyleMontserrat(
+                            12.sp, AppColorResources.countColor,
+                            FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  minimumWidth: 96.w,
+                  columnName: 'action',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.center,
+                      child: Text('Action',
+                        style: myStyleMontserrat(
+                            12.sp, AppColorResources.countColor,
+                            FontWeight.w600),))),
+            ],
+          );
+        }
+        else{
+          return SizedBox.shrink();
+        }
+      },
     );
   }
-
-  List<CustomerList> getCustomerListData() {
-    return [
-      CustomerList("#100470", "MD. Ahosan Habib", "example@gmail.com", "01626658415", "16/1 (9th Floor), Alhaz Shamsuddin Mansion,\nNew Eskaton Garden Road", ""),
-      CustomerList("#100470", "MD. Ahosan Habib", "example@gmail.com", "01626658415", "16/1 (9th Floor), Alhaz Shamsuddin Mansion,\nNew Eskaton Garden Road", ""),
-      CustomerList("#100470", "MD. Ahosan Habib", "example@gmail.com", "01626658415", "16/1 (9th Floor), Alhaz Shamsuddin Mansion,\nNew Eskaton Garden Road", ""),
-      CustomerList("#100470", "MD. Ahosan Habib", "example@gmail.com", "01626658415", "16/1 (9th Floor), Alhaz Shamsuddin Mansion,\nNew Eskaton Garden Road", ""),
-      CustomerList("#100470", "MD. Ahosan Habib", "example@gmail.com", "01626658415", "16/1 (9th Floor), Alhaz Shamsuddin Mansion,\nNew Eskaton Garden Road", ""),
-      CustomerList("#100470", "MD. Ahosan Habib", "example@gmail.com", "01626658415", "16/1 (9th Floor), Alhaz Shamsuddin Mansion,\nNew Eskaton Garden Road", ""),
-    ];
-  }
-}
-
-class CustomerList {
-  CustomerList(this.customerID, this.customerName, this.customerEmail, this.mobileNumber, this.customerAddress, this.action);
-
-  final String customerID;
-  final String customerName;
-  final String customerEmail;
-  final String mobileNumber;
-  final String customerAddress;
-  final String action;
 }
 
 class CustomerListTableDataSource extends DataGridSource {
-  CustomerListTableDataSource({required List<CustomerList> customerListData}) {
+  CustomerListTableDataSource({required List<CustomerListData> customerListData}) {
     _customerListData = customerListData
         .map<DataGridRow>((e) => DataGridRow(cells: [
-      DataGridCell<String>(columnName: 'customerID', value: e.customerID),
-      DataGridCell<String>(columnName: 'customerName', value: e.customerName),
-      DataGridCell<String>(columnName: 'customerEmail', value: e.customerEmail),
-      DataGridCell<String>(columnName: 'mobileNumber', value: e.mobileNumber),
-      DataGridCell<String>(columnName: 'customerAddress', value: e.customerAddress),
-      DataGridCell<String>(columnName: 'action', value: e.action),
+      DataGridCell<String>(columnName: 'customerID', value: e.id.toString()),
+      DataGridCell<String>(columnName: 'customerName', value: e.customerName.toString()),
+      DataGridCell<String>(columnName: 'customerEmail', value: e.customerEmail.toString()),
+      DataGridCell<String>(columnName: 'mobileNumber', value: e.customerMobile.toString()),
+      DataGridCell<String>(columnName: 'customerAddress', value: e.customerAddress.toString()),
+      DataGridCell<String>(columnName: 'action', value: e.id.toString(),),
     ]))
         .toList();
   }
@@ -140,47 +147,55 @@ class CustomerListTableDataSource extends DataGridSource {
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
+    NavigationService routeService = NavigationService();
     return DataGridRowAdapter(
-        cells: row.getCells().map<Widget>((e) {
-          return e.columnName == "action" ?Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.all(12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: (){},
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 24.h,
-                    padding: EdgeInsets.symmetric(horizontal: 6.w),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.r),
-                    color: AppColorResources.circleColor),
-                    child: Text("Login",style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),),
-                  ),
+      cells: row.getCells().map<Widget>((e) {
+        return e.columnName == "action" ?Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: (){
+
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 24.h,
+                  padding: EdgeInsets.symmetric(horizontal: 6.w),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.r),
+                      color: AppColorResources.circleColor),
+                  child: Text("Login",style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),),
                 ),
-                GestureDetector(
-                  onTap: (){},
-                  child: Container(
-                    margin: EdgeInsets.only(left: 4.w),
-                    alignment: Alignment.center,
-                    height: 24.h,
-                    width: 24.w,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.r),
-                    color: AppColorResources.primaryDeepBlue),
-                    child: Icon(Icons.visibility_outlined, size: 16, color: AppColorResources.primaryWhite,),
-                  ),
+              ),
+              GestureDetector(
+                onTap: (){
+                  routeService.routeTo(CustomerProfilePage.routeName, arguments: e.value);
+                  if(kDebugMode){
+                    print("Check Customer ID------------${e.value}");
+                  }
+                },
+                child: Container(
+                  margin: EdgeInsets.only(left: 4.w),
+                  alignment: Alignment.center,
+                  height: 24.h,
+                  width: 24.w,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.r),
+                      color: AppColorResources.primaryDeepBlue),
+                  child: Icon(Icons.visibility_outlined, size: 16, color: AppColorResources.primaryWhite,),
                 ),
-              ],
-            ),
-          ):Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.symmetric(horizontal: 12.w),
-            child: Text(e.value.toString(),
-              style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),
-            ),
-          );
-        }).toList(),
+              ),
+            ],
+          ),
+        ):Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          child: Text(e.value.toString(),
+            style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),
+          ),
+        );
+      }).toList(),
     );
   }
 }

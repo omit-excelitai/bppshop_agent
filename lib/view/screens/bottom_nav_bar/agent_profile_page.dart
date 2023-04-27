@@ -1,4 +1,5 @@
 
+import 'package:bppshop_agent/provider/customer_details_provider.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:bppshop_agent/view/screens/agent_update_profile.dart';
 import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
@@ -67,6 +68,7 @@ class _ProfileSectionState extends State<ProfileSection> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //_loadAgentProfileData(context, true);
       Provider.of<AgentProfileProvider>(context, listen: false).getAgentProfileData(context);
+      // Provider.of<CustomerDetailsProvider>(context, listen: false).fetchCustomerDetailsData(context);
     });
     super.initState();
   }
@@ -160,7 +162,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                           padding: EdgeInsets.only(top: 10.h),
                           child: Image.asset("images/home.png")),
                       title: Text("Address", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                      subtitle: Text("${agentProfileProvider.agentProfileModelData!.data!.address}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                      subtitle: Text("${agentProfileProvider.agentProfileModelData!.data!.areaName}, ${agentProfileProvider.agentProfileModelData!.data!.thanaName}, ${agentProfileProvider.agentProfileModelData!.data!.districtName}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
                     ),
                   ],
                 ),

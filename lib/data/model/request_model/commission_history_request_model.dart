@@ -34,25 +34,25 @@ class Data {
     this.total,
     this.page,
     this.noOfRows,
-    this.data,
+    this.commissionHistoryList,
   });
 
   final int? total;
   final int? page;
   final int? noOfRows;
-  final List<dynamic>? data;
+  final List<dynamic>? commissionHistoryList;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     total: json["total"],
     page: json["page"],
     noOfRows: json["no_of_rows"],
-    data: json["data"] == null ? [] : List<dynamic>.from(json["data"]!.map((x) => x)),
+    commissionHistoryList: json["data"] == null ? [] : List<dynamic>.from(json["data"]!.map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
     "total": total,
     "page": page,
     "no_of_rows": noOfRows,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x)),
+    "data": commissionHistoryList == null ? [] : List<dynamic>.from(commissionHistoryList!.map((x) => x)),
   };
 }

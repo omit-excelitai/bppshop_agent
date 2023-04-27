@@ -5,27 +5,22 @@ import '../../utill/app_constants.dart';
 import '../datasource/remote/exception/api_error_handler.dart';
 import '../model/base_model/api_response.dart';
 
-class PendingCommissionRepo{
+class OrderHistoryRepo{
 
   final DioClient dioClient;
   final SharedPreferences sharedPreferences;
 
-  PendingCommissionRepo({required this.dioClient, required this.sharedPreferences});
+  OrderHistoryRepo({required this.dioClient, required this.sharedPreferences});
 
-  /// Pending Commission History
-  Future<ApiResponse> pendingCommissionHistory({required dynamic pageNo, required dynamic no_of_rows}) async{
+  /// Call Order History API
+  Future<ApiResponse> orderHistoryData({required dynamic pageNo, required dynamic no_of_rows}) async{
     try{
       Response response = await dioClient.post(
-        AppConstants.pendingCommissionUrl,
+        AppConstants.orderHistoryUrl,
         queryParameters: {
           'page': pageNo,
           'no_of_rows' : 5,
         },
-        // options: Options(headers: {
-        //   "Content-Type": "application/json",
-        //   "Authorization":
-        //   "Bearer ${ sharedPreferences.getString(AppConstants.token) ?? ""}",
-        // }),
       );
       return ApiResponse.withSuccess(response);
     }catch(e){

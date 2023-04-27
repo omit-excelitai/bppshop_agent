@@ -10,6 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utill/app_color_resources.dart';
 import '../../../utill/app_style.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/navigation_service_without_context.dart';
+import '../customer_profile_page.dart';
 import '../drawer/my_drawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,17 +25,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
+    NavigationService routeService = NavigationService();
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
     return Scaffold(
       drawer: MyDrawerPage(),
-      key: _scaffoldkey,
+      key: _scaffoldKey,
       backgroundColor: AppColorResources.bgColor,
       appBar: AppBar(
         backgroundColor: AppColorResources.appBarColor,
         centerTitle: false,
         leading: InkWell(
             onTap: (){
-              _scaffoldkey.currentState!.openDrawer();
+              _scaffoldKey.currentState!.openDrawer();
             },
             child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
         title: Text("Home", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
@@ -94,6 +97,7 @@ class _HomePageState extends State<HomePage> {
                 flex: 2,
                 child: CustomHomePageContainer(
                   onTap: (){
+                    //routeService.routeTo(CustomerProfilePage.routeName);
                     Navigator.of(context).pushNamed(WalletPage.routeName);
                   },
                   title: "Wallet",

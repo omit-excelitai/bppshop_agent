@@ -30,12 +30,13 @@ class _MyHomePageState extends State<ReusableTransactionTablePage> {
       shrinkWrapRows: true,
       isScrollbarAlwaysShown: true,
       frozenColumnsCount: 1,
-      defaultColumnWidth: 88.w,
+      //defaultColumnWidth: 88.w,
       source: transactionTableDataSource,
       columnWidthMode: ColumnWidthMode.fill,
       columns: <GridColumn>[
         GridColumn(
             columnName: 'agendID',
+            width: 88.w,
             label: Container(
                 color: AppColorResources.primaryDeepBlue,
                 padding: EdgeInsets.all(12),

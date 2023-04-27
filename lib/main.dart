@@ -4,7 +4,10 @@ import 'package:bppshop_agent/provider/agent_dashboard_provider.dart';
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/auth_provider.dart';
 import 'package:bppshop_agent/provider/bottom_navigation_bar_provider.dart';
+import 'package:bppshop_agent/provider/customer_details_provider.dart';
+import 'package:bppshop_agent/provider/customer_list_provider.dart';
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
+import 'package:bppshop_agent/provider/order_history_provider.dart';
 import 'package:bppshop_agent/provider/pending_commission_provider.dart';
 import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
@@ -26,6 +29,7 @@ import 'package:bppshop_agent/view/screens/my_commission.dart';
 import 'package:bppshop_agent/view/screens/pending_commission_page.dart';
 import 'package:bppshop_agent/view/screens/update_customer_page.dart';
 import 'package:bppshop_agent/view/screens/wallet_page.dart';
+import 'package:bppshop_agent/view/widgets/navigation_service_without_context.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'di_container.dart' as di;
@@ -38,6 +42,9 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp],
+  );
   await di.init();
   runApp( MultiProvider(
       providers: [
@@ -48,6 +55,9 @@ void main() async {
         ChangeNotifierProvider(create: (context)=> di.sl<AuthProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<AddCustomerProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<PendingCommissionProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<CustomerListProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<OrderHistoryProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<CustomerDetailsProvider>()),
       ],
       child: MyApp()),
   );
@@ -73,9 +83,11 @@ void configLoading() {
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+ MyApp({Key? key}) : super(key: key);
 
-  bool checktoken(dynamic token) {
+  //final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  bool checkToken(dynamic token) {
     if (token == null || token == "") {
       return false;
     } else {
@@ -85,6 +97,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: AppColorResources.primaryMaterial,
     ));
@@ -99,14 +112,16 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: AppConstants.APP_NAME,
+                navigatorKey: NavigationService.navigatorKey,
+                onGenerateRoute: RouteGenerator.generateRoutes,
                 builder: EasyLoading.init(),
                 theme: ThemeData(
                   primarySwatch: AppColorResources.primaryMaterial,
                 ),
-                initialRoute: checktoken(authProvider.getUserToken()) != false?LandingPage.routeName:SigninPage.routeName,
+                initialRoute: checkToken(authProvider.getUserToken()) != false?LandingPage.routeName:SignInPage.routeName,
                 routes: {
                   SignUpPage.routeName : (context) => SignUpPage(),
-                  SigninPage.routeName : (context) => SigninPage(),
+                  SignInPage.routeName : (context) => SignInPage(),
                   AddCustomerPage.routeName : (context) => AddCustomerPage(),
                   AgentProfilePage.routeName : (context) => AgentProfilePage(),
                   HomePage.routeName:(context)=>HomePage(),
