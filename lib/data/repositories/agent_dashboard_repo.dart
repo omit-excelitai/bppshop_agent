@@ -14,13 +14,7 @@ class AgentDashboardRepo{
   /// Fetch agent dashboard data
   Future<ApiResponse> getAgentDashboardData() async{
     try{
-      Response response = await dioClient.get(AppConstants.agentDashboardUrl,
-          // options: Options(headers:{
-          //   "Content-Type": "application/json",
-          //   "Authorization":
-          //   "Bearer ${sharedPreferences.getString(AppConstants.token) ?? ""}",
-          // })
-      );
+      Response response = await dioClient.get(AppConstants.agentDashboardUrl);
       return ApiResponse.withSuccess(response);
     }catch(e){
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

@@ -45,5 +45,4 @@ class CommissionHistoryProvider with ChangeNotifier{
     }
     return null;
   }
-
 }
