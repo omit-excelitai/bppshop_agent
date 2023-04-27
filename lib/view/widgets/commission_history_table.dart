@@ -1,8 +1,9 @@
+import 'package:bppshop_agent/provider/commission_history_provider.dart';
 import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-
 import '../../utill/app_style.dart';
 
 class CommissionHistoryTable extends StatefulWidget {
@@ -13,104 +14,93 @@ class CommissionHistoryTable extends StatefulWidget {
 }
 
 class _CommissionHistoryTableState extends State<CommissionHistoryTable> {
-  List<Employee> employees = <Employee>[];
-  late EmployeeDataSource employeeDataSource;
+
+  CommissionHistoryDataSource? commissionHistoryDataSource;
 
   @override
   void initState() {
     super.initState();
-    employees = getEmployeeData();
-    employeeDataSource = EmployeeDataSource(employeeData: employees);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<CommissionHistoryProvider>(context, listen: false).fetchCommissionHistoryData(pageNo: 1, no_of_rows: 5, context: context);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SfDataGrid(
-      shrinkWrapRows: true,
-      isScrollbarAlwaysShown: true,
-      frozenColumnsCount: 1,
-      //defaultColumnWidth: 102.w,
-      source: employeeDataSource,
-      columnWidthMode: ColumnWidthMode.fill,
-      columns: <GridColumn>[
-        GridColumn(
-            columnName: 'customerID',
-            width: 102.w,
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Customer ID',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),
-                ))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'orderID',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Order ID',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'totalProducts',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Total Products',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),
-                ))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'totalAmount',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Total Amount',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'totalCommission',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Total Commission',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-      ],
+    return Consumer<CommissionHistoryProvider>(
+      builder: (BuildContext context, commissionHistoryProvider, Widget? child) {
+        if(commissionHistoryProvider.commissionHistoryList != null && commissionHistoryProvider.commissionHistoryList!.length > 0){
+          commissionHistoryDataSource = CommissionHistoryDataSource(commissionHistoryData: commissionHistoryProvider.commissionHistoryList);
+          return SfDataGrid(
+            shrinkWrapRows: true,
+            isScrollbarAlwaysShown: true,
+            frozenColumnsCount: 1,
+            //defaultColumnWidth: 102.w,
+            source: commissionHistoryDataSource!,
+            columnWidthMode: ColumnWidthMode.fill,
+            columns: <GridColumn>[
+              GridColumn(
+                  columnName: 'customerID',
+                  width: 102.w,
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Customer ID',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),
+                      ))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'orderID',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Order ID',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'totalProducts',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Total Products',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),
+                      ))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'totalAmount',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Total Amount',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'totalCommission',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Total Commission',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
+            ],
+          );
+        }else{
+          return SizedBox.shrink();
+        }
+      },
     );
   }
-
-  List<Employee> getEmployeeData() {
-    return [
-      Employee("#100470", "#100470", "2568848150", "৳252668123626", "৳252668123626"),
-      Employee("#100470", "#100470", "2568848150", "৳252668123626", "৳252668123626"),
-      Employee("#100470", "#100470", "2568848150", "৳252668123626", "৳252668123626"),
-      Employee("#100470", "#100470", "2568848150", "৳252668123626", "৳252668123626"),
-      Employee("#100470", "#100470", "2568848150", "৳252668123626", "৳252668123626"),
-      Employee("#100470", "#100470", "2568848150", "৳252668123626", "৳252668123626")
-    ];
-  }
 }
 
-class Employee {
-  Employee(this.customerID, this.orderID, this.totalProducts, this.totalAmount, this.totalCommission);
-
-  final String customerID;
-  final String orderID;
-  final String totalProducts;
-  final String totalAmount;
-  final String totalCommission;
-}
-
-class EmployeeDataSource extends DataGridSource {
-  EmployeeDataSource({required List<Employee> employeeData}) {
-    _employeeData = employeeData
+class CommissionHistoryDataSource extends DataGridSource {
+  CommissionHistoryDataSource({required List<dynamic>? commissionHistoryData}) {
+    _commissionHistoryData = commissionHistoryData!
         .map<DataGridRow>((e) => DataGridRow(cells: [
       DataGridCell<String>(columnName: 'customerID', value: e.customerID),
       DataGridCell<String>(columnName: 'orderID', value: e.orderID),
@@ -121,9 +111,9 @@ class EmployeeDataSource extends DataGridSource {
         .toList();
   }
 
-  List<DataGridRow> _employeeData = [];
+  List<DataGridRow> _commissionHistoryData = [];
   @override
-  List<DataGridRow> get rows => _employeeData;
+  List<DataGridRow> get rows => _commissionHistoryData;
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
