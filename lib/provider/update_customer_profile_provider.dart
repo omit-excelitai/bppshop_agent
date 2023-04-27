@@ -1,44 +1,44 @@
+
 import 'package:bppshop_agent/data/datasource/remote/dio/dio_client.dart';
-import 'package:bppshop_agent/data/repositories/add_customer_repo.dart';
-import 'package:bppshop_agent/utill/app_color_resources.dart';
+import 'package:bppshop_agent/data/repositories/update_customer_profile_repo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../data/model/base_model/api_response.dart';
 import '../data/model/base_model/error_response.dart';
+import '../utill/app_color_resources.dart';
 
-class AddCustomerProvider with ChangeNotifier{
+class UpdateCustomerProfileProvider with ChangeNotifier{
 
   final DioClient dioClient;
-  final AddCustomerRepo addCustomerRepo;
+  final UpdateCustomerProfileRepo updateCustomerProfileRepo;
+  bool _isLoading = false;
 
-  AddCustomerProvider({required this.dioClient, required this.addCustomerRepo});
+  UpdateCustomerProfileProvider({required this.dioClient, required this.updateCustomerProfileRepo});
 
-  /// Add new customer
-  Future<String?> createNewCustomer({required String customerName, required String customerEmail, required String customerMobile,
-    required String customerAddress, required dynamic districtId, required dynamic thanaId, required dynamic areaId, required BuildContext context}) async{
+  bool get isLoading => _isLoading;
 
+  /// Update customer profile
+  Future<String?> updateCustomerProfile({required dynamic customer_name, required dynamic customer_address, required dynamic customer_id, required BuildContext context}) async{
+
+    _isLoading = true;
     EasyLoading.show(status: 'Loading...');
     notifyListeners();
-    ApiResponse apiResponse = await addCustomerRepo.addNewCustomerData(
-        customerName: customerName,
-        customerEmail: customerEmail,
-        customerMobile: customerMobile,
-        customerAddress: customerAddress,
-        districtId: districtId,
-        thanaId: thanaId,
-        areaId: areaId
-    );
+    ApiResponse apiResponse = await updateCustomerProfileRepo.updateCustomerProfileData(
+        customer_name: customer_name,
+        customer_address: customer_address,
+        customer_id: customer_id);
 
-    if(kDebugMode){
-      print("addNewAddress statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
-    }
+    // if(kDebugMode){
+    //   print("addNewAddress statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
+    // }
 
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
 
+      _isLoading = false;
       EasyLoading.dismiss();
-
       notifyListeners();
+
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(apiResponse.response!.data["message"]),
         backgroundColor: AppColorResources.primaryMaterial,
@@ -71,4 +71,5 @@ class AddCustomerProvider with ChangeNotifier{
     }
 
   }
+
 }
