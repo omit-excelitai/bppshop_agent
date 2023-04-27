@@ -13,7 +13,7 @@ class CustomerDetailsRepo{
   CustomerDetailsRepo({required this.dioClient, required this.sharedPreferences});
 
   /// Call Customer Details API
-  Future<ApiResponse> getCustomerDetails({required int? id}) async{
+  Future<ApiResponse> getCustomerDetails({required dynamic id}) async{
     try{
       Response response = await dioClient.get("${AppConstants.customerDetailsUrl}$id");
       return ApiResponse.withSuccess(response);
