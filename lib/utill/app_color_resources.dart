@@ -159,6 +159,7 @@ class AppColorResources {
   static const Color circleColor = Color(0xffDADCE0);
   static const Color navBarBgColor = Color(0xff0E2232);
   static const Color refreshIndicator =  Color(0xffE37D4E);
+  static const Color RefreshIndicator =  Color(0XFF2D9FB8);
 
   static const Map<int, Color> colorMap = {
     50: Color(0x102D9FB8),
