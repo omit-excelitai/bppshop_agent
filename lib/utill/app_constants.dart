@@ -21,6 +21,7 @@ class AppConstants {
   static const String transactionHistoryUrl = "agent/transactions";
   static const String updateCustomerProfileUrl = "agent/customer/update";
   static const String updateAgentProfileUrl = "agent/profile/update";
+  static const String orderDetailsUrl = "agent/order/details/";
   static const String addCustomerUrl = "agent/customer/create?customer_name&customer_email&customer_mobile&customer_address&district_id&thana_id&area_id";
 
   /// SharePreference
