@@ -8,6 +8,7 @@ import 'package:bppshop_agent/data/repositories/commission_history_repo.dart';
 import 'package:bppshop_agent/data/repositories/customer_details_repo.dart';
 import 'package:bppshop_agent/data/repositories/customer_list_repo.dart';
 import 'package:bppshop_agent/data/repositories/district_thana_area_repo.dart';
+import 'package:bppshop_agent/data/repositories/order_details_repo.dart';
 import 'package:bppshop_agent/data/repositories/pending_commission_repo.dart';
 import 'package:bppshop_agent/data/repositories/transaction_history_repo.dart';
 import 'package:bppshop_agent/data/repositories/update_agent_profile_repo.dart';
@@ -20,6 +21,7 @@ import 'package:bppshop_agent/provider/commission_history_provider.dart';
 import 'package:bppshop_agent/provider/customer_details_provider.dart';
 import 'package:bppshop_agent/provider/customer_list_provider.dart';
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
+import 'package:bppshop_agent/provider/order_details_provider.dart';
 import 'package:bppshop_agent/provider/order_history_provider.dart';
 import 'package:bppshop_agent/provider/pending_commission_provider.dart';
 import 'package:bppshop_agent/provider/transaction_history_provider.dart';
@@ -56,6 +58,7 @@ Future<void> init() async {
      sl.registerLazySingleton(() => UpdateAgentProfileRepo(dioClient: sl(), sharedPreferences: sl()));
      sl.registerLazySingleton(() => CommissionHistoryRepo(dioClient: sl(), sharedPreferences: sl()));
      sl.registerLazySingleton(() => TransactionHistoryRepo(dioClient: sl(), sharedPreferences: sl()));
+     sl.registerLazySingleton(() => OrderDetailsRepo(dioClient: sl(), sharedPreferences: sl()));
 
   /// Provider
      sl.registerFactory(() => AuthProvider(authRepo: sl(),dioClient: sl()));
@@ -71,6 +74,7 @@ Future<void> init() async {
      sl.registerFactory(() => UpdateAgentProfileProvider(updateAgentProfileRepo: sl(), dioClient: sl()));
      sl.registerFactory(() => CommissionHistoryProvider(commissionHistoryRepo: sl(), dioClient: sl()));
      sl.registerFactory(() => TransactionHistoryProvider(transactionHistoryRepo: sl(), dioClient: sl()));
+     sl.registerFactory(() => OrderDetailsProvider(orderDetailsRepo: sl(), dioClient: sl()));
 
 
   /// External
