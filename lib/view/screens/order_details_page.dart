@@ -1,4 +1,5 @@
 import 'package:bppshop_agent/provider/bottom_navigation_bar_provider.dart';
+import 'package:bppshop_agent/provider/order_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -18,9 +19,18 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      dynamic orderId = ModalRoute.of(context)!.settings.arguments as String;
+      Provider.of<OrderDetailsProvider>(context, listen: false).fetchOrderDetails(context, id: orderId);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Consumer<BottomNavigationBarProvider>(
-        builder: (BuildContext context, bottomNavigationBarProvider, Widget? child) {
+    return Consumer2<BottomNavigationBarProvider, OrderDetailsProvider>(
+        builder: (BuildContext context, bottomNavigationBarProvider, orderDetailsProvider, Widget? child) {
           return Scaffold(
             drawer: MyDrawerPage(),
             key: _scaffoldkey,
@@ -55,61 +65,61 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Customer Name: shopon", style: myStyleMontserrat(18.sp, AppColorResources.primaryBlack, FontWeight.w600),),
+                        Text("Customer Name: ${orderDetailsProvider.orderDetailsResponseModel!.data!.customerName}", style: myStyleMontserrat(18.sp, AppColorResources.primaryBlack, FontWeight.w600),),
                         SizedBox(height: 12.h,),
                         Row(
                           children: [
                             Text("Order Id: ", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w600),),
-                            Text("101767", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                            Text("${orderDetailsProvider.orderDetailsResponseModel!.data!.orderId}", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           ],
                         ),
                         SizedBox(height: 12.h,),
                         Row(
                           children: [
                             Text("Order Date: ", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w600),),
-                            Text("05-04-2023 05:00PM", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                            Text("${orderDetailsProvider.orderDetailsResponseModel!.data!.orderDate}", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           ],
                         ),
                         SizedBox(height: 12.h,),
                         Row(
                           children: [
                             Text("Order Amount: ", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w600),),
-                            Text("1560", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                            Text("${orderDetailsProvider.orderDetailsResponseModel!.data!.orderAmount}", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           ],
                         ),
                         SizedBox(height: 12.h,),
                         Row(
                           children: [
                             Text("Discount Amount: ", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w600),),
-                            Text("668", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                            Text("${orderDetailsProvider.orderDetailsResponseModel!.data!.discountAmount}", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           ],
                         ),
                         SizedBox(height: 12.h,),
                         Row(
                           children: [
                             Text("Order Status: ", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w600),),
-                            Text("unpaid", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                            Text("${orderDetailsProvider.orderDetailsResponseModel!.data!.orderStatus}", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           ],
                         ),
                         SizedBox(height: 12.h,),
                         Row(
                           children: [
                             Text("Payment Method: ", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w600),),
-                            Text("cash_on_delivery", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                            Text("${orderDetailsProvider.orderDetailsResponseModel!.data!.paymentMethod}", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           ],
                         ),
                         SizedBox(height: 12.h,),
                         Row(
                           children: [
                             Text("Payment Status: ", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w600),),
-                            Text("unpaid", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                            Text("${orderDetailsProvider.orderDetailsResponseModel!.data!.paymentStatus}", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           ],
                         ),
                         SizedBox(height: 12.h,),
                         Row(
                           children: [
                             Text("Shipping Address: ", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w600),),
-                            Text("kashil", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                            Text("${orderDetailsProvider.orderDetailsResponseModel!.data!.shippingAddress}", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           ],
                         ),
                       ],
