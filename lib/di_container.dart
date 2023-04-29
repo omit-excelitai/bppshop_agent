@@ -8,6 +8,7 @@ import 'package:bppshop_agent/data/repositories/customer_details_repo.dart';
 import 'package:bppshop_agent/data/repositories/customer_list_repo.dart';
 import 'package:bppshop_agent/data/repositories/district_thana_area_repo.dart';
 import 'package:bppshop_agent/data/repositories/pending_commission_repo.dart';
+import 'package:bppshop_agent/data/repositories/update_customer_profile_repo.dart';
 import 'package:bppshop_agent/provider/add_customer_provider.dart';
 import 'package:bppshop_agent/provider/agent_dashboard_provider.dart';
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
@@ -17,6 +18,7 @@ import 'package:bppshop_agent/provider/customer_list_provider.dart';
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
 import 'package:bppshop_agent/provider/order_history_provider.dart';
 import 'package:bppshop_agent/provider/pending_commission_provider.dart';
+import 'package:bppshop_agent/provider/update_customer_profile_provider.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -44,6 +46,7 @@ Future<void> init() async {
      sl.registerLazySingleton(() => CustomerListRepo(dioClient: sl(), sharedPreferences: sl()));
      sl.registerLazySingleton(() => OrderHistoryRepo(dioClient: sl(), sharedPreferences: sl()));
      sl.registerLazySingleton(() => CustomerDetailsRepo(dioClient: sl(), sharedPreferences: sl()));
+     sl.registerLazySingleton(() => UpdateCustomerProfileRepo(dioClient: sl(), sharedPreferences: sl()));
 
   /// Provider
      sl.registerFactory(() => AuthProvider(authRepo: sl(),dioClient: sl()));
@@ -55,6 +58,7 @@ Future<void> init() async {
      sl.registerFactory(() => CustomerListProvider(customerListRepo: sl(), dioClient: sl()));
      sl.registerFactory(() => OrderHistoryProvider(orderHistoryRepo: sl(), dioClient: sl()));
      sl.registerFactory(() => CustomerDetailsProvider(customerDetailsRepo: sl(), dioClient: sl()));
+     sl.registerFactory(() => UpdateCustomerProfileProvider(updateCustomerProfileRepo: sl(), dioClient: sl()));
 
 
   /// External

@@ -10,7 +10,8 @@ import '../widgets/custom_button.dart';
 
 class UpdateCustomerPage extends StatefulWidget {
   static const String routeName = '/update_customer_page';
-  const UpdateCustomerPage({Key? key}) : super(key: key);
+  dynamic customerId, customerName, customerAddress, customerMobile, customerEmail;
+  UpdateCustomerPage({Key? key, this.customerId, this.customerName, this.customerAddress, this.customerMobile, this.customerEmail}) : super(key: key);
 
   @override
   State<UpdateCustomerPage> createState() => _UpdateCustomerPageState();
@@ -33,16 +34,21 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      dynamic customerId = ModalRoute.of(context)!.settings.arguments as String;
-      dynamic customerName = ModalRoute.of(context)!.settings.arguments as String;
-      dynamic customerAddress = ModalRoute.of(context)!.settings.arguments as String;
-      Provider.of<UpdateCustomerProfileProvider>(context, listen: false).updateCustomerProfile(
-          customer_name: customerName,
-          customer_address: customerAddress,
-          customer_id: customerId,
-          context: context);
+      nameController.text = widget.customerName;
+      addressController.text = widget.customerAddress;
+      numberController.text = widget.customerMobile;
+      emailController.text = widget.customerEmail;
     });
     super.initState();
+  }
+
+  /// Update customer profile
+  update() async{
+    await Provider.of<UpdateCustomerProfileProvider>(context, listen: false).updateCustomerProfile(
+        customer_name: nameController.text,
+        customer_address: addressController.text,
+        customer_id: widget.customerId,
+        context: context);
   }
 
   @override
@@ -57,8 +63,8 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<BottomNavigationBarProvider, UpdateCustomerProfileProvider>(
-      builder: (BuildContext context, bottomNavigationBarProvider, updateCustomerProfileProvider, Widget? child) {
+    return Consumer<BottomNavigationBarProvider>(
+      builder: (BuildContext context, bottomNavigationBarProvider, Widget? child) {
         return Scaffold(
           backgroundColor: AppColorResources.bgColor,
           appBar: AppBar(
@@ -92,6 +98,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                               Text("Customer Name",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
+                                //initialValue: widget.customerName,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
                                 controller: nameController,
@@ -111,6 +118,8 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                               Text("Customer Mobile",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
+                                //focusNode: FocusNode,
+                                readOnly: true,
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.next,
                                 controller: numberController,
@@ -130,6 +139,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                               Text("Customer Email",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
+                                readOnly: true,
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
                                 controller: emailController,
@@ -231,6 +241,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                               Text("Customer Local Address",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
+                                //initialValue: widget.customerAddress,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
                                 controller: addressController,
@@ -254,7 +265,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                         Align(
                           alignment: Alignment.topRight,
                           child: AddandUpdateButton(onTap: (){
-                            //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CustomerProfilePage()));
+                            update();
                           }, title: "Update"),
                         )
                       ],

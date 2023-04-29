@@ -162,7 +162,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                           padding: EdgeInsets.only(top: 10.h),
                           child: Image.asset("images/home.png")),
                       title: Text("Address", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                      subtitle: Text("${agentProfileProvider.agentProfileModelData!.data!.areaName}, ${agentProfileProvider.agentProfileModelData!.data!.thanaName}, ${agentProfileProvider.agentProfileModelData!.data!.districtName}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                      subtitle: Text("${agentProfileProvider.agentProfileModelData!.data!.areaName}, ${agentProfileProvider.agentProfileModelData!.data!.thanaName}, ${agentProfileProvider.agentProfileModelData!.data!.districtName}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600), maxLines: 2,),
                     ),
                   ],
                 ),

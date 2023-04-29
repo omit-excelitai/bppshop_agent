@@ -104,11 +104,13 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                               SizedBox(height: 12.h,),
                               InkWell(
                                 onTap: (){
-                                  Navigator.of(context).pushNamed(UpdateCustomerPage.routeName, arguments: {
-                                    customerDetailsProvider.customerDetailsResponseModel!.data!.customerName,
-                                    customerDetailsProvider.customerDetailsResponseModel!.data!.customerAddress,
-                                    customerDetailsProvider.customerDetailsResponseModel!.data!.id,
-                                  });
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>UpdateCustomerPage(
+                                    customerId: customerDetailsProvider.customerDetailsResponseModel!.data!.id,
+                                    customerName: customerDetailsProvider.customerDetailsResponseModel!.data!.customerName,
+                                    customerAddress: customerDetailsProvider.customerDetailsResponseModel!.data!.customerAddress,
+                                    customerMobile: customerDetailsProvider.customerDetailsResponseModel!.data!.customerMobile,
+                                    customerEmail: customerDetailsProvider.customerDetailsResponseModel!.data!.customerEmail,
+                                    )));
                                 },
                                 child: Container(
                                   alignment: Alignment.center,
