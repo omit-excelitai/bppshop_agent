@@ -261,7 +261,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                           alignment: Alignment.topRight,
                           child: AddandUpdateButton(onTap: (){
                             update();
-                            routeService.routeTo(CustomerProfilePage.routeName, arguments: widget.customerId);
+                            routeService.routeTo(CustomerProfilePage.routeName, arguments: widget.customerId.toString());
                           }, title: "Update"),
                         )
                       ],

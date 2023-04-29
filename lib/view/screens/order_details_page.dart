@@ -16,7 +16,7 @@ class OrderDetailsPage extends StatefulWidget {
 }
 
 class _OrderDetailsPageState extends State<OrderDetailsPage> {
-  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   void initState() {
@@ -33,14 +33,14 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         builder: (BuildContext context, bottomNavigationBarProvider, orderDetailsProvider, Widget? child) {
           return Scaffold(
             drawer: MyDrawerPage(),
-            key: _scaffoldkey,
+            key: _scaffoldKey,
             backgroundColor: AppColorResources.bgColor,
             appBar: AppBar(
               backgroundColor: AppColorResources.appBarColor,
               centerTitle: false,
               leading: InkWell(
                   onTap: (){
-                    _scaffoldkey.currentState!.openDrawer();
+                    _scaffoldKey.currentState!.openDrawer();
                   },
                   child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
               title: Text("Order Details", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
@@ -56,7 +56,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   //     ],
                   //   ),
                   // ),
-                  Container(
+                  orderDetailsProvider.orderDetailsResponseModel!=null?Container(
                     margin: EdgeInsets.only(top: 12.h),
                     padding: EdgeInsets.all(12),
                     width: double.infinity,
@@ -124,7 +124,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                         ),
                       ],
                     ),
-                  ),
+                  ):SizedBox.shrink(),
                 ],
               ),
             ),
