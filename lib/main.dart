@@ -9,6 +9,7 @@ import 'package:bppshop_agent/provider/customer_list_provider.dart';
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
 import 'package:bppshop_agent/provider/order_history_provider.dart';
 import 'package:bppshop_agent/provider/pending_commission_provider.dart';
+import 'package:bppshop_agent/provider/update_agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/update_customer_profile_provider.dart';
 import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
@@ -60,6 +61,7 @@ void main() async {
         ChangeNotifierProvider(create: (context)=> di.sl<OrderHistoryProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<CustomerDetailsProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<UpdateCustomerProfileProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<UpdateAgentProfileProvider>()),
       ],
       child: MyApp()),
   );
