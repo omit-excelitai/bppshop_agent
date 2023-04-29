@@ -30,6 +30,7 @@ import 'package:bppshop_agent/view/screens/dashboard_page.dart';
 import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
 import 'package:bppshop_agent/view/screens/landing_page.dart';
 import 'package:bppshop_agent/view/screens/my_commission.dart';
+import 'package:bppshop_agent/view/screens/order_details_page.dart';
 import 'package:bppshop_agent/view/screens/pending_commission_page.dart';
 import 'package:bppshop_agent/view/screens/update_customer_page.dart';
 import 'package:bppshop_agent/view/screens/wallet_page.dart';
@@ -145,7 +146,8 @@ class MyApp extends StatelessWidget {
                   UpdateCustomerPage.routeName:(context)=>UpdateCustomerPage(),
                   WalletPage.routeName:(context)=>WalletPage(),
                   MyDrawerPage.routeName:(context)=>MyDrawerPage(),
-                  LandingPage.routeName:(context)=>LandingPage()
+                  LandingPage.routeName:(context)=>LandingPage(),
+                  OrderDetailsPage.routeName:(context)=>OrderDetailsPage()
                 },
               );
             },
