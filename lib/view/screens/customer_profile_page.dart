@@ -37,10 +37,9 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
     return Consumer2<BottomNavigationBarProvider, CustomerDetailsProvider>(
       builder: (BuildContext context, bottomNavigationBarProvider, customerDetailsProvider, Widget? child) {
         return RefreshIndicator(
-            color: Colors.white,
+            color: AppColorResources.primaryWhite,
             backgroundColor: AppColorResources.RefreshIndicator,
             onRefresh: () {
-              //Provider.of<CustomerDetailsProvider>(context, listen: false).fetchCustomerDetailsData(context, id: customerId);
               _load(true, context);
               return Future<void>.delayed(const Duration(seconds: 2));
         },
@@ -58,6 +57,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
             ),
             body: customerDetailsProvider.customerDetailsResponseModel != null?Container(
               child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
                     Container(

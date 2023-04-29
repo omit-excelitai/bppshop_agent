@@ -5,7 +5,6 @@ import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../../../provider/agent_profile_provider.dart';
 import '../../../utill/app_color_resources.dart';
 import '../../../utill/app_style.dart';
@@ -19,20 +18,20 @@ class AgentProfilePage extends StatefulWidget {
 }
 
 class _AgentProfilePageState extends State<AgentProfilePage> {
-  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MyDrawerPage(),
-      key: _scaffoldkey,
+      key: _scaffoldKey,
       backgroundColor: AppColorResources.bgColor,
       appBar: AppBar(
         backgroundColor: AppColorResources.appBarColor,
         centerTitle: false,
         leading: InkWell(
             onTap: (){
-              _scaffoldkey.currentState!.openDrawer();
+              _scaffoldKey.currentState!.openDrawer();
             },
             child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
         title: Text("Agent Profile", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
@@ -41,6 +40,7 @@ class _AgentProfilePageState extends State<AgentProfilePage> {
         width: double.infinity,
         height: double.infinity,
         child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
           child: Column(
             children: [
               ProfileSection(),
@@ -65,15 +65,14 @@ class _ProfileSectionState extends State<ProfileSection> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      //_loadAgentProfileData(context, true);
-      Provider.of<AgentProfileProvider>(context, listen: false).getAgentProfileData(context);
+      loadAgentProfileData(context, true);
     });
     super.initState();
   }
 
-  // _loadAgentProfileData(BuildContext context, bool reload) async{
-  //   await
-  // }
+  loadAgentProfileData(BuildContext context, bool reload) async{
+    await Provider.of<AgentProfileProvider>(context, listen: false).getAgentProfileData(context);
+  }
 
   @override
   Widget build(BuildContext context) {
