@@ -11,13 +11,15 @@ class CommissionHistoryProvider with ChangeNotifier{
   final DioClient dioClient;
   final CommissionHistoryRepo commissionHistoryRepo;
   CommissionHistoryRequestModel? _commissionHistoryRequestModel;
-  List<dynamic>? _commissionHistoryList;
+  List<CommissionHistoryListData>? _commissionHistoryList;
+  CommissionHistoryListData? _commissionHistoryListData;
   bool _isLoading = false;
 
   CommissionHistoryProvider({required this.dioClient, required this.commissionHistoryRepo});
 
   CommissionHistoryRequestModel? get commissionHistoryRequestModel => _commissionHistoryRequestModel;
-  List<dynamic>? get commissionHistoryList => _commissionHistoryList;
+  List<CommissionHistoryListData>? get commissionHistoryList => _commissionHistoryList;
+  CommissionHistoryListData? get commissionHistoryListData => _commissionHistoryListData;
   bool get isLoading => _isLoading;
 
   /// Fetch Commission History Data
@@ -45,5 +47,4 @@ class CommissionHistoryProvider with ChangeNotifier{
     }
     return null;
   }
-
 }

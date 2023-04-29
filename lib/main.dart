@@ -4,11 +4,16 @@ import 'package:bppshop_agent/provider/agent_dashboard_provider.dart';
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/auth_provider.dart';
 import 'package:bppshop_agent/provider/bottom_navigation_bar_provider.dart';
+import 'package:bppshop_agent/provider/commission_history_provider.dart';
 import 'package:bppshop_agent/provider/customer_details_provider.dart';
 import 'package:bppshop_agent/provider/customer_list_provider.dart';
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
+import 'package:bppshop_agent/provider/order_details_provider.dart';
 import 'package:bppshop_agent/provider/order_history_provider.dart';
 import 'package:bppshop_agent/provider/pending_commission_provider.dart';
+import 'package:bppshop_agent/provider/transaction_history_provider.dart';
+import 'package:bppshop_agent/provider/update_agent_profile_provider.dart';
+import 'package:bppshop_agent/provider/update_customer_profile_provider.dart';
 import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:bppshop_agent/view/screens/agent_update_profile.dart';
@@ -26,6 +31,7 @@ import 'package:bppshop_agent/view/screens/dashboard_page.dart';
 import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
 import 'package:bppshop_agent/view/screens/landing_page.dart';
 import 'package:bppshop_agent/view/screens/my_commission.dart';
+import 'package:bppshop_agent/view/screens/order_details_page.dart';
 import 'package:bppshop_agent/view/screens/pending_commission_page.dart';
 import 'package:bppshop_agent/view/screens/update_customer_page.dart';
 import 'package:bppshop_agent/view/screens/wallet_page.dart';
@@ -58,6 +64,11 @@ void main() async {
         ChangeNotifierProvider(create: (context)=> di.sl<CustomerListProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<OrderHistoryProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<CustomerDetailsProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<UpdateCustomerProfileProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<UpdateAgentProfileProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<CommissionHistoryProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<TransactionHistoryProvider>()),
+        ChangeNotifierProvider(create: (context)=> di.sl<OrderDetailsProvider>()),
       ],
       child: MyApp()),
   );
@@ -137,7 +148,8 @@ class MyApp extends StatelessWidget {
                   UpdateCustomerPage.routeName:(context)=>UpdateCustomerPage(),
                   WalletPage.routeName:(context)=>WalletPage(),
                   MyDrawerPage.routeName:(context)=>MyDrawerPage(),
-                  LandingPage.routeName:(context)=>LandingPage()
+                  LandingPage.routeName:(context)=>LandingPage(),
+                  OrderDetailsPage.routeName:(context)=>OrderDetailsPage()
                 },
               );
             },

@@ -1,16 +1,21 @@
 
 import 'package:bppshop_agent/provider/update_customer_profile_provider.dart';
+import 'package:bppshop_agent/view/screens/customer_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
+import '../../provider/district_thana_area_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
+import '../widgets/app_custom_dropdown_button.dart';
 import '../widgets/custom_button.dart';
+import '../widgets/navigation_service_without_context.dart';
 
 class UpdateCustomerPage extends StatefulWidget {
   static const String routeName = '/update_customer_page';
-  const UpdateCustomerPage({Key? key}) : super(key: key);
+  dynamic customerId, customerName, customerAddress, customerMobile, customerEmail;
+  UpdateCustomerPage({Key? key, this.customerId, this.customerName, this.customerAddress, this.customerMobile, this.customerEmail}) : super(key: key);
 
   @override
   State<UpdateCustomerPage> createState() => _UpdateCustomerPageState();
@@ -21,28 +26,35 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController numberController = TextEditingController();
+  NavigationService routeService = NavigationService();
 
-  final districtItems = ["Dhaka", "Bogura", "Rangpur"];
-  final thanaItems = ["Mirpur", "Nandigram", "Kaonia"];
-  final areaItems = ["Shewrapara", "Nagorkandi", "Kaonia"];
-  String ?_selectedDistrict;
-  String ?_selectedThana;
-  String ?_selectedArea;
-  
   @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      dynamic customerId = ModalRoute.of(context)!.settings.arguments as String;
-      dynamic customerName = ModalRoute.of(context)!.settings.arguments as String;
-      dynamic customerAddress = ModalRoute.of(context)!.settings.arguments as String;
-      Provider.of<UpdateCustomerProfileProvider>(context, listen: false).updateCustomerProfile(
-          customer_name: customerName,
-          customer_address: customerAddress,
-          customer_id: customerId,
-          context: context);
+      nameController.text = widget.customerName;
+      addressController.text = widget.customerAddress;
+      numberController.text = widget.customerMobile;
+      emailController.text = widget.customerEmail;
+
+      _load(true, context);
     });
     super.initState();
+  }
+
+  /// Load District, Thana & Area
+  _load(bool reload, BuildContext context) async {
+    await Provider.of<DistrictThanaAreaProvider>(context, listen: false)
+        .getDistrict(reload, context);
+  }
+
+  /// For Update customer profile
+  update() async{
+    await Provider.of<UpdateCustomerProfileProvider>(context, listen: false).updateCustomerProfile(
+        customer_name: nameController.text,
+        customer_address: addressController.text,
+        customer_id: widget.customerId,
+        context: context);
   }
 
   @override
@@ -57,8 +69,8 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<BottomNavigationBarProvider, UpdateCustomerProfileProvider>(
-      builder: (BuildContext context, bottomNavigationBarProvider, updateCustomerProfileProvider, Widget? child) {
+    return Consumer2<BottomNavigationBarProvider, DistrictThanaAreaProvider>(
+      builder: (BuildContext context, bottomNavigationBarProvider, districtThanaAreaProvider, Widget? child) {
         return Scaffold(
           backgroundColor: AppColorResources.bgColor,
           appBar: AppBar(
@@ -111,6 +123,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                               Text("Customer Mobile",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
+                                readOnly: true,
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.next,
                                 controller: numberController,
@@ -130,6 +143,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                               Text("Customer Email",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
+                                readOnly: true,
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
                                 controller: emailController,
@@ -148,85 +162,77 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                               SizedBox(height: 10.h,),
                               Text("Customer District",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
-                              Container(
+                              districtThanaAreaProvider.districtNameList != null?Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
                                     color: AppColorResources.textFieldColor),
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton(
-                                    iconDisabledColor: AppColorResources.secondaryBlack,
-                                    iconEnabledColor: AppColorResources.secondaryBlack,
-                                    isExpanded: true,
-                                    hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
-                                    value: _selectedDistrict,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        _selectedDistrict = newValue!;
-                                      });
-                                    },
-                                    items: districtItems.map((districtItems) {
-                                      return DropdownMenuItem(
-                                        child: Text(districtItems, style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),),
-                                        value: districtItems,
-                                      );
-                                    }).toList(),
-                                  ),
+                                child: CustomDropDown(
+                                  items: districtThanaAreaProvider.districtNameList,
+                                  width: double.infinity,
+                                  dropDownWidth: 280.w,
+                                  height: 55.h,
+                                  isExpanded: true,
+                                  selectedStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
+                                  hint: "Select District",
+                                  hintStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
+                                  onChanged: (value) {
+                                    districtThanaAreaProvider.thanaNameList!.clear();
+                                    districtThanaAreaProvider.areaNameList!.clear();
+                                    districtThanaAreaProvider.changeDistrictDropDownValue(value!);
+                                    districtThanaAreaProvider.getThana(true, context);
+                                    districtThanaAreaProvider.thanaDropdownValue = null;
+                                    districtThanaAreaProvider.areaDropdownValue = null;
+                                  },
+                                  selectedValue: districtThanaAreaProvider.districtDropdownValue,
                                 ),
-                              ),SizedBox(height: 10.h,),
+                              ): Center(child: Text(" ")),
+                              SizedBox(height: 10.h,),
                               Text("Customer Thana",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
-                              Container(
+                              districtThanaAreaProvider.thanaNameList != null?Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
                                     color: AppColorResources.textFieldColor),
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton(
-                                    iconDisabledColor: AppColorResources.secondaryBlack,
-                                    iconEnabledColor: AppColorResources.secondaryBlack,
-                                    isExpanded: true,
-                                    hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
-                                    value: _selectedThana,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        _selectedThana = newValue!;
-                                      });
-                                    },
-                                    items: thanaItems.map((thanaItems) {
-                                      return DropdownMenuItem(
-                                        child: Text(thanaItems, style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),),
-                                        value: thanaItems,
-                                      );
-                                    }).toList(),
-                                  ),
+                                child: CustomDropDown(
+                                  items: districtThanaAreaProvider.thanaNameList,
+                                  width: double.infinity,
+                                  dropDownWidth: 280.w,
+                                  height: 55.h,
+                                  isExpanded: true,
+                                  selectedStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
+                                  hint: "Select Thana",
+                                  hintStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
+                                  onChanged: (value) {
+                                    districtThanaAreaProvider.areaNameList!.clear();
+                                    districtThanaAreaProvider.changeThanaDropDownValue(value!);
+                                    districtThanaAreaProvider.getArea(true, context);
+                                    districtThanaAreaProvider.areaDropdownValue = null;
+                                  },
+                                  selectedValue: districtThanaAreaProvider.thanaDropdownValue,
                                 ),
-                              ),SizedBox(height: 10.h,),
+                              ): Center(child: Text(" ")),
+                              SizedBox(height: 10.h,),
                               Text("Customer Area",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
-                              Container(
+                              districtThanaAreaProvider.areaNameList != null?Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
                                     color: AppColorResources.textFieldColor),
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton(
-                                    iconDisabledColor: AppColorResources.secondaryBlack,
-                                    iconEnabledColor: AppColorResources.secondaryBlack,
-                                    isExpanded: true,
-                                    hint: Text('Select',style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400)), // Not necessary for Option 1
-                                    value: _selectedArea,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        _selectedArea = newValue!;
-                                      });
-                                    },
-                                    items: areaItems.map((areaItems) {
-                                      return DropdownMenuItem(
-                                        child: Text(areaItems, style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),),
-                                        value: areaItems,
-                                      );
-                                    }).toList(),
-                                  ),
+                                child: CustomDropDown(
+                                  items: districtThanaAreaProvider.areaNameList,
+                                  width: double.infinity,
+                                  dropDownWidth: 280.w,
+                                  height: 55.h,
+                                  isExpanded: true,
+                                  selectedStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
+                                  hint: "Select Area",
+                                  hintStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
+                                  onChanged: (value) {
+                                    districtThanaAreaProvider.changeAreaDropDownValue(value!);
+                                  },
+                                  selectedValue: districtThanaAreaProvider.areaDropdownValue,
                                 ),
-                              ),
+                              ): Center(child: Text(" ")),
                               SizedBox(height: 10.h,),
                               Text("Customer Local Address",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
@@ -254,7 +260,8 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                         Align(
                           alignment: Alignment.topRight,
                           child: AddandUpdateButton(onTap: (){
-                            //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CustomerProfilePage()));
+                            update();
+                            routeService.routeTo(CustomerProfilePage.routeName, arguments: widget.customerId.toString());
                           }, title: "Update"),
                         )
                       ],

@@ -302,7 +302,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                   items: districtThanaAreaProvider.areaNameList,
                                   width: double.infinity,
                                   dropDownWidth: 280.w,
-                                    height: 55.h,
+                                  height: 55.h,
                                   isExpanded: true,
                                   selectedStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                   hint: "Select Area",
