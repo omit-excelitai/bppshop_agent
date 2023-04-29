@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import '../../data/model/request_model/commission_history_request_model.dart';
 import '../../utill/app_style.dart';
 
 class CommissionHistoryTable extends StatefulWidget {
@@ -30,7 +31,7 @@ class _CommissionHistoryTableState extends State<CommissionHistoryTable> {
     return Consumer<CommissionHistoryProvider>(
       builder: (BuildContext context, commissionHistoryProvider, Widget? child) {
         if(commissionHistoryProvider.commissionHistoryList != null && commissionHistoryProvider.commissionHistoryList!.length > 0){
-          commissionHistoryDataSource = CommissionHistoryDataSource(commissionHistoryData: commissionHistoryProvider.commissionHistoryList);
+          commissionHistoryDataSource = CommissionHistoryDataSource(commissionHistoryData: commissionHistoryProvider.commissionHistoryList!);
           return SfDataGrid(
             shrinkWrapRows: true,
             isScrollbarAlwaysShown: true,
@@ -91,7 +92,9 @@ class _CommissionHistoryTableState extends State<CommissionHistoryTable> {
             ],
           );
         }else{
-          return SizedBox.shrink();
+          return Center(
+            child: Text("Data Not Found!", style: myStyleMontserrat(18.sp, AppColorResources.secondaryBlack, FontWeight.w500),),
+          );
         }
       },
     );
@@ -99,14 +102,14 @@ class _CommissionHistoryTableState extends State<CommissionHistoryTable> {
 }
 
 class CommissionHistoryDataSource extends DataGridSource {
-  CommissionHistoryDataSource({required List<dynamic>? commissionHistoryData}) {
-    _commissionHistoryData = commissionHistoryData!
+  CommissionHistoryDataSource({required List<CommissionHistoryListData> commissionHistoryData}) {
+    _commissionHistoryData = commissionHistoryData
         .map<DataGridRow>((e) => DataGridRow(cells: [
-      DataGridCell<String>(columnName: 'customerID', value: e.customerID),
-      DataGridCell<String>(columnName: 'orderID', value: e.orderID),
-      DataGridCell<String>(columnName: 'totalProducts', value: e.totalProducts),
-      DataGridCell<String>(columnName: 'totalAmount', value: e.totalAmount),
-      DataGridCell<String>(columnName: 'totalCommission', value: e.totalCommission)
+      DataGridCell<String>(columnName: 'customerID', value: e.customerId.toString()),
+      DataGridCell<String>(columnName: 'orderID', value: e.orderId.toString()),
+      DataGridCell<String>(columnName: 'totalProducts', value: e.totalProducts.toString()),
+      DataGridCell<String>(columnName: 'totalAmount', value: e.totalAmount.toString()),
+      DataGridCell<String>(columnName: 'totalCommission', value: e.totalCommission.toString())
     ]))
         .toList();
   }

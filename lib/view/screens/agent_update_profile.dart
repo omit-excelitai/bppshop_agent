@@ -1,4 +1,5 @@
 
+import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/update_agent_profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,6 +34,9 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
       addressController.text = widget.agentAddress;
       numberController.text = widget.agentMobile;
       emailController.text = widget.agentEmail;
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).districtDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.districtName;
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).thanaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.thanaName;
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).areaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.areaName;
 
       _load(true, context);
     });
@@ -49,9 +53,9 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
   updateAgent() async{
     await Provider.of<UpdateAgentProfileProvider>(context, listen: false).updateAgentProfile(
         agent_name: nameController.text,
-        district_id: widget.districtId,
-        thana_id: widget.thanaId,
-        area_id: widget.areaId,
+        district_id: Provider.of<DistrictThanaAreaProvider>(context,listen: false).districtId,
+        thana_id: Provider.of<DistrictThanaAreaProvider>(context,listen: false).thanaId,
+        area_id: Provider.of<DistrictThanaAreaProvider>(context,listen: false).areaId,
         context: context);
   }
 
@@ -100,7 +104,8 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                               height: 116.h,
                               width: 116.w,
                               decoration: BoxDecoration(shape: BoxShape.circle,
-                                  color: AppColorResources.primaryOrange),
+                                  //color: AppColorResources.primaryOrange,
+                              image: DecorationImage(image: AssetImage("images/customerpic.png"))),
                             ),
                             Positioned(
                                 bottom: 1.h,

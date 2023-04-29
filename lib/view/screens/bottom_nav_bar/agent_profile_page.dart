@@ -1,5 +1,4 @@
 
-import 'package:bppshop_agent/provider/customer_details_provider.dart';
 import 'package:bppshop_agent/utill/app_constants.dart';
 import 'package:bppshop_agent/view/screens/agent_update_profile.dart';
 import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
