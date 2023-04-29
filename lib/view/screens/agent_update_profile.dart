@@ -1,4 +1,5 @@
 
+import 'package:bppshop_agent/provider/update_agent_profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,7 @@ import '../widgets/custom_button.dart';
 class AgentUpdateProfile extends StatefulWidget {
   static const String routeName = '/agent_update_profile';
   dynamic agentName, agentMobile, agentEmail, agentAddress, districtId, thanaId, areaId;
-  AgentUpdateProfile({Key? key}) : super(key: key);
+  AgentUpdateProfile({Key? key, this.agentName, this.agentMobile, this.agentEmail, this.agentAddress, this.districtId, this.thanaId, this.areaId}) : super(key: key);
 
   @override
   State<AgentUpdateProfile> createState() => _AgentUpdateProfileState();
@@ -24,21 +25,14 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
   TextEditingController addressController = TextEditingController();
   TextEditingController numberController = TextEditingController();
 
-  final districtItems = ["Dhaka", "Bogura", "Rangpur"];
-  final thanaItems = ["Mirpur", "Nandigram", "Kaonia"];
-  final areaItems = ["Shewrapara", "Nagorkandi", "Kaonia"];
-  String ?_selectedDistrict;
-  String ?_selectedThana;
-  String ?_selectedArea;
-
   @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // nameController.text = widget.customerName;
-      // addressController.text = widget.customerAddress;
-      // numberController.text = widget.customerMobile;
-      // emailController.text = widget.customerEmail;
+      nameController.text = widget.agentName;
+      addressController.text = widget.agentAddress;
+      numberController.text = widget.agentMobile;
+      emailController.text = widget.agentEmail;
 
       _load(true, context);
     });
@@ -49,6 +43,16 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
   _load(bool reload, BuildContext context) async {
     await Provider.of<DistrictThanaAreaProvider>(context, listen: false)
         .getDistrict(reload, context);
+  }
+
+  /// For Update Agent Profile
+  updateAgent() async{
+    await Provider.of<UpdateAgentProfileProvider>(context, listen: false).updateAgentProfile(
+        agent_name: nameController.text,
+        district_id: widget.districtId,
+        thana_id: widget.thanaId,
+        area_id: widget.areaId,
+        context: context);
   }
 
   @override
@@ -149,6 +153,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                               Text("Agent Mobile",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
+                                readOnly: true,
                                 keyboardType: TextInputType.number,
                                 textInputAction: TextInputAction.next,
                                 controller: numberController,
@@ -168,6 +173,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                               Text("Agent Email",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
+                                readOnly: true,
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
                                 controller: emailController,
@@ -259,6 +265,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                               Text("Agent Local Address",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
+                                readOnly: true,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
                                 controller: addressController,
@@ -282,13 +289,13 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                         Align(
                           alignment: Alignment.topRight,
                           child: AddandUpdateButton(onTap: (){
+                            updateAgent();
                             //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CustomerProfilePage()));
                           }, title: "Update"),
                         )
                       ],
                     ),
-                  )
-
+                  ),
                 ],
               ),
             ),

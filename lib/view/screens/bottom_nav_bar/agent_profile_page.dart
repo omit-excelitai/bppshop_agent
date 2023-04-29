@@ -68,7 +68,6 @@ class _ProfileSectionState extends State<ProfileSection> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //_loadAgentProfileData(context, true);
       Provider.of<AgentProfileProvider>(context, listen: false).getAgentProfileData(context);
-      // Provider.of<CustomerDetailsProvider>(context, listen: false).fetchCustomerDetailsData(context);
     });
     super.initState();
   }
@@ -109,7 +108,16 @@ class _ProfileSectionState extends State<ProfileSection> {
                       children: [
                         GestureDetector(
                             onTap: (){
-                              Navigator.of(context).pushNamed(AgentUpdateProfile.routeName);
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AgentUpdateProfile(
+                                agentName: agentProfileProvider.agentProfileModelData!.data!.name,
+                                agentMobile: agentProfileProvider.agentProfileModelData!.data!.phone,
+                                agentEmail: agentProfileProvider.agentProfileModelData!.data!.email,
+                                agentAddress: agentProfileProvider.agentProfileModelData!.data!.address,
+                                districtId: agentProfileProvider.agentProfileModelData!.data!.districtId,
+                                thanaId: agentProfileProvider.agentProfileModelData!.data!.thanaId,
+                                areaId: agentProfileProvider.agentProfileModelData!.data!.areaId,
+                              )));
+                              //Navigator.of(context).pushNamed(AgentUpdateProfile.routeName);
                             },
                             child: Image.asset("images/edit.png", height: 32.h, width: 32.h,)),
                         SizedBox(height: 16.h,),
