@@ -65,11 +65,14 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
   /// For Update Agent Profile
   updateAgent() async{
     await Provider.of<UpdateAgentProfileProvider>(context, listen: false).updateAgentProfile(
-        agent_name: nameController.text,
+        agent_name: nameController.text.toString(),
         district_id: Provider.of<DistrictThanaAreaProvider>(context,listen: false).districtId,
         thana_id: Provider.of<DistrictThanaAreaProvider>(context,listen: false).thanaId,
         area_id: Provider.of<DistrictThanaAreaProvider>(context,listen: false).areaId,
         context: context);
+    print("Check District ID+++++++++++++++++++++${Provider.of<DistrictThanaAreaProvider>(context,listen: false).districtId}");
+    print("Check Thana ID+++++++++++++++++++++${Provider.of<DistrictThanaAreaProvider>(context,listen: false).thanaId}");
+    print("Check Area ID+++++++++++++++++++++${Provider.of<DistrictThanaAreaProvider>(context,listen: false).areaId}");
   }
 
   @override

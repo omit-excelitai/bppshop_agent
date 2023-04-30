@@ -17,11 +17,11 @@ class UpdateAgentProfileRepo{
     try{
       Response response = await dioClient.post(
         AppConstants.updateAgentProfileUrl,
-        queryParameters: {
-          'agent_name': agent_name,
-          'district_id' : district_id,
-          'thana_id' : thana_id,
-          'area_id' : area_id
+        data: {
+          'agent_name': agent_name.toString(),
+          'district_id' : district_id.toString(),
+          'thana_id' : thana_id.toString(),
+          'area_id' : area_id.toString()
         },
       );
       return ApiResponse.withSuccess(response);
