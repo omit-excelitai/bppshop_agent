@@ -42,7 +42,8 @@ class _MyHomePageState extends State<ReusableCustomerTablePage> {
 
           return SfDataGrid(
             shrinkWrapRows: true,
-            isScrollbarAlwaysShown: true,
+            //isScrollbarAlwaysShown: true,
+            verticalScrollPhysics: ScrollPhysics(),
             frozenColumnsCount: 1,
             //defaultColumnWidth: 102.w,
             source: pendingCommissionDataSource!,

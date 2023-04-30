@@ -64,43 +64,44 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                       ),
                     ),
                     OrderHistoryTable(),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          GestureDetector(
-                            onTap: (){},
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 36.h,
-                              width: 82.w,
-                              decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(4.r), bottomLeft: Radius.circular(4.r)),
-                                  border: Border.all(width: 1.w, color: AppColorResources.containerBorderColor), color: AppColorResources.primaryWhite),
-                              child: Text("Previous", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w400),),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            padding: EdgeInsets.symmetric(horizontal: 17.w),
-                            height: 36.h,
-                            color: AppColorResources.primaryDeepBlue,
-                            child: Text("1", style: myStyleMontserrat(14.sp, AppColorResources.countColor, FontWeight.w600),),
-                          ),
-                          GestureDetector(
-                            onTap: (){},
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 36.h,
-                              width: 57.w,
-                              decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(4.r), bottomRight: Radius.circular(4.r)),
-                                  border: Border.all(width: 1.w, color: AppColorResources.containerBorderColor), color: AppColorResources.primaryWhite),
-                              child: Text("Next", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w400),),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    SizedBox(height: 12.h,),
+                    // Padding(
+                    //   padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.end,
+                    //     children: [
+                    //       GestureDetector(
+                    //         onTap: (){},
+                    //         child: Container(
+                    //           alignment: Alignment.center,
+                    //           height: 36.h,
+                    //           width: 82.w,
+                    //           decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(4.r), bottomLeft: Radius.circular(4.r)),
+                    //               border: Border.all(width: 1.w, color: AppColorResources.containerBorderColor), color: AppColorResources.primaryWhite),
+                    //           child: Text("Previous", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w400),),
+                    //         ),
+                    //       ),
+                    //       Container(
+                    //         alignment: Alignment.center,
+                    //         padding: EdgeInsets.symmetric(horizontal: 17.w),
+                    //         height: 36.h,
+                    //         color: AppColorResources.primaryDeepBlue,
+                    //         child: Text("1", style: myStyleMontserrat(14.sp, AppColorResources.countColor, FontWeight.w600),),
+                    //       ),
+                    //       GestureDetector(
+                    //         onTap: (){},
+                    //         child: Container(
+                    //           alignment: Alignment.center,
+                    //           height: 36.h,
+                    //           width: 57.w,
+                    //           decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(4.r), bottomRight: Radius.circular(4.r)),
+                    //               border: Border.all(width: 1.w, color: AppColorResources.containerBorderColor), color: AppColorResources.primaryWhite),
+                    //           child: Text("Next", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w400),),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

@@ -4,7 +4,6 @@ import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
@@ -19,7 +18,7 @@ class CustomerListPage extends StatefulWidget {
 }
 
 class _CustomerListPageState extends State<CustomerListPage> {
-  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -27,14 +26,14 @@ class _CustomerListPageState extends State<CustomerListPage> {
       builder: (context, bottomNavigationBarProvider, child){
         return Scaffold(
           drawer: MyDrawerPage(),
-          key: _scaffoldkey,
+          key: _scaffoldKey,
           backgroundColor: AppColorResources.bgColor,
           appBar: AppBar(
             backgroundColor: AppColorResources.appBarColor,
             centerTitle: false,
             leading: InkWell(
                 onTap: (){
-                  _scaffoldkey.currentState!.openDrawer();
+                  _scaffoldKey.currentState!.openDrawer();
                 },
                 child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
             title: Text("Customer", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
@@ -92,43 +91,44 @@ class _CustomerListPageState extends State<CustomerListPage> {
                   ),
                 ),
                 CustomerListTable(),
-                Padding(
-                  padding: EdgeInsets.only(left: 12.w,right: 12.w,top: 12.h,bottom: 12.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: (){},
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 36.h,
-                          width: 82.w,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(4.r), bottomLeft: Radius.circular(4.r)),
-                              border: Border.all(width: 1.w, color: AppColorResources.containerBorderColor), color: AppColorResources.primaryWhite),
-                          child: Text("Previous", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w400),),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(horizontal: 17.w),
-                        height: 36.h,
-                        color: AppColorResources.primaryDeepBlue,
-                        child: Text("1", style: myStyleMontserrat(14.sp, AppColorResources.countColor, FontWeight.w600),),
-                      ),
-                      GestureDetector(
-                        onTap: (){},
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 36.h,
-                          width: 57.w,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(4.r), bottomRight: Radius.circular(4.r)),
-                              border: Border.all(width: 1.w, color: AppColorResources.containerBorderColor), color: AppColorResources.primaryWhite),
-                          child: Text("Next", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w400),),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                SizedBox(height: 12.h,),
+                // Padding(
+                //   padding: EdgeInsets.only(left: 12.w,right: 12.w,top: 12.h,bottom: 12.h),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.end,
+                //     children: [
+                //       GestureDetector(
+                //         onTap: (){},
+                //         child: Container(
+                //           alignment: Alignment.center,
+                //           height: 36.h,
+                //           width: 82.w,
+                //           decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(4.r), bottomLeft: Radius.circular(4.r)),
+                //               border: Border.all(width: 1.w, color: AppColorResources.containerBorderColor), color: AppColorResources.primaryWhite),
+                //           child: Text("Previous", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w400),),
+                //         ),
+                //       ),
+                //       Container(
+                //         alignment: Alignment.center,
+                //         padding: EdgeInsets.symmetric(horizontal: 17.w),
+                //         height: 36.h,
+                //         color: AppColorResources.primaryDeepBlue,
+                //         child: Text("1", style: myStyleMontserrat(14.sp, AppColorResources.countColor, FontWeight.w600),),
+                //       ),
+                //       GestureDetector(
+                //         onTap: (){},
+                //         child: Container(
+                //           alignment: Alignment.center,
+                //           height: 36.h,
+                //           width: 57.w,
+                //           decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(4.r), bottomRight: Radius.circular(4.r)),
+                //               border: Border.all(width: 1.w, color: AppColorResources.containerBorderColor), color: AppColorResources.primaryWhite),
+                //           child: Text("Next", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w400),),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

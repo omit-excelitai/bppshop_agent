@@ -36,19 +36,21 @@ class _MyHomePageState extends State<ProductsTablePage> {
           productsDataSource = ProductDataSource(productsList: orderDetailsProvider.productsList!);
           return SfDataGrid(
             shrinkWrapRows: true,
-            isScrollbarAlwaysShown: true,
-            frozenColumnsCount: 1,
+            //isScrollbarAlwaysShown: true,
+            verticalScrollPhysics: ScrollPhysics(),
+            //frozenColumnsCount: 1,
             //defaultColumnWidth: 102.w,
             source: productsDataSource!,
             columnWidthMode: ColumnWidthMode.fill,
             columns: <GridColumn>[
               GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
                   columnName: 'productName',
                   width: 150.w,
                   label: Container(
                       color: AppColorResources.primaryDeepBlue,
                       padding: EdgeInsets.all(12),
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.center,
                       child: Text(
                         'Product Name',
                         style: myStyleMontserrat(
@@ -61,7 +63,7 @@ class _MyHomePageState extends State<ProductsTablePage> {
                   label: Container(
                       color: AppColorResources.primaryDeepBlue,
                       padding: EdgeInsets.all(12),
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.center,
                       child: Text('Quantity',
                         style: myStyleMontserrat(
                             12.sp, AppColorResources.countColor,
@@ -72,7 +74,7 @@ class _MyHomePageState extends State<ProductsTablePage> {
                   label: Container(
                       color: AppColorResources.primaryDeepBlue,
                       padding: EdgeInsets.all(12),
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.center,
                       child: Text(
                         'Price',
                         style: myStyleMontserrat(
@@ -85,7 +87,7 @@ class _MyHomePageState extends State<ProductsTablePage> {
                   label: Container(
                       color: AppColorResources.primaryDeepBlue,
                       padding: EdgeInsets.all(12),
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.center,
                       child: Text('Discount',
                         style: myStyleMontserrat(
                             12.sp, AppColorResources.countColor,
@@ -121,7 +123,7 @@ class ProductDataSource extends DataGridSource {
     return DataGridRowAdapter(
         cells: row.getCells().map<Widget>((e) {
           return Container(
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: Text(e.value.toString(),
               style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),

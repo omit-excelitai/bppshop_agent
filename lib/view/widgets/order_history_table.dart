@@ -38,7 +38,8 @@ class _OrderHistoryTableState extends State<OrderHistoryTable> {
           orderHistoryTableDataSource = OrderHistoryTableDataSource(orderHistoryData: orderHistoryProvider.orderHistoryList!);
           return SfDataGrid(
             shrinkWrapRows: true,
-            isScrollbarAlwaysShown: true,
+            //isScrollbarAlwaysShown: true,
+            verticalScrollPhysics: ScrollPhysics(),
             frozenColumnsCount: 1,
             footerFrozenColumnsCount: 2,
             //defaultColumnWidth: 80.w,

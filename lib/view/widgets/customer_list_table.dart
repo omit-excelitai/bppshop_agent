@@ -38,7 +38,8 @@ class _CustomerListTableState extends State<CustomerListTable> {
           customerListTableDataSource = CustomerListTableDataSource(customerListData: customerListProvider.customerList!);
           return SfDataGrid(
             shrinkWrapRows: true,
-            isScrollbarAlwaysShown: true,
+            //isScrollbarAlwaysShown: true,
+            verticalScrollPhysics: ScrollPhysics(),
             frozenColumnsCount: 1,
             footerFrozenColumnsCount: 1,
             //defaultColumnWidth: 100.w,

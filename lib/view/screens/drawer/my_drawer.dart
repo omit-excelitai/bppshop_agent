@@ -1,17 +1,17 @@
-import 'dart:io';
 
 import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/add_customer_page.dart';
+import 'package:bppshop_agent/view/screens/bottom_nav_bar/home_page.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/order_history_page.dart';
 import 'package:bppshop_agent/view/screens/commission_history_page.dart';
 import 'package:bppshop_agent/view/screens/customer_list_page.dart';
 import 'package:bppshop_agent/view/screens/dashboard_page.dart';
+import 'package:bppshop_agent/view/screens/landing_page.dart';
 import 'package:bppshop_agent/view/screens/pending_commission_page.dart';
 import 'package:bppshop_agent/view/screens/wallet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../utill/app_style.dart';
 import '../../widgets/show_logout_alert.dart';
 
@@ -46,7 +46,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
               color: AppColorResources.drawerHeaderColor,
               child: GestureDetector(
                 onTap: (){
-                  //Navigator.of(context).pushNamed(BottomNavBar.routeName);
+                  Navigator.of(context).pushNamed(HomePage.routeName);
                 },
                 child: Row(
                   children: [

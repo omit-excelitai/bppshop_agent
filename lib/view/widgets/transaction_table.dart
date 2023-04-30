@@ -34,7 +34,8 @@ class _MyHomePageState extends State<ReusableTransactionTablePage> {
           transactionTableDataSource = TransactionTableDataSource(transactionData: transactionHistoryProvider.transactionHistoryList!);
           return SfDataGrid(
             shrinkWrapRows: true,
-            isScrollbarAlwaysShown: true,
+            //isScrollbarAlwaysShown: true,
+            verticalScrollPhysics: ScrollPhysics(),
             frozenColumnsCount: 1,
             //defaultColumnWidth: 88.w,
             source: transactionTableDataSource!,
