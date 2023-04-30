@@ -49,7 +49,6 @@ dependencies:
   cached_network_image:
   package_info_plus:
   shimmer:
-  lottie:
   dropdown_button2: ^1.9.2
   url_launcher:
   timelines:

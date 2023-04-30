@@ -1,8 +1,11 @@
 
+import 'dart:io';
+
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/update_agent_profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../provider/district_thana_area_provider.dart';
@@ -26,6 +29,16 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
   TextEditingController addressController = TextEditingController();
   TextEditingController numberController = TextEditingController();
 
+  /// For pick image
+  XFile? _chooseImage;
+  String? _imageUrl;
+
+  chooseImageFromGallery() async {
+    ImagePicker _picker = ImagePicker();
+    _chooseImage = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {});
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -34,9 +47,9 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
       addressController.text = widget.agentAddress;
       numberController.text = widget.agentMobile;
       emailController.text = widget.agentEmail;
-      Provider.of<DistrictThanaAreaProvider>(context, listen: false).districtDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.districtId.toString();
-      Provider.of<DistrictThanaAreaProvider>(context, listen: false).thanaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.thanaId.toString();
-      Provider.of<DistrictThanaAreaProvider>(context, listen: false).areaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.areaId.toString();
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).districtDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.districtName;
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).thanaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.thanaName;
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).areaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.areaName;
 
       _load(true, context);
     });
@@ -100,13 +113,18 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                       children: [
                         Stack(
                           children: [
-                            Container(
-                              height: 116.h,
-                              width: 116.w,
-                              decoration: BoxDecoration(shape: BoxShape.circle,
-                                  //color: AppColorResources.primaryOrange,
-                              image: DecorationImage(image: AssetImage("images/customerpic.png"))),
+                            ClipOval(
+                              child: _chooseImage == null?Image.asset("images/customerpic.png",height: 116.h, width: 102.w, fit: BoxFit.cover,):Image.file(File(_chooseImage!.path),height: 116.h, width: 102.w, fit: BoxFit.cover,),
                             ),
+                            // Container(
+                            //   height: 116.h,
+                            //   width: 116.w,
+                            //   decoration: BoxDecoration(shape: BoxShape.circle,
+                            //       //color: AppColorResources.primaryOrange,
+                            //   image: DecorationImage(image: _chooseImage == null ? AssetImage("images/customerpic.png"):)
+                            //   ),
+                            //   //child: _chooseImage == null?Image.asset("images/customerpic.png", fit: BoxFit.cover,):Image.file(File(_chooseImage!.path), fit: BoxFit.cover,),
+                            // ),
                             Positioned(
                                 bottom: 1.h,
                                 left: 0.w,
@@ -117,7 +135,9 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                 left: 0,
                                 right: 0,
                                 child: GestureDetector(
-                                  onTap: (){},
+                                  onTap: (){
+                                    chooseImageFromGallery();
+                                  },
                                   child: Container(
                                     alignment: Alignment.topCenter,
                                     padding: EdgeInsets.only(top: 8.h),
@@ -197,7 +217,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                               SizedBox(height: 10.h,),
                               Text("Agent District",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
-                              districtThanaAreaProvider.districtNameList != null?Container(
+                              Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
                                     color: AppColorResources.textFieldColor),
@@ -208,7 +228,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                   height: 55.h,
                                   isExpanded: true,
                                   selectedStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
-                                  hint: "Select District",
+                                  hint: "${Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.districtName}",
                                   hintStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                   onChanged: (value) {
                                     districtThanaAreaProvider.thanaNameList!.clear();
@@ -219,8 +239,8 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                     districtThanaAreaProvider.areaDropdownValue = null;
                                   },
                                   selectedValue: districtThanaAreaProvider.districtDropdownValue,
-                                ),
-                              ): Center(child: Text(" ")),SizedBox(height: 10.h,),
+                                )),
+                               SizedBox(height: 10.h,),
                               Text("Agent Thana",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               districtThanaAreaProvider.thanaNameList != null?Container(
@@ -234,7 +254,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                   height: 55.h,
                                   isExpanded: true,
                                   selectedStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
-                                  hint: "Select Thana",
+                                  hint: "${Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.thanaName}",
                                   hintStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                   onChanged: (value) {
                                     districtThanaAreaProvider.areaNameList!.clear();
@@ -258,7 +278,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                   height: 55.h,
                                   isExpanded: true,
                                   selectedStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
-                                  hint: "Select Area",
+                                  hint: "${Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.areaName}",
                                   hintStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                   onChanged: (value) {
                                     districtThanaAreaProvider.changeAreaDropDownValue(value!);

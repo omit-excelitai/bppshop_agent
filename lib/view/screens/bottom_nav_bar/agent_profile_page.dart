@@ -96,7 +96,8 @@ class _ProfileSectionState extends State<ProfileSection> {
                         width: 116.w,
                         decoration: BoxDecoration(shape: BoxShape.circle,
                             image: DecorationImage(image: NetworkImage("${AppConstants.imageUrl}${agentProfileProvider.agentProfileModelData!.data!.image}",)),
-                            color: AppColorResources.primaryOrange),
+                            //color: AppColorResources.primaryOrange
+                          ),
                       ),
                     ),
                     flex: 2,),
