@@ -115,7 +115,6 @@ class _ProfileSectionState extends State<ProfileSection> {
                                 thanaId: agentProfileProvider.agentProfileModelData!.data!.thanaId,
                                 areaId: agentProfileProvider.agentProfileModelData!.data!.areaId,
                               )));
-                              //Navigator.of(context).pushNamed(AgentUpdateProfile.routeName);
                             },
                             child: Image.asset("images/edit.png", height: 32.h, width: 32.h,)),
                         SizedBox(height: 16.h,),

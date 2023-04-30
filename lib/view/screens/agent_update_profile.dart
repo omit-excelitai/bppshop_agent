@@ -34,9 +34,9 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
       addressController.text = widget.agentAddress;
       numberController.text = widget.agentMobile;
       emailController.text = widget.agentEmail;
-      Provider.of<DistrictThanaAreaProvider>(context, listen: false).districtDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.districtName;
-      Provider.of<DistrictThanaAreaProvider>(context, listen: false).thanaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.thanaName;
-      Provider.of<DistrictThanaAreaProvider>(context, listen: false).areaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.areaName;
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).districtDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.districtId.toString();
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).thanaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.thanaId.toString();
+      Provider.of<DistrictThanaAreaProvider>(context, listen: false).areaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.areaId.toString();
 
       _load(true, context);
     });
