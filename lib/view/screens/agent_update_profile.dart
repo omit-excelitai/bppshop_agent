@@ -149,7 +149,6 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                 )),
                           ],
                         ),
-
                         SizedBox(height: 24.h,),
                         Container(
                           width: double.infinity,
@@ -243,7 +242,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                SizedBox(height: 10.h,),
                               Text("Agent Thana",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
-                              districtThanaAreaProvider.thanaNameList != null?Container(
+                              Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
                                     color: AppColorResources.textFieldColor),
@@ -264,10 +263,11 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                   },
                                   selectedValue: districtThanaAreaProvider.thanaDropdownValue,
                                 ),
-                              ): Center(child: Text(" ")),SizedBox(height: 10.h,),
+                              ),
+                              SizedBox(height: 10.h,),
                               Text("Agent Area",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
-                              districtThanaAreaProvider.areaNameList != null?Container(
+                              Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
                                     color: AppColorResources.textFieldColor),
@@ -285,7 +285,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                   },
                                   selectedValue: districtThanaAreaProvider.areaDropdownValue,
                                 ),
-                              ): Center(child: Text(" ")),
+                              ),
                               SizedBox(height: 10.h,),
                               Text("Agent Local Address",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                               SizedBox(height: 4.h,),
@@ -297,7 +297,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                 style: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 12.w, right: 12.w, top: 30.h, bottom: 30.h),
-                                  hintText: "16/1 (9th Floor), Alhaz Shamsuddin Mansion, New Eskaton Garden Road",
+                                  hintText: " ",
                                   hintStyle: myStyleMontserrat(14.sp, AppColorResources.secondaryBlack, FontWeight.w400),
                                   hintMaxLines: 2,
                                   filled: true,
