@@ -1,9 +1,10 @@
 
+import 'package:bppshop_agent/provider/transaction_history_provider.dart';
 import 'package:bppshop_agent/utill/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-
 import '../../utill/app_color_resources.dart';
 
 class ReusableTransactionTablePage extends StatefulWidget {
@@ -14,142 +15,145 @@ class ReusableTransactionTablePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<ReusableTransactionTablePage> {
-  List<Transaction> transactions = <Transaction>[];
-  late TransactionTableDataSource transactionTableDataSource;
+
+  TransactionTableDataSource? transactionTableDataSource;
 
   @override
   void initState() {
     super.initState();
-    transactions = getEmployeeData();
-    transactionTableDataSource = TransactionTableDataSource(transactionData: transactions);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<TransactionHistoryProvider>(context, listen: false).fetchTransactionHistoryData(pageNo: 1, no_of_rows: 5, context: context);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SfDataGrid(
-      shrinkWrapRows: true,
-      isScrollbarAlwaysShown: true,
-      frozenColumnsCount: 1,
-      //defaultColumnWidth: 88.w,
-      source: transactionTableDataSource,
-      columnWidthMode: ColumnWidthMode.fill,
-      columns: <GridColumn>[
-        GridColumn(
-            columnName: 'agendID',
-            width: 88.w,
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Agend ID',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),
-                ))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'dateTime',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Date Time',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'transactionID',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Transaction ID',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),
-                ))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'transactionType',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Transaction Type',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'orderGroupID',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Order Group ID',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'credit',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Credit',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'debit',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Debit',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'referenceNo',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Reference No.',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-        GridColumn(
-            columnWidthMode: ColumnWidthMode.auto,
-            columnName: 'balance',
-            label: Container(
-                color: AppColorResources.primaryDeepBlue,
-                padding: EdgeInsets.all(12),
-                alignment: Alignment.centerLeft,
-                child: Text('Balance',
-                  style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
-      ],
+    return Consumer<TransactionHistoryProvider>(
+      builder: (BuildContext context, transactionHistoryProvider, Widget? child) {
+        if(transactionHistoryProvider.transactionHistoryList != null && transactionHistoryProvider.transactionHistoryList!.length > 0){
+          transactionTableDataSource = TransactionTableDataSource(transactionData: transactionHistoryProvider.transactionHistoryList!);
+          return SfDataGrid(
+            shrinkWrapRows: true,
+            isScrollbarAlwaysShown: true,
+            frozenColumnsCount: 1,
+            //defaultColumnWidth: 88.w,
+            source: transactionTableDataSource!,
+            columnWidthMode: ColumnWidthMode.fill,
+            columns: <GridColumn>[
+              GridColumn(
+                  columnName: 'agendID',
+                  width: 88.w,
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Agend ID',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),
+                      ))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'dateTime',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Date Time',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'transactionID',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Transaction ID',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),
+                      ))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'transactionType',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Transaction Type',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'orderGroupID',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Order Group ID',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'credit',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Credit',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'debit',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Debit',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'referenceNo',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Reference No.',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
+              GridColumn(
+                  columnWidthMode: ColumnWidthMode.auto,
+                  columnName: 'balance',
+                  label: Container(
+                      color: AppColorResources.primaryDeepBlue,
+                      padding: EdgeInsets.all(12),
+                      alignment: Alignment.centerLeft,
+                      child: Text('Balance',
+                        style: myStyleMontserrat(12.sp, AppColorResources.countColor, FontWeight.w600),))),
+            ],
+          );
+        }else{
+          return Center(
+            child: Text("Data Not Found!", style: myStyleMontserrat(18.sp, AppColorResources.secondaryBlack, FontWeight.w500),),
+          );
+        }
+
+      },
     );
   }
-
-  List<Transaction> getEmployeeData() {
-    return [
-      Transaction("#100470", "01 Feb 2023\n09:09 AM", "#100470", "Express", "#100470", "৳252668123626", "৳252668123626", "#100470", "৳252668123626"),
-      Transaction("#100470", "01 Feb 2023\n09:09 AM", "#100470", "Express", "#100470", "৳252668123626", "৳252668123626", "#100470", "৳252668123626"),
-      Transaction("#100470", "01 Feb 2023\n09:09 AM", "#100470", "Express", "#100470", "৳252668123626", "৳252668123626", "#100470", "৳252668123626"),
-      Transaction("#100470", "01 Feb 2023\n09:09 AM", "#100470", "Express", "#100470", "৳252668123626", "৳252668123626", "#100470", "৳252668123626"),
-      Transaction("#100470", "01 Feb 2023\n09:09 AM", "#100470", "Express", "#100470", "৳252668123626", "৳252668123626", "#100470", "৳252668123626")
-    ];
-  }
 }
 
-class Transaction {
-  Transaction(this.agendID, this.dateTime, this.transactionID, this.transactionType, this.orderGroupID, this.credit, this.debit, this.referenceNo, this.balance);
-
-  final String agendID;
-  final String dateTime;
-  final String transactionID;
-  final String transactionType;
-  final String orderGroupID;
-  final String credit;
-  final String debit;
-  final String referenceNo;
-  final String balance;
-}
+// class Transaction {
+//   Transaction(this.agendID, this.dateTime, this.transactionID, this.transactionType, this.orderGroupID, this.credit, this.debit, this.referenceNo, this.balance);
+//
+//   final String agendID;
+//   final String dateTime;
+//   final String transactionID;
+//   final String transactionType;
+//   final String orderGroupID;
+//   final String credit;
+//   final String debit;
+//   final String referenceNo;
+//   final String balance;
+// }
 
 class TransactionTableDataSource extends DataGridSource {
-  TransactionTableDataSource({required List<Transaction> transactionData}) {
+  TransactionTableDataSource({required List<dynamic> transactionData}) {
     _transactionData = transactionData
         .map<DataGridRow>((e) => DataGridRow(cells: [
       DataGridCell<String>(columnName: 'agendID', value: e.agendID),

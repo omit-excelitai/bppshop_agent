@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
+import '../widgets/products_table.dart';
 import 'drawer/my_drawer.dart';
 
 class OrderDetailsPage extends StatefulWidget {
@@ -122,6 +123,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                             Text("${orderDetailsProvider.orderDetailsResponseModel!.data!.shippingAddress}", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w400),),
                           ],
                         ),
+                        SizedBox(height: 12.h,),
+                        ProductsTablePage(),
                       ],
                     ),
                   ):SizedBox.shrink(),

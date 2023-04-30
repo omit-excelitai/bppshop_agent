@@ -31,28 +31,28 @@ class TransactionHistoryRequestModel {
 
 class Data {
   final int? total;
-  final String? page;
+  final dynamic page;
   final int? noOfRows;
-  final List<dynamic>? data;
+  final List<dynamic>? transactionHistoryList;
 
   Data({
     this.total,
     this.page,
     this.noOfRows,
-    this.data,
+    this.transactionHistoryList,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     total: json["total"],
     page: json["page"],
     noOfRows: json["no_of_rows"],
-    data: json["data"] == null ? [] : List<dynamic>.from(json["data"]!.map((x) => x)),
+    transactionHistoryList: json["data"] == null ? [] : List<dynamic>.from(json["data"]!.map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
     "total": total,
     "page": page,
     "no_of_rows": noOfRows,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x)),
+    "data": transactionHistoryList == null ? [] : List<dynamic>.from(transactionHistoryList!.map((x) => x)),
   };
 }
