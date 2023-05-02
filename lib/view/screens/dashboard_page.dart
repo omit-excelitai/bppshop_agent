@@ -4,6 +4,7 @@ import 'package:bppshop_agent/view/screens/bottom_nav_bar/agent_profile_page.dar
 import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/agent_profile_provider.dart';
@@ -12,6 +13,7 @@ import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_circular_progress_indicator.dart';
+import '../widgets/no_internet_connection_widget.dart';
 
 class DashboardPage extends StatefulWidget {
   static const String routeName = '/dashboard_page';
@@ -62,7 +64,16 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
               title: Text("Dashboard", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
             ),
-            body: agentDashboardProvider.agentDashboardModelData != null?Container(
+            body: Provider.of<InternetConnectionStatus>(context) ==
+                InternetConnectionStatus.disconnected ?
+            NoInternetConnectionWidget(
+                onPressed: (){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
+                    backgroundColor: AppColorResources.redColor,
+                  ));
+                }
+            ):agentDashboardProvider.agentDashboardModelData != null?Container(
               child: SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 child: Column(

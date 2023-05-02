@@ -3,6 +3,7 @@ import 'package:bppshop_agent/provider/update_customer_profile_provider.dart';
 import 'package:bppshop_agent/view/screens/customer_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../provider/district_thana_area_provider.dart';
@@ -11,6 +12,7 @@ import '../../utill/app_style.dart';
 import '../widgets/app_custom_dropdown_button.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/navigation_service_without_context.dart';
+import '../widgets/no_internet_connection_widget.dart';
 
 class UpdateCustomerPage extends StatefulWidget {
   static const String routeName = '/update_customer_page';
@@ -91,7 +93,16 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                 child: Icon(Icons.arrow_back_outlined, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
             title: Text("Update Customer", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
           ),
-          body: Container(
+          body: Provider.of<InternetConnectionStatus>(context) ==
+              InternetConnectionStatus.disconnected ?
+          NoInternetConnectionWidget(
+              onPressed: (){
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
+                  backgroundColor: AppColorResources.redColor,
+                ));
+              }
+          ):Container(
             padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
             width: double.infinity,
             child: SingleChildScrollView(

@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
-
 import '../../../provider/bottom_navigation_bar_provider.dart';
 import '../../../utill/app_color_resources.dart';
 import '../../../utill/app_style.dart';
+import '../../widgets/no_internet_connection_widget.dart';
 import '../../widgets/order_history_table.dart';
 import '../drawer/my_drawer.dart';
 
@@ -20,6 +21,7 @@ class OrderHistoryPage extends StatefulWidget {
 class _OrderHistoryPageState extends State<OrderHistoryPage> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
   TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<BottomNavigationBarProvider>(
@@ -39,7 +41,16 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                     child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
                 title: Text("Order History", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
               ),
-              body: SingleChildScrollView(
+              body: Provider.of<InternetConnectionStatus>(context) ==
+                  InternetConnectionStatus.disconnected ?
+              NoInternetConnectionWidget(
+                  onPressed: (){
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
+                      backgroundColor: AppColorResources.redColor,
+                    ));
+                  }
+              ):SingleChildScrollView(
                 child: Column(
                   children: [
                     Padding(

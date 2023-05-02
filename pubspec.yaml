@@ -64,6 +64,8 @@ dependencies:
   google_fonts: ^4.0.3
   syncfusion_flutter_datagrid: ^21.1.37
   fluttertoast: ^8.2.1
+  lottie: ^2.3.2
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:

@@ -6,11 +6,13 @@ import 'package:bppshop_agent/view/screens/my_commission.dart';
 import 'package:bppshop_agent/view/screens/wallet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:provider/provider.dart';
 import '../../../utill/app_color_resources.dart';
 import '../../../utill/app_style.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/navigation_service_without_context.dart';
+import '../../widgets/no_internet_connection_widget.dart';
 import '../customer_profile_page.dart';
 import '../drawer/my_drawer.dart';
 
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     NavigationService routeService = NavigationService();
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
     return Scaffold(
       drawer: MyDrawerPage(),
       key: _scaffoldKey,
@@ -41,7 +44,16 @@ class _HomePageState extends State<HomePage> {
             child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
         title: Text("Home", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
       ),
-      body: Container(
+      body: Provider.of<InternetConnectionStatus>(context) ==
+          InternetConnectionStatus.disconnected ?
+      NoInternetConnectionWidget(
+          onPressed: (){
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
+              backgroundColor: AppColorResources.redColor,
+            ));
+          }
+      ):Container(
         padding: EdgeInsets.all(12),
         child: SingleChildScrollView(
           child: Column(children: [

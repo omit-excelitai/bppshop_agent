@@ -17,9 +17,9 @@ class CustomerListRepo{
     try{
       Response response = await dioClient.post(
         AppConstants.customerListUrl,
-        queryParameters: {
+        data: {
           'page': pageNo,
-          'no_of_rows' : 5,
+          'no_of_rows' : no_of_rows,
         },
       );
       return ApiResponse.withSuccess(response);

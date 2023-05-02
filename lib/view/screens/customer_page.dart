@@ -4,11 +4,13 @@ import 'package:bppshop_agent/view/screens/customer_list_page.dart';
 import 'package:bppshop_agent/view/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
+import '../widgets/no_internet_connection_widget.dart';
 
 class CustomerPage extends StatefulWidget {
   static const String routeName = '/customer_page';
@@ -35,7 +37,16 @@ class _CustomerPageState extends State<CustomerPage> {
                 child: Icon(Icons.arrow_back_outlined, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
             title: Text("Customer", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
           ),
-          body: Container(
+          body: Provider.of<InternetConnectionStatus>(context) ==
+              InternetConnectionStatus.disconnected ?
+          NoInternetConnectionWidget(
+              onPressed: (){
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
+                  backgroundColor: AppColorResources.redColor,
+                ));
+              }
+          ):Container(
             padding: EdgeInsets.all(12),
             child: Column(
               children: [

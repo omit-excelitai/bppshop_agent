@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
+import '../widgets/no_internet_connection_widget.dart';
 
 class CustomerProfilePage extends StatefulWidget {
   static const String routeName = '/customer_profile_page';
@@ -55,7 +57,16 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                   child: Icon(Icons.arrow_back_outlined, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
               title: Text("Customer Profile", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
             ),
-            body: customerDetailsProvider.customerDetailsResponseModel != null?Container(
+            body: Provider.of<InternetConnectionStatus>(context) ==
+                InternetConnectionStatus.disconnected ?
+            NoInternetConnectionWidget(
+                onPressed: (){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
+                    backgroundColor: AppColorResources.redColor,
+                  ));
+                }
+            ):customerDetailsProvider.customerDetailsResponseModel != null?Container(
               child: SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 child: Column(

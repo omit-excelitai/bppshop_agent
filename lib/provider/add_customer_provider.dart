@@ -4,8 +4,10 @@ import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../data/model/base_model/api_response.dart';
 import '../data/model/base_model/error_response.dart';
+import '../utill/app_style.dart';
 
 class AddCustomerProvider with ChangeNotifier{
 
@@ -18,6 +20,10 @@ class AddCustomerProvider with ChangeNotifier{
   Future<String?> createNewCustomer({required String customerName, required String customerEmail, required String customerMobile,
     required String customerAddress, required dynamic districtId, required dynamic thanaId, required dynamic areaId, required BuildContext context}) async{
 
+    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //   content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
+    //   backgroundColor: AppColorResources.redColor,
+    // ));
     EasyLoading.show(status: 'Loading...');
     notifyListeners();
     ApiResponse apiResponse = await addCustomerRepo.addNewCustomerData(
@@ -69,6 +75,6 @@ class AddCustomerProvider with ChangeNotifier{
       notifyListeners();
       return apiResponse.response!.data["status"];
     }
-
   }
+
 }
