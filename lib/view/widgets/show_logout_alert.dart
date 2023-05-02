@@ -2,6 +2,7 @@
 import 'package:bppshop_agent/view/screens/auth/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
 
@@ -49,7 +50,9 @@ logoutAlert(BuildContext context){
                         ),
                       ),
                       InkWell(
-                        onTap: (){
+                        onTap: () async{
+                          SharedPreferences _token = await SharedPreferences.getInstance();
+                          await _token.clear();
                           Navigator.of(context).pushNamedAndRemoveUntil(SignInPage.routeName, (route) => false);
                         },
                         child: Container(
