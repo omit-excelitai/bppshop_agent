@@ -16,9 +16,9 @@ class AuthRepo{
     try{
       Response response = await dioClient.post(
           AppConstants.loginUrl,
-        queryParameters: {
+        data: {
             'agent_mobile_number': number,
-          'password' : password,
+            'password' : password,
         }
       );
       return ApiResponse.withSuccess(response);

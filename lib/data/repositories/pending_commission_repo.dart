@@ -17,15 +17,10 @@ class PendingCommissionRepo{
     try{
       Response response = await dioClient.post(
         AppConstants.pendingCommissionUrl,
-        queryParameters: {
+        data: {
           'page': pageNo,
-          'no_of_rows' : 5,
+          'no_of_rows' : no_of_rows,
         },
-        // options: Options(headers: {
-        //   "Content-Type": "application/json",
-        //   "Authorization":
-        //   "Bearer ${ sharedPreferences.getString(AppConstants.token) ?? ""}",
-        // }),
       );
       return ApiResponse.withSuccess(response);
     }catch(e){

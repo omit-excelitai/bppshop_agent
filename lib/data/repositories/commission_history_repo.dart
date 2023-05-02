@@ -19,7 +19,7 @@ class CommissionHistoryRepo{
         AppConstants.commissionHistoryUrl,
         queryParameters: {
           'page': pageNo,
-          'no_of_rows' : 5,
+          'no_of_rows' : no_of_rows,
         },
       );
       return ApiResponse.withSuccess(response);
