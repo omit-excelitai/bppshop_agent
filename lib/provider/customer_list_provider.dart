@@ -22,6 +22,7 @@ class CustomerListProvider with ChangeNotifier{
   List<CustomerListData>? get customerList => _customerList;
   CustomerListData? get customerListData => _customerListData;
 
+  /// Fetch Customer List Data
   Future<String?> customerAllList({required dynamic pageNo, required dynamic no_of_rows, required BuildContext context}) async{
 
     _isLoading=true;
@@ -29,20 +30,11 @@ class CustomerListProvider with ChangeNotifier{
     notifyListeners();
     ApiResponse apiResponse = await customerListRepo.fetchCustomerListData(pageNo: pageNo, no_of_rows: no_of_rows);
 
-    // if(kDebugMode){
-    //   print("pending commission statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
-    // }
-
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
       _isLoading=false;
 
       _customerListRequestModel = CustomerListRequestModel.fromJson(apiResponse.response!.data);
       _customerList = _customerListRequestModel!.data!.customerList;
-
-      // if (kDebugMode) {
-      //   print("_pendingCommissionRequestModelTest>>>>>>>>>>>>>>>${_pendingCommissionRequestModel!.data}");
-      //   print("_pendingCommissionList+++++++++++++++++${_pendingCommissionAllList}");
-      // }
 
       notifyListeners();
       EasyLoading.dismiss();
@@ -50,7 +42,6 @@ class CustomerListProvider with ChangeNotifier{
 
       _isLoading=false;
       EasyLoading.dismiss();
-      // ApiChecker.checkApi(context, apiResponse);
       notifyListeners();
 
     }

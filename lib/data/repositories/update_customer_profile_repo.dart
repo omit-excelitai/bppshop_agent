@@ -17,7 +17,7 @@ class UpdateCustomerProfileRepo{
     try{
       Response response = await dioClient.post(
         AppConstants.updateCustomerProfileUrl,
-        queryParameters: {
+        data: {
           'customer_name': customer_name,
           'customer_address' : customer_address,
           'customer_id' : customer_id

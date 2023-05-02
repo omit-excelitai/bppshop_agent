@@ -45,6 +45,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                   InternetConnectionStatus.disconnected ?
               NoInternetConnectionWidget(
                   onPressed: (){
+                    ScaffoldMessenger.of(context).removeCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
                       backgroundColor: AppColorResources.redColor,

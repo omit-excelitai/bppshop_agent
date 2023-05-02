@@ -6,15 +6,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider with ChangeNotifier{
-  DioClient dioClient;
+  final DioClient dioClient;
   final AuthRepo authRepo;
+  bool _isLoading = false;
+
   AuthProvider({required this.dioClient, required this.authRepo});
 
-  bool _isLoading = false;
   bool get isLoading => _isLoading;
 
   /// For Login
-
   Future<String?> login({required String number, required String password, required BuildContext context}) async{
     _isLoading = true;
     notifyListeners();

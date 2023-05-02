@@ -17,9 +17,9 @@ class TransactionHistoryRepo{
     try{
       Response response = await dioClient.post(
         AppConstants.transactionHistoryUrl,
-        queryParameters: {
+        data: {
           'page': pageNo,
-          'no_of_rows' : 5,
+          'no_of_rows' : no_of_rows,
         },
       );
       return ApiResponse.withSuccess(response);

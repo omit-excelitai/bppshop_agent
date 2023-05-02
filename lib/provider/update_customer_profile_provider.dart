@@ -29,9 +29,6 @@ class UpdateCustomerProfileProvider with ChangeNotifier{
         customer_address: customer_address,
         customer_id: customer_id);
 
-    // if(kDebugMode){
-    //   print("addNewAddress statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
-    // }
 
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
 

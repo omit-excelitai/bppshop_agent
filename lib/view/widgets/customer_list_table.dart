@@ -125,7 +125,9 @@ class _CustomerListTableState extends State<CustomerListTable> {
           );
         }
         else{
-          return SizedBox.shrink();
+          return Center(
+            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, AppColorResources.secondaryBlack, FontWeight.w500),),
+          );
         }
       },
     );

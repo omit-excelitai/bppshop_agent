@@ -94,7 +94,7 @@ class _CommissionHistoryTableState extends State<CommissionHistoryTable> {
           );
         }else{
           return Center(
-            child: Text("Data Not Found!", style: myStyleMontserrat(18.sp, AppColorResources.secondaryBlack, FontWeight.w500),),
+            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, AppColorResources.secondaryBlack, FontWeight.w500),),
           );
         }
       },

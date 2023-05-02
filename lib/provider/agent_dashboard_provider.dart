@@ -6,20 +6,21 @@ import 'package:bppshop_agent/data/repositories/agent_dashboard_repo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
 import '../data/model/base_model/error_response.dart';
 
 class AgentDashboardProvider with ChangeNotifier{
-  DioClient dioClient;
-  final AgentDashboardRepo agentDashboardRepo;
-  AgentDashboardProvider({required this.agentDashboardRepo, required this.dioClient});
 
+  final DioClient dioClient;
+  final AgentDashboardRepo agentDashboardRepo;
   AgentDashboardModel? _agentDashboardModelData;
   bool _isLoading = false;
+
+  AgentDashboardProvider({required this.agentDashboardRepo, required this.dioClient});
 
   bool get isLoading => _isLoading;
   AgentDashboardModel? get agentDashboardModelData => _agentDashboardModelData;
 
+  /// Fetch Agent Dashboard Data
   Future<String?> getAgentDashboard(BuildContext context) async{
     EasyLoading.show(status: 'loading...');
     _isLoading = true;
