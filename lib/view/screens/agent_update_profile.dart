@@ -6,6 +6,7 @@ import 'package:bppshop_agent/provider/update_agent_profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../provider/district_thana_area_provider.dart';
@@ -13,6 +14,7 @@ import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
 import '../widgets/app_custom_dropdown_button.dart';
 import '../widgets/custom_button.dart';
+import '../widgets/no_internet_connection_widget.dart';
 
 class AgentUpdateProfile extends StatefulWidget {
   static const String routeName = '/agent_update_profile';
@@ -31,7 +33,6 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
 
   /// For pick image
   XFile? _chooseImage;
-  String? _imageUrl;
 
   chooseImageFromGallery() async {
     ImagePicker _picker = ImagePicker();
@@ -50,7 +51,6 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
       Provider.of<DistrictThanaAreaProvider>(context, listen: false).districtDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.districtName;
       Provider.of<DistrictThanaAreaProvider>(context, listen: false).thanaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.thanaName;
       Provider.of<DistrictThanaAreaProvider>(context, listen: false).areaDropdownValue = Provider.of<AgentProfileProvider>(context, listen: false).agentProfileModelData!.data!.areaName;
-
       _load(true, context);
     });
     super.initState();
@@ -70,9 +70,6 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
         thana_id: Provider.of<DistrictThanaAreaProvider>(context,listen: false).thanaId,
         area_id: Provider.of<DistrictThanaAreaProvider>(context,listen: false).areaId,
         context: context);
-    print("Check District ID+++++++++++++++++++++${Provider.of<DistrictThanaAreaProvider>(context,listen: false).districtId}");
-    print("Check Thana ID+++++++++++++++++++++${Provider.of<DistrictThanaAreaProvider>(context,listen: false).thanaId}");
-    print("Check Area ID+++++++++++++++++++++${Provider.of<DistrictThanaAreaProvider>(context,listen: false).areaId}");
   }
 
   @override
@@ -101,7 +98,16 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                 child: Icon(Icons.arrow_back_outlined, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
             title: Text("Update Agent Profile", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
           ),
-          body: Container(
+          body: Provider.of<InternetConnectionStatus>(context) ==
+              InternetConnectionStatus.disconnected ?
+          NoInternetConnectionWidget(
+              onPressed: (){
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
+                  backgroundColor: AppColorResources.redColor,
+                ));
+              }
+          ):Container(
             padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
             width: double.infinity,
             child: SingleChildScrollView(

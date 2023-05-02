@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
+import '../../provider/customer_list_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
 import '../widgets/customer_list_table.dart';
@@ -20,6 +21,19 @@ class CustomerListPage extends StatefulWidget {
 class _CustomerListPageState extends State<CustomerListPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   TextEditingController searchController = TextEditingController();
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     _load(true, context);
+  //   });
+  // }
+  //
+  // _load(bool reLoad, BuildContext context){
+  //   Provider.of<CustomerListProvider>(context, listen: false).customerAllList(pageNo: 1, no_of_rows: 5, context: context);
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<BottomNavigationBarProvider>(

@@ -4,10 +4,12 @@ import 'package:bppshop_agent/view/screens/agent_update_profile.dart';
 import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 import '../../../provider/agent_profile_provider.dart';
 import '../../../utill/app_color_resources.dart';
 import '../../../utill/app_style.dart';
+import '../../widgets/no_internet_connection_widget.dart';
 
 class AgentProfilePage extends StatefulWidget {
   static const String routeName = '/agent_profile_page';
@@ -55,7 +57,16 @@ class _AgentProfilePageState extends State<AgentProfilePage> {
               child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
           title: Text("Agent Profile", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
         ),
-        body: Container(
+        body: Provider.of<InternetConnectionStatus>(context) ==
+            InternetConnectionStatus.disconnected ?
+        NoInternetConnectionWidget(
+            onPressed: (){
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
+                backgroundColor: AppColorResources.redColor,
+              ));
+            }
+        ):Container(
           width: double.infinity,
           height: double.infinity,
           child: SingleChildScrollView(

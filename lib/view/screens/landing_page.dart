@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/bottom_navigation_bar_provider.dart';
+import '../widgets/no_internet_connection_widget.dart';
 
 class LandingPage extends StatelessWidget {
   static const String routeName = '/landing_page';
@@ -13,7 +15,7 @@ class LandingPage extends StatelessWidget {
     return  Consumer<BottomNavigationBarProvider>(
       builder: (context,bottomNavigationBarProvider,child){
         return Scaffold(
-           body :  bottomNavigationBarProvider.getWidget(bottomNavigationBarProvider.selectedIndex,context),
+           body : bottomNavigationBarProvider.getWidget(bottomNavigationBarProvider.selectedIndex,context),
            bottomNavigationBar: bottomNavigationBarProvider.bottomNavigationBar(context,true),
         );
       },

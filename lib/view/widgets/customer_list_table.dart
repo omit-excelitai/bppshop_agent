@@ -26,8 +26,12 @@ class _CustomerListTableState extends State<CustomerListTable> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<CustomerListProvider>(context, listen: false).customerAllList(pageNo: 1, no_of_rows: 5, context: context);
+      _load(true, context);
     });
+  }
+
+  _load(bool reLoad, BuildContext context){
+    Provider.of<CustomerListProvider>(context, listen: false).customerAllList(pageNo: 1, no_of_rows: 10, context: context);
   }
 
   @override

@@ -37,6 +37,7 @@ import 'package:bppshop_agent/view/screens/update_customer_page.dart';
 import 'package:bppshop_agent/view/screens/wallet_page.dart';
 import 'package:bppshop_agent/view/widgets/navigation_service_without_context.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'di_container.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -107,7 +108,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: AppColorResources.primaryMaterial,
+      statusBarColor: AppColorResources.statusBarColor,
     ));
 
     return ScreenUtilInit(
@@ -117,37 +118,43 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return Consumer<AuthProvider>(
             builder: (BuildContext context, authProvider, Widget? child) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: AppConstants.APP_NAME,
-                navigatorKey: NavigationService.navigatorKey,
-                onGenerateRoute: RouteGenerator.generateRoutes,
-                builder: EasyLoading.init(),
-                theme: ThemeData(
-                  primarySwatch: AppColorResources.primaryMaterial,
+              return StreamProvider<InternetConnectionStatus>(
+                  initialData: InternetConnectionStatus.connected,
+                  create: (_) {
+                return InternetConnectionChecker().onStatusChange;
+              },
+                child: MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: AppConstants.APP_NAME,
+                  navigatorKey: NavigationService.navigatorKey,
+                  onGenerateRoute: RouteGenerator.generateRoutes,
+                  builder: EasyLoading.init(),
+                  theme: ThemeData(
+                    primarySwatch: AppColorResources.statusBarColor,
+                  ),
+                  initialRoute: checkToken(authProvider.getUserToken()) != false?LandingPage.routeName:SignInPage.routeName,
+                  routes: {
+                    SignUpPage.routeName : (context) => SignUpPage(),
+                    SignInPage.routeName : (context) => SignInPage(),
+                    AddCustomerPage.routeName : (context) => AddCustomerPage(),
+                    AgentProfilePage.routeName : (context) => AgentProfilePage(),
+                    HomePage.routeName:(context)=>HomePage(),
+                    OrderHistoryPage.routeName:(context)=>OrderHistoryPage(),
+                    AgentUpdateProfile.routeName:(context)=>AgentUpdateProfile(),
+                    CommissionHistoryPage.routeName:(context)=>CommissionHistoryPage(),
+                    CustomerListPage.routeName:(context)=>CustomerListPage(),
+                    CustomerPage.routeName:(context)=>CustomerPage(),
+                    CustomerProfilePage.routeName:(context)=>CustomerProfilePage(),
+                    DashboardPage.routeName:(context)=>DashboardPage(),
+                    MyCommissionPage.routeName:(context)=>MyCommissionPage(),
+                    PendingCommissionPage.routeName:(context)=>PendingCommissionPage(),
+                    UpdateCustomerPage.routeName:(context)=>UpdateCustomerPage(),
+                    WalletPage.routeName:(context)=>WalletPage(),
+                    MyDrawerPage.routeName:(context)=>MyDrawerPage(),
+                    LandingPage.routeName:(context)=>LandingPage(),
+                    OrderDetailsPage.routeName:(context)=>OrderDetailsPage()
+                  },
                 ),
-                initialRoute: checkToken(authProvider.getUserToken()) != false?LandingPage.routeName:SignInPage.routeName,
-                routes: {
-                  SignUpPage.routeName : (context) => SignUpPage(),
-                  SignInPage.routeName : (context) => SignInPage(),
-                  AddCustomerPage.routeName : (context) => AddCustomerPage(),
-                  AgentProfilePage.routeName : (context) => AgentProfilePage(),
-                  HomePage.routeName:(context)=>HomePage(),
-                  OrderHistoryPage.routeName:(context)=>OrderHistoryPage(),
-                  AgentUpdateProfile.routeName:(context)=>AgentUpdateProfile(),
-                  CommissionHistoryPage.routeName:(context)=>CommissionHistoryPage(),
-                  CustomerListPage.routeName:(context)=>CustomerListPage(),
-                  CustomerPage.routeName:(context)=>CustomerPage(),
-                  CustomerProfilePage.routeName:(context)=>CustomerProfilePage(),
-                  DashboardPage.routeName:(context)=>DashboardPage(),
-                  MyCommissionPage.routeName:(context)=>MyCommissionPage(),
-                  PendingCommissionPage.routeName:(context)=>PendingCommissionPage(),
-                  UpdateCustomerPage.routeName:(context)=>UpdateCustomerPage(),
-                  WalletPage.routeName:(context)=>WalletPage(),
-                  MyDrawerPage.routeName:(context)=>MyDrawerPage(),
-                  LandingPage.routeName:(context)=>LandingPage(),
-                  OrderDetailsPage.routeName:(context)=>OrderDetailsPage()
-                },
               );
             },
           );

@@ -2,9 +2,11 @@ import 'package:bppshop_agent/provider/bottom_navigation_bar_provider.dart';
 import 'package:bppshop_agent/provider/order_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
+import '../widgets/no_internet_connection_widget.dart';
 import '../widgets/products_table.dart';
 import 'drawer/my_drawer.dart';
 
@@ -46,7 +48,16 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                   child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
               title: Text("Order Details", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
             ),
-            body: SingleChildScrollView(
+            body: Provider.of<InternetConnectionStatus>(context) ==
+                InternetConnectionStatus.disconnected ?
+            NoInternetConnectionWidget(
+                onPressed: (){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
+                    backgroundColor: AppColorResources.redColor,
+                  ));
+                }
+            ):SingleChildScrollView(
               child: Column(
                 children: [
                   // Padding(

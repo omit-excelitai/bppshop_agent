@@ -160,6 +160,7 @@ class AppColorResources {
   static const Color navBarBgColor = Color(0xff0E2232);
   static const Color refreshIndicator =  Color(0xffE37D4E);
   static const Color RefreshIndicator =  Color(0XFF2D9FB8);
+  static const Color redColor =  Colors.red;
 
   static const Map<int, Color> colorMap = {
     50: Color(0x102D9FB8),
@@ -174,5 +175,19 @@ class AppColorResources {
     900: Color(0xFF2D9FB8),
   };
 
+  static const Map<int, Color> colorMap2 = {
+    50: Color(0x100F2333),
+    100: Color(0x200F2333),
+    200: Color(0x300F2333),
+    300: Color(0x400F2333),
+    400: Color(0x500F2333),
+    500: Color(0x600F2333),
+    600: Color(0x700F2333),
+    700: Color(0x800F2333),
+    800: Color(0x900F2333),
+    900: Color(0xFF0F2333),
+  };
+
   static const MaterialColor primaryMaterial = MaterialColor(0xFF2D9FB8, colorMap);
+  static const MaterialColor statusBarColor = MaterialColor(0xff0F2333, colorMap2);
 }
