@@ -30,9 +30,9 @@ class AgentProfileProvider with ChangeNotifier{
     if(apiResponse.response != null && apiResponse.response!.statusCode == 200){
       _agentProfileModelData = AgentProfileModel.fromJson(apiResponse.response!.data);
 
-      if(kDebugMode){
-        print("apiResponse.response!.data...........${apiResponse.response!.data}");
-      }
+      // if(kDebugMode){
+      //   print("apiResponse.response!.data...........${apiResponse.response!.data}");
+      // }
 
       _agentProfileModelData = _agentProfileModelData;
       _isLoading = false;

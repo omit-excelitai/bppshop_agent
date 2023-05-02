@@ -13,7 +13,6 @@ import '../../../utill/app_style.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/navigation_service_without_context.dart';
 import '../../widgets/no_internet_connection_widget.dart';
-import '../customer_profile_page.dart';
 import '../drawer/my_drawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -48,6 +47,7 @@ class _HomePageState extends State<HomePage> {
           InternetConnectionStatus.disconnected ?
       NoInternetConnectionWidget(
           onPressed: (){
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
               backgroundColor: AppColorResources.redColor,

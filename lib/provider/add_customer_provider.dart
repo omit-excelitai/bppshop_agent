@@ -36,9 +36,9 @@ class AddCustomerProvider with ChangeNotifier{
         areaId: areaId
     );
 
-    if(kDebugMode){
-      print("addNewAddress statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
-    }
+    // if(kDebugMode){
+    //   print("addNewAddress statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
+    // }
 
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
 
