@@ -3,7 +3,6 @@ import 'package:bppshop_agent/data/repositories/district_thana_area_repo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
 import '../data/datasource/remote/dio/dio_client.dart';
 import '../data/model/base_model/api_response.dart';
 import '../data/model/response_model/area_response_model.dart';
@@ -131,8 +130,6 @@ class DistrictThanaAreaProvider with ChangeNotifier{
 
   /// Fetch Area Data
   Future<void> getArea(bool reload, BuildContext context) async {
-    //  _thanaNameList=[];
-    // _thanaNameList.clear();
     EasyLoading.show(status: 'loading...');
     if (_areaModel == null || reload) {
       ApiResponse apiResponse = await districtThanaAreaRepo.getAllAreaData(thanaId: thanaId);

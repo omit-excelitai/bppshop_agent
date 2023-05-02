@@ -6,7 +6,6 @@ import 'package:bppshop_agent/view/screens/bottom_nav_bar/order_history_page.dar
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../utill/app_color_resources.dart';
 import '../utill/app_style.dart';
 import '../view/screens/landing_page.dart';

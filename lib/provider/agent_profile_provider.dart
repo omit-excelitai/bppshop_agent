@@ -10,18 +10,17 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../data/datasource/remote/dio/dio_client.dart';
 
 class AgentProfileProvider with ChangeNotifier{
-  DioClient dioClient;
+  final DioClient dioClient;
   final AgentProfileRepo agentProfileRepo;
-  AgentProfileProvider({required this.agentProfileRepo, required this.dioClient});
-
   AgentProfileModel? _agentProfileModelData;
-  //Data? _agentProfileData;
   bool _isLoading = false;
 
+  AgentProfileProvider({required this.agentProfileRepo, required this.dioClient});
+
   bool get isLoading => _isLoading;
-  //Data? get agentProfileData => _agentProfileData;
   AgentProfileModel? get agentProfileModelData => _agentProfileModelData;
 
+  /// Fetch Agent Profile Data
   Future<String?> getAgentProfileData(BuildContext context) async{
     EasyLoading.show(status: 'loading...');
     _isLoading = true;
