@@ -41,8 +41,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<BottomNavigationBarProvider, AgentDashboardProvider>(
-      builder: (context, bottomNavigationBarProvider, agentDashboardProvider, child){
+    return Consumer3<BottomNavigationBarProvider, AgentDashboardProvider, AgentProfileProvider>(
+      builder: (context, bottomNavigationBarProvider, agentDashboardProvider, agentProfileProvider, child){
         return RefreshIndicator(
           color: AppColorResources.primaryWhite,
           backgroundColor: AppColorResources.RefreshIndicator,
@@ -68,6 +68,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 InternetConnectionStatus.disconnected ?
             NoInternetConnectionWidget(
                 onPressed: (){
+                  ScaffoldMessenger.of(context).removeCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text("No internet connection!", style: myStyleMontserrat(15.sp, AppColorResources.primaryWhite, FontWeight.w500)),
                     backgroundColor: AppColorResources.redColor,
