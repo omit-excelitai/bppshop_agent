@@ -37,12 +37,9 @@ import 'package:bppshop_agent/view/screens/update_customer_page.dart';
 import 'package:bppshop_agent/view/screens/wallet_page.dart';
 import 'package:bppshop_agent/view/widgets/navigation_service_without_context.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
 import 'di_container.dart' as di;
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 

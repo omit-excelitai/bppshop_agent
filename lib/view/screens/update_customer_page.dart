@@ -57,6 +57,14 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
         context: context);
   }
 
+  // updated() async{
+  //   await update().then((){
+  //     return routeService.routeTo(CustomerProfilePage.routeName, arguments: widget.customerId.toString());
+  //   });
+  // }
+
+
+
   @override
   void dispose() {
     // TODO: implement dispose

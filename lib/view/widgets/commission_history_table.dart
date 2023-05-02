@@ -34,7 +34,8 @@ class _CommissionHistoryTableState extends State<CommissionHistoryTable> {
           commissionHistoryDataSource = CommissionHistoryDataSource(commissionHistoryData: commissionHistoryProvider.commissionHistoryList!);
           return SfDataGrid(
             shrinkWrapRows: true,
-            isScrollbarAlwaysShown: true,
+            //isScrollbarAlwaysShown: true,
+            verticalScrollPhysics: ScrollPhysics(),
             frozenColumnsCount: 1,
             //defaultColumnWidth: 102.w,
             source: commissionHistoryDataSource!,

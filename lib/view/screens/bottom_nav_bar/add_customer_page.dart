@@ -2,16 +2,13 @@
 import 'package:bppshop_agent/provider/add_customer_provider.dart';
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
 import 'package:bppshop_agent/view/screens/drawer/my_drawer.dart';
-import 'package:bppshop_agent/view/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../../../utill/app_color_resources.dart';
 import '../../../utill/app_style.dart';
 import '../../widgets/app_custom_dropdown_button.dart';
 import '../../widgets/custom_button.dart';
-import '../customer_profile_page.dart';
 
 class AddCustomerPage extends StatefulWidget {
   static const String routeName = '/add_customer_page';

@@ -24,10 +24,12 @@ class UpdateAgentProfileProvider with ChangeNotifier{
     EasyLoading.show(status: 'Loading...');
     notifyListeners();
     ApiResponse apiResponse = await updateAgentProfileRepo.updateAgentProfileData(
-        agent_name: agent_name,
-        district_id: district_id,
-        thana_id: thana_id,
-        area_id: area_id);
+        agent_name: agent_name.toString(),
+        district_id: district_id.toString(),
+        thana_id: thana_id.toString(),
+        area_id: area_id.toString());
+
+    print("Check district, thana, area id---------------------${district_id.toString()}, ${thana_id.toString()}, ${area_id.toString()}");
 
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
 
