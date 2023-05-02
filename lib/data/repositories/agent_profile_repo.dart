@@ -15,11 +15,6 @@ class AgentProfileRepo{
   Future<ApiResponse> getAgentProfileData() async{
     try{
       Response response = await dioClient.get(AppConstants.agentProfileUrl,
-      // options: Options(headers:{
-      //   "Content-Type": "application/json",
-      //   "Authorization":
-      //   "Bearer ${sharedPreferences.getString(AppConstants.token) ?? ""}",
-      // })
       );
       return ApiResponse.withSuccess(response);
     }catch(e){
