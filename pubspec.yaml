@@ -48,7 +48,7 @@ dependencies:
   photo_view:
   cached_network_image:
   package_info_plus:
-  shimmer:
+  shimmer: ^2.0.0
   dropdown_button2: ^1.9.2
   url_launcher:
   timelines:
