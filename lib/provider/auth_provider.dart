@@ -5,6 +5,8 @@ import 'package:bppshop_agent/data/repositories/auth_repo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../utill/app_color_resources.dart';
+
 class AuthProvider with ChangeNotifier{
   final DioClient dioClient;
   final AuthRepo authRepo;
@@ -40,7 +42,7 @@ class AuthProvider with ChangeNotifier{
           content: Text(message),
           elevation: 6.0,
           duration: const Duration(seconds: 2),
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: AppColorResources.primaryMaterial,
         ));
 
 
