@@ -184,6 +184,9 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),
                                     color: AppColorResources.textFieldColor),
                                 child: CustomDropDown(
+                                  searchController: _searchController,
+                                  searchMatchFn: true,
+
                                   items: districtThanaAreaProvider.districtNameList,
                                   width: double.infinity,
                                   dropDownWidth: 280.w,

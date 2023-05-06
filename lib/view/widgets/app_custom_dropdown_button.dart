@@ -28,7 +28,7 @@ class CustomDropDown extends StatelessWidget {
   bool? isExpanded;
   TextEditingController? searchController;
   Widget? searchInnerWidget;
-  bool Function(DropdownMenuItem<String>, String)? searchMatchFn;
+  bool? searchMatchFn;
   void Function(bool)? onMenuStateChange;
 
   CustomDropDown(
@@ -58,7 +58,7 @@ class CustomDropDown extends StatelessWidget {
         this.searchInnerWidget,
         this.searchMatchFn,
         this.onMenuStateChange,
-        Key? key})
+        Key? key,})
       : super(key: key);
 
   List<DropdownMenuItem<String>> _addDividersAfterItems(List<String> items) {
