@@ -30,6 +30,7 @@ class CustomDropDown extends StatelessWidget {
   Widget? searchInnerWidget;
   bool? searchMatchFn;
   void Function(bool)? onMenuStateChange;
+  bool? isSearchable;
 
   CustomDropDown(
       {@required this.items,
@@ -58,6 +59,7 @@ class CustomDropDown extends StatelessWidget {
         this.searchInnerWidget,
         this.searchMatchFn,
         this.onMenuStateChange,
+        this.isSearchable,
         Key? key,})
       : super(key: key);
 

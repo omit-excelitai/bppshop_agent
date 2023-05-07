@@ -44,7 +44,7 @@ dependencies:
   http:
   provider:
   list_tile_switch:
-  flutter_svg:
+  flutter_svg: ^2.0.5
   photo_view:
   cached_network_image:
   package_info_plus:
