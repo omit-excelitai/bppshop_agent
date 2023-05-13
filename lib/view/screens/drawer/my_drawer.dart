@@ -6,12 +6,14 @@ import 'package:bppshop_agent/view/screens/bottom_nav_bar/order_history_page.dar
 import 'package:bppshop_agent/view/screens/commission_history_page.dart';
 import 'package:bppshop_agent/view/screens/customer_list_page.dart';
 import 'package:bppshop_agent/view/screens/dashboard_page.dart';
-import 'package:bppshop_agent/view/screens/landing_page.dart';
 import 'package:bppshop_agent/view/screens/pending_commission_page.dart';
 import 'package:bppshop_agent/view/screens/wallet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_switch/flutter_switch.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../provider/theme_provider.dart';
 import '../../../utill/app_style.dart';
 import '../../widgets/show_logout_alert.dart';
 
@@ -34,6 +36,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
   
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return SafeArea(
       child: Drawer(
         width: 233.w,
@@ -253,22 +256,22 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("Change Theme", style: TextStyle(fontSize: 22.sp, color: AppColor.greenColor, fontWeight: FontWeight.w500),),
+                        Text("Change Theme", style: TextStyle(fontSize: 22.sp, color: AppColorResources.primaryGreen, fontWeight: FontWeight.w500),),
                         FlutterSwitch(
                           activeText: "Light",
                           inactiveText: "Dark",
-                          activeTextColor: AppColor.primaryWhite,
-                          inactiveTextColor: AppColor.primaryWhite,
-                          activeColor: AppColor.primaryOrange,
-                          inactiveColor: AppColor.primaryOrange,
+                          activeTextColor: AppColorResources.primaryWhite,
+                          inactiveTextColor: AppColorResources.primaryWhite,
+                          activeColor: AppColorResources.primaryOrange,
+                          inactiveColor: AppColorResources.primaryOrange,
                           valueFontSize: 14.0.sp,
                           toggleSize: 25.0.sp,
                           value: themeProvider.themeData?.brightness == Brightness.dark,
                           borderRadius: 40.0.r,
                           padding: 5,
                           showOnOff: true,
-                          inactiveIcon: Icon(Icons.light_mode, color: AppColor.primaryBlack,),
-                          activeIcon: Icon(Icons.dark_mode, color: AppColor.primaryBlack,),
+                          inactiveIcon: Icon(Icons.light_mode, color: AppColorResources.primaryBlack,),
+                          activeIcon: Icon(Icons.dark_mode, color: AppColorResources.primaryBlack,),
                           onToggle: (_) {
                             themeProvider.toggleTheme();
                           },
