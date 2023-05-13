@@ -249,6 +249,33 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                         ),
                       ),
                     ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text("Change Theme", style: TextStyle(fontSize: 22.sp, color: AppColor.greenColor, fontWeight: FontWeight.w500),),
+                        FlutterSwitch(
+                          activeText: "Light",
+                          inactiveText: "Dark",
+                          activeTextColor: AppColor.primaryWhite,
+                          inactiveTextColor: AppColor.primaryWhite,
+                          activeColor: AppColor.primaryOrange,
+                          inactiveColor: AppColor.primaryOrange,
+                          valueFontSize: 14.0.sp,
+                          toggleSize: 25.0.sp,
+                          value: themeProvider.themeData?.brightness == Brightness.dark,
+                          borderRadius: 40.0.r,
+                          padding: 5,
+                          showOnOff: true,
+                          inactiveIcon: Icon(Icons.light_mode, color: AppColor.primaryBlack,),
+                          activeIcon: Icon(Icons.dark_mode, color: AppColor.primaryBlack,),
+                          onToggle: (_) {
+                            themeProvider.toggleTheme();
+                          },
+                        ),
+                      ],
+                    ),
+
                   ],
                 ),
               ),

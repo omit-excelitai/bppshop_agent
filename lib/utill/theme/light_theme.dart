@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-ThemeData light = ThemeData(
+ThemeData lightTheme = ThemeData(
   fontFamily: 'TitilliumWeb',
-  // primaryColor: Color(0xFF1B7FED),
   primaryColor: Color(0xffE37D4E),
   brightness: Brightness.light,
   cardColor: null,
   canvasColor: null,
-  //cursorColor: null,
   disabledColor: null,
   backgroundColor: null,
   accentColor: null,

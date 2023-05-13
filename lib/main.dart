@@ -11,6 +11,7 @@ import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
 import 'package:bppshop_agent/provider/order_details_provider.dart';
 import 'package:bppshop_agent/provider/order_history_provider.dart';
 import 'package:bppshop_agent/provider/pending_commission_provider.dart';
+import 'package:bppshop_agent/provider/theme_provider.dart';
 import 'package:bppshop_agent/provider/transaction_history_provider.dart';
 import 'package:bppshop_agent/provider/update_agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/update_customer_profile_provider.dart';
@@ -67,6 +68,7 @@ void main() async {
         ChangeNotifierProvider(create: (context)=> di.sl<CommissionHistoryProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<TransactionHistoryProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<OrderDetailsProvider>()),
+        ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
       ],
       child: MyApp()),
   );
@@ -116,8 +118,8 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return Consumer<AuthProvider>(
-            builder: (BuildContext context, authProvider, Widget? child) {
+          return Consumer2<AuthProvider, ThemeProvider>(
+            builder: (BuildContext context, authProvider, themeProvider, Widget? child) {
               return StreamProvider<InternetConnectionStatus>(
                   initialData: InternetConnectionStatus.connected,
                   create: (_) {
@@ -129,9 +131,7 @@ class MyApp extends StatelessWidget {
                   navigatorKey: NavigationService.navigatorKey,
                   onGenerateRoute: RouteGenerator.generateRoutes,
                   builder: EasyLoading.init(),
-                  theme: ThemeData(
-                    primarySwatch: AppColorResources.statusBarColor,
-                  ),
+                  theme: themeProvider.themeData,
                   initialRoute: checkToken(authProvider.getUserToken()) != false?LandingPage.routeName:SignInPage.routeName,
                   routes: {
                     SignUpPage.routeName : (context) => SignUpPage(),

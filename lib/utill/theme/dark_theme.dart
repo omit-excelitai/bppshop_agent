@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-ThemeData dark = ThemeData(
+ThemeData darkTheme = ThemeData(
   fontFamily: 'TitilliumWeb',
-  // primaryColor: Color(0xFF1B7FED),
   primaryColor: Color(0xFF0B4461),
   cardColor: null,
   canvasColor: null,
-  //cursorColor: null,
+  drawerTheme: DrawerThemeData(backgroundColor: Color(0xFF0B4461),
+      shadowColor: Color(0xFF0B4461)),
   disabledColor: null,
   backgroundColor: null,
   accentColor: null,
@@ -25,16 +25,16 @@ ThemeData dark = ThemeData(
   colorSchemeSeed: null,
   primaryColorDark: null,
   primaryColorLight: null,
-  scaffoldBackgroundColor: const Color(0xffBFBFBF),
+  scaffoldBackgroundColor: Color(0xFF0B4461),
   secondaryHeaderColor: null,
   selectedRowColor: null,
   shadowColor: null,
-  splashColor: Color(0xffFFFFFF),
+  //splashColor: Color(0xffFFFFFF),
   toggleableActiveColor: null,
   unselectedWidgetColor: null,
   brightness: Brightness.dark,
-  highlightColor: Color(0xFF252525),
-  hintColor: Color(0xFFc7c7c7),
+  highlightColor: Color(0xff0F2333),
+  //hintColor: Color(0xFFc7c7c7),
   pageTransitionsTheme: PageTransitionsTheme(builders: {
     TargetPlatform.android: ZoomPageTransitionsBuilder(),
     TargetPlatform.iOS: ZoomPageTransitionsBuilder(),

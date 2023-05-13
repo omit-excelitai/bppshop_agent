@@ -24,6 +24,7 @@ import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
 import 'package:bppshop_agent/provider/order_details_provider.dart';
 import 'package:bppshop_agent/provider/order_history_provider.dart';
 import 'package:bppshop_agent/provider/pending_commission_provider.dart';
+import 'package:bppshop_agent/provider/theme_provider.dart';
 import 'package:bppshop_agent/provider/transaction_history_provider.dart';
 import 'package:bppshop_agent/provider/update_agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/update_customer_profile_provider.dart';
@@ -75,6 +76,8 @@ Future<void> init() async {
      sl.registerFactory(() => CommissionHistoryProvider(commissionHistoryRepo: sl(), dioClient: sl()));
      sl.registerFactory(() => TransactionHistoryProvider(transactionHistoryRepo: sl(), dioClient: sl()));
      sl.registerFactory(() => OrderDetailsProvider(orderDetailsRepo: sl(), dioClient: sl()));
+     sl.registerFactory(() => ThemeProvider());
+     //sl.registerFactory(() => LocaleProvider());
 
 
   /// External
