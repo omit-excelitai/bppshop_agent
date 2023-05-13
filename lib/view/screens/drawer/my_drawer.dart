@@ -226,7 +226,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                         child: Row(
                           children: [
                             Image.asset("images/walletfill.png",height: 24.h,width: 24.w, color: count == 7?AppColorResources.primaryOrange:AppColorResources.drawerItemColor,),
-                            SizedBox(width: 12.w,),
+                            SizedBox(width: 10.w,),
                             Text("Wallet", style: myStyleMontserrat(16.sp, count == 7?AppColorResources.primaryOrange:AppColorResources.drawerItemColor, FontWeight.w500),),
                           ],
                         ),
@@ -252,11 +252,11 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                         ),
                       ),
                     ),
-
+                    SizedBox(height: 25,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("Change Theme", style: TextStyle(fontSize: 22.sp, color: AppColorResources.primaryGreen, fontWeight: FontWeight.w500),),
+                        Text("Change Theme", style: myStyleMontserrat(16.sp, AppColorResources.primaryGreen, FontWeight.w500)),
                         FlutterSwitch(
                           activeText: "Light",
                           inactiveText: "Dark",
@@ -270,7 +270,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                           borderRadius: 40.0.r,
                           padding: 5,
                           showOnOff: true,
-                          inactiveIcon: Icon(Icons.light_mode, color: AppColorResources.primaryBlack,),
+                          inactiveIcon: Icon(Icons.light_mode, color: AppColorResources.primaryOrange,),
                           activeIcon: Icon(Icons.dark_mode, color: AppColorResources.primaryBlack,),
                           onToggle: (_) {
                             themeProvider.toggleTheme();
