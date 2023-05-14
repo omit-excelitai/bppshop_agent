@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../app_color_resources.dart';
 
 ThemeData lightTheme = ThemeData(
-  primaryColor: Color(0xffE37D4E),
+  //primaryColor: Color(0xffE37D4E),
+  primaryColor: AppColorResources.borderColor,
   brightness: Brightness.light,
   scaffoldBackgroundColor: Color(0xffEEEEEE),
   shadowColor: AppColorResources.shadowColor,
@@ -11,6 +12,8 @@ ThemeData lightTheme = ThemeData(
   buttonTheme: ButtonThemeData(buttonColor: AppColorResources.primaryDeepBlue),
   drawerTheme: DrawerThemeData(backgroundColor: AppColorResources.primaryWhite),
   cardColor: AppColorResources.primaryWhite,
+  highlightColor: AppColorResources.homeItemColor,
+
 
   canvasColor: null,
   disabledColor: null,
@@ -19,7 +22,6 @@ ThemeData lightTheme = ThemeData(
   focusColor: null,
   hoverColor: null,
   indicatorColor: null,
-  colorScheme: null,
   colorSchemeSeed: null,
   primaryColorDark: null,
   primaryColorLight: null,
@@ -28,7 +30,6 @@ ThemeData lightTheme = ThemeData(
   //textSelectionColor: null,
   //textSelectionHandleColor: null,
   unselectedWidgetColor: null,
-  highlightColor: Colors.white,
   hintColor: Color(0xFF9E9E9E),
   pageTransitionsTheme: PageTransitionsTheme(builders: {
     TargetPlatform.android: ZoomPageTransitionsBuilder(),

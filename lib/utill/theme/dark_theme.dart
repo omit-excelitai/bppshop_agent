@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../app_color_resources.dart';
 
 ThemeData darkTheme = ThemeData(
-  primaryColor: Color(0xFF0B4461),
+  primaryColor: AppColorResources.primaryOrange,
   cardColor: AppColorResources.appBarColor,
   drawerTheme: DrawerThemeData(backgroundColor: Color(0xFF0B4461)),
   brightness: Brightness.dark,
@@ -11,6 +11,7 @@ ThemeData darkTheme = ThemeData(
   buttonTheme: ButtonThemeData(buttonColor: AppColorResources.primaryOrange),
   shadowColor: AppColorResources.appBarColor,
   dialogBackgroundColor: AppColorResources.appBarColor,
+  highlightColor: AppColorResources.primaryWhite,
 
 
   disabledColor: null,
@@ -26,7 +27,7 @@ ThemeData darkTheme = ThemeData(
   secondaryHeaderColor: null,
   //splashColor: Color(0xffFFFFFF),
   unselectedWidgetColor: null,
-  highlightColor: Color(0xff0F2333),
+
   //hintColor: Color(0xFFc7c7c7),
   pageTransitionsTheme: PageTransitionsTheme(builders: {
     TargetPlatform.android: ZoomPageTransitionsBuilder(),

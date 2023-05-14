@@ -69,7 +69,7 @@ class CustomHomePageContainer extends StatelessWidget {
       child: Container(
         height: 115.h,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: Theme.of(context).cardColor,
-          border: Border.all(color: AppColorResources.borderColor, width: 1.4.w),
+          border: Border.all(color: Theme.of(context).primaryColor, width: 1.4.w),
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).shadowColor,
@@ -86,7 +86,7 @@ class CustomHomePageContainer extends StatelessWidget {
           children: [
             Image.asset("$image", height: 50.h, width: 50.w,),
             SizedBox(height: 10.h,),
-            Text("$title", style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w700),),
+            Text("$title", style: myStyleMontserrat(12.sp, Theme.of(context).highlightColor, FontWeight.w700),),
           ],
         ),
       ),
