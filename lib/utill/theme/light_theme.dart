@@ -14,12 +14,12 @@ ThemeData lightTheme = ThemeData(
   cardColor: AppColorResources.primaryWhite,
   highlightColor: AppColorResources.homeItemColor,
   secondaryHeaderColor: AppColorResources.homeItemColor,
+  dividerColor: AppColorResources.bottomLabelColor,
 
 
   canvasColor: null,
   disabledColor: null,
   applyElevationOverlayColor: null,
-  dividerColor: null,
   focusColor: null,
   hoverColor: null,
   indicatorColor: null,

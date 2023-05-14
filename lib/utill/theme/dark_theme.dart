@@ -13,10 +13,11 @@ ThemeData darkTheme = ThemeData(
   dialogBackgroundColor: AppColorResources.appBarColor,
   highlightColor: AppColorResources.primaryWhite,
   secondaryHeaderColor: AppColorResources.primaryWhite,
+  dividerColor: AppColorResources.primaryWhite,
 
   disabledColor: null,
   applyElevationOverlayColor: null,
-  dividerColor: null,
+
   focusColor: null,
   hoverColor: null,
   indicatorColor: null,
