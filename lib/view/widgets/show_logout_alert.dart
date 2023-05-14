@@ -31,7 +31,7 @@ logoutAlert(BuildContext context){
                     color: Theme.of(context).dividerColor,
                   ),
                   SizedBox(height: 10.h,),
-                  Text("Are you sure you want to log out of your account", style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack),
+                  Text("Are you sure you want to log out of your account", style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor),
                     textAlign: TextAlign.center,),
                   SizedBox(height: 15.h,),
                   Row(
@@ -49,7 +49,7 @@ logoutAlert(BuildContext context){
                               border: Border.all(color: AppColorResources.primaryOrange.withOpacity(0.3)),
                               borderRadius: BorderRadius.all(Radius.circular(5.r))
                           ),
-                          child: Text("No Thanks", style: myStyleMontserrat(12.sp, AppColorResources.secondaryBlack),),
+                          child: Text("No Thanks", style: myStyleMontserrat(12.sp, Theme.of(context).hintColor),),
                         ),
                       ),
                       InkWell(

@@ -31,7 +31,7 @@ class _WalletPageState extends State<WalletPage> {
     super.initState();
   }
 
-  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Consumer2<BottomNavigationBarProvider, AgentProfileProvider>(
@@ -39,14 +39,14 @@ class _WalletPageState extends State<WalletPage> {
         return SafeArea(
           child: Scaffold(
             drawer: MyDrawerPage(),
-            key: _scaffoldkey,
+            key: _scaffoldKey,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             appBar: AppBar(
               backgroundColor: AppColorResources.appBarColor,
               centerTitle: false,
               leading: InkWell(
                   onTap: (){
-                    _scaffoldkey.currentState!.openDrawer();
+                    _scaffoldKey.currentState!.openDrawer();
                   },
                   child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
               title: Text("Wallet", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
@@ -69,16 +69,16 @@ class _WalletPageState extends State<WalletPage> {
                     Container(
                       width: double.maxFinite,
                       padding: EdgeInsets.all(12),
-                      color: AppColorResources.primaryWhite,
+                      color: Theme.of(context).cardColor,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Available Balance", style: myStyleMontserrat(18.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                          Text("Available Balance", style: myStyleMontserrat(18.sp, Theme.of(context).highlightColor, FontWeight.w500),),
                           SizedBox(height: 17.5.h,),
                           Row(
                             children: [
-                              Text("Tk. ", style: myStyleMontserrat(24, AppColorResources.homeItemColor, FontWeight.w400),),
-                              Text("${agentProfileProvider.agentProfileModelData!.data!.walletBalance}", style: myStyleMontserrat(24, AppColorResources.homeItemColor, FontWeight.w600),),
+                              Text("Tk. ", style: myStyleMontserrat(24, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
+                              Text("${agentProfileProvider.agentProfileModelData!.data!.walletBalance}", style: myStyleMontserrat(24, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
                             ],
                           ),
                           SizedBox(height: 40.h,),
@@ -94,7 +94,7 @@ class _WalletPageState extends State<WalletPage> {
                                     child: Image.asset("images/arrowright.png", color: AppColorResources.homeItemColor,),
                                   ),
                                   SizedBox(width: 12.h,),
-                                  Text("+ 0.00", style: myStyleMontserrat(14, AppColorResources.homeItemColor, FontWeight.w600),),
+                                  Text("+ 0.00", style: myStyleMontserrat(14, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
                                 ],
                               ),
                               SizedBox(width: 84.w,),
@@ -108,7 +108,7 @@ class _WalletPageState extends State<WalletPage> {
                                     child: Image.asset("images/arrowbottomleft.png", color: AppColorResources.homeItemColor,),
                                   ),
                                   SizedBox(width: 12.h,),
-                                  Text("+ 0.00", style: myStyleMontserrat(14, AppColorResources.homeItemColor, FontWeight.w600),),
+                                  Text("+ 0.00", style: myStyleMontserrat(14, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
                                 ],
                               ),
                             ],

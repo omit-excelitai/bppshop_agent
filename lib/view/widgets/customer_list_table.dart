@@ -126,7 +126,7 @@ class _CustomerListTableState extends State<CustomerListTable> {
         }
         else{
           return Center(
-            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, AppColorResources.secondaryBlack, FontWeight.w500),),
+            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, Theme.of(context).hintColor, FontWeight.w500),),
           );
         }
       },

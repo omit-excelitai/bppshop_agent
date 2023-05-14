@@ -15,6 +15,7 @@ ThemeData lightTheme = ThemeData(
   highlightColor: AppColorResources.homeItemColor,
   secondaryHeaderColor: AppColorResources.homeItemColor,
   dividerColor: AppColorResources.bottomLabelColor,
+  hintColor: AppColorResources.secondaryBlack,
 
 
   canvasColor: null,
@@ -31,7 +32,7 @@ ThemeData lightTheme = ThemeData(
   //textSelectionColor: null,
   //textSelectionHandleColor: null,
   unselectedWidgetColor: null,
-  hintColor: Color(0xFF9E9E9E),
+
   pageTransitionsTheme: PageTransitionsTheme(builders: {
     TargetPlatform.android: ZoomPageTransitionsBuilder(),
     TargetPlatform.iOS: ZoomPageTransitionsBuilder(),

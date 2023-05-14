@@ -14,6 +14,7 @@ ThemeData darkTheme = ThemeData(
   highlightColor: AppColorResources.primaryWhite,
   secondaryHeaderColor: AppColorResources.primaryWhite,
   dividerColor: AppColorResources.primaryWhite,
+  hintColor: AppColorResources.secondaryWhite,
 
   disabledColor: null,
   applyElevationOverlayColor: null,
