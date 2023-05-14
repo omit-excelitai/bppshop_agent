@@ -53,7 +53,7 @@ class _DashboardPageState extends State<DashboardPage> {
           child: Scaffold(
             drawer: MyDrawerPage(),
             key: _scaffoldkey,
-            backgroundColor: AppColorResources.bgColor,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             appBar: AppBar(
               backgroundColor: AppColorResources.appBarColor,
               centerTitle: false,
@@ -84,7 +84,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       margin: EdgeInsets.only(bottom: 12.h),
                       padding: EdgeInsets.all(12),
                       width: double.infinity,
-                      color: AppColorResources.primaryWhite,
+                      color: Theme.of(context).cardColor,
                       child: Column(
                         children: [
                           Row(children: [

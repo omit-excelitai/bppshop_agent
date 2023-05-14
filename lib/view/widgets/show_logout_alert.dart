@@ -11,7 +11,6 @@ logoutAlert(BuildContext context){
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          elevation: 10,
           backgroundColor: Theme.of(context).dialogBackgroundColor,
           alignment: Alignment.center,
           content: Container(
@@ -29,7 +28,7 @@ logoutAlert(BuildContext context){
                     ),
                   ),
                   Divider(
-                    color: AppColorResources.primaryGreen,
+                    color: Theme.of(context).dividerColor,
                   ),
                   SizedBox(height: 10.h,),
                   Text("Are you sure you want to log out of your account", style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack),

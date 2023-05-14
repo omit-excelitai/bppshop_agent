@@ -149,6 +149,7 @@ class OrderHistoryTableDataSource extends DataGridSource {
   @override
   List<DataGridRow> get rows => _orderHistoryData;
 
+
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     NavigationService routeService = NavigationService();

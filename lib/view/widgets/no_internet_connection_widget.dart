@@ -29,7 +29,7 @@ class NoInternetConnectionWidget extends StatelessWidget {
             SizedBox(
               height: 5.h,
             ),
-            Text("Please Check your internet connection", style: myStyleMontserrat(15.sp, AppColorResources.primaryBlack, FontWeight.w500)),
+            Text("Please Check your internet connection", style: myStyleMontserrat(15.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w500)),
             SizedBox(
               height: 15.h,
             ),
