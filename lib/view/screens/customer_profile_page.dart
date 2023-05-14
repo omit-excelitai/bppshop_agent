@@ -46,7 +46,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
               return Future<void>.delayed(const Duration(seconds: 2));
         },
           child: Scaffold(
-            backgroundColor: AppColorResources.bgColor,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             appBar: AppBar(
               backgroundColor: AppColorResources.appBarColor,
               centerTitle: false,

@@ -26,7 +26,7 @@ class _MyCommissionPageState extends State<MyCommissionPage> {
     return Consumer<BottomNavigationBarProvider>(
       builder: (BuildContext context, bottomNavigationBarProvider, Widget? child) {
         return Scaffold(
-          backgroundColor: AppColorResources.bgColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           appBar: AppBar(
             backgroundColor: AppColorResources.appBarColor,
             centerTitle: false,
