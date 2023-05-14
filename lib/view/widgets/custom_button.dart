@@ -72,7 +72,7 @@ class CustomHomePageContainer extends StatelessWidget {
           border: Border.all(color: AppColorResources.borderColor, width: 1.4.w),
           boxShadow: [
             BoxShadow(
-              color: AppColorResources.shadowColor,
+              color: Theme.of(context).shadowColor,
               offset: Offset(
                 3.0,
                 3.0,

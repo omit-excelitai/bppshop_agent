@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: MyDrawerPage(),
       key: _scaffoldKey,
-      backgroundColor: AppColorResources.bgColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: AppColorResources.appBarColor,
         centerTitle: false,

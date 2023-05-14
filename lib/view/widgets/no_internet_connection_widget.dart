@@ -34,10 +34,9 @@ class NoInternetConnectionWidget extends StatelessWidget {
               height: 15.h,
             ),
             MaterialButton(
+              color: AppColorResources.primaryOrange,
               onPressed: onPressed,
               minWidth: 150.w,
-              color: AppColorResources.primaryMaterial,
-              //color: Theme.of(context).primaryColor,
               child: Text(
                 "Try Again",
                 style: myStyleMontserrat(16.sp, AppColorResources.primaryWhite, FontWeight.w600),
