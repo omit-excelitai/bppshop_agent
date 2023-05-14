@@ -39,54 +39,54 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
     return SafeArea(
       child: Drawer(
         width: 233.w,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: EdgeInsets.all(12),
-              //height: 72.h,
-              color: AppColorResources.drawerHeaderColor,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed(HomePage.routeName);
-                },
-                child: Row(
-                  children: [
-                    Image.asset(
-                      "images/logo1.png",
-                      height: 48.h,
-                      width: 48.h,
-                    ),
-                    SizedBox(
-                      width: 17.w,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "BPPSHOP",
-                          style: myStyleMontserrat(
-                              16.sp,
-                              AppColorResources.secondaryWhite,
-                              FontWeight.w500),
-                        ),
-                        Text(
-                          "Agent Panel",
-                          style: myStyleMontserrat(
-                              16.sp,
-                              AppColorResources.secondaryWhite,
-                              FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.all(12),
+                //height: 72.h,
+                color: AppColorResources.drawerHeaderColor,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(HomePage.routeName);
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        "images/logo1.png",
+                        height: 48.h,
+                        width: 48.h,
+                      ),
+                      SizedBox(
+                        width: 17.w,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "BPPSHOP",
+                            style: myStyleMontserrat(
+                                16.sp,
+                                AppColorResources.secondaryWhite,
+                                FontWeight.w500),
+                          ),
+                          Text(
+                            "Agent Panel",
+                            style: myStyleMontserrat(
+                                16.sp,
+                                AppColorResources.secondaryWhite,
+                                FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Container(
-              //padding: EdgeInsets.fromLTRB(15.w, 18.h, 17.w, 12.h),
-              child: SingleChildScrollView(
+              Container(
+                //padding: EdgeInsets.fromLTRB(15.w, 18.h, 17.w, 12.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -440,7 +440,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 20.h),
+                      padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 20.h, bottom: 20.h),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -495,8 +495,8 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

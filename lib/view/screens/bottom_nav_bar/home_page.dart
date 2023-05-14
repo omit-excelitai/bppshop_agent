@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.of(context).pushNamed(OrderHistoryPage.routeName);
                     },
                     title: "Order History",
-                    image: "images/orderhistory.png",
+                    image: "images/clock.png",
                   ),
                 ),
                 SizedBox(width: 12.w,),
