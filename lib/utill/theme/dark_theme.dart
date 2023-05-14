@@ -12,7 +12,7 @@ ThemeData darkTheme = ThemeData(
   shadowColor: AppColorResources.appBarColor,
   dialogBackgroundColor: AppColorResources.appBarColor,
   highlightColor: AppColorResources.primaryWhite,
-
+  secondaryHeaderColor: AppColorResources.primaryWhite,
 
   disabledColor: null,
   applyElevationOverlayColor: null,
@@ -24,7 +24,7 @@ ThemeData darkTheme = ThemeData(
   colorSchemeSeed: null,
   primaryColorDark: null,
   primaryColorLight: null,
-  secondaryHeaderColor: null,
+
   //splashColor: Color(0xffFFFFFF),
   unselectedWidgetColor: null,
 

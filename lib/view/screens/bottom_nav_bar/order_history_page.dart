@@ -19,7 +19,7 @@ class OrderHistoryPage extends StatefulWidget {
 }
 
 class _OrderHistoryPageState extends State<OrderHistoryPage> {
-  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -29,14 +29,14 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
           return SafeArea(
             child: Scaffold(
               drawer: MyDrawerPage(),
-              key: _scaffoldkey,
-              backgroundColor: AppColorResources.bgColor,
+              key: _scaffoldKey,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               appBar: AppBar(
                 backgroundColor: AppColorResources.appBarColor,
                 centerTitle: false,
                 leading: InkWell(
                     onTap: (){
-                      _scaffoldkey.currentState!.openDrawer();
+                      _scaffoldKey.currentState!.openDrawer();
                     },
                     child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
                 title: Text("Order History", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),

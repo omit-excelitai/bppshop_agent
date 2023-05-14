@@ -13,6 +13,7 @@ ThemeData lightTheme = ThemeData(
   drawerTheme: DrawerThemeData(backgroundColor: AppColorResources.primaryWhite),
   cardColor: AppColorResources.primaryWhite,
   highlightColor: AppColorResources.homeItemColor,
+  secondaryHeaderColor: AppColorResources.homeItemColor,
 
 
   canvasColor: null,
@@ -25,7 +26,7 @@ ThemeData lightTheme = ThemeData(
   colorSchemeSeed: null,
   primaryColorDark: null,
   primaryColorLight: null,
-  secondaryHeaderColor: null,
+
   splashColor: null,
   //textSelectionColor: null,
   //textSelectionHandleColor: null,

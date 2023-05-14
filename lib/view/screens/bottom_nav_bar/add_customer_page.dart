@@ -75,7 +75,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
         return Scaffold(
           drawer: MyDrawerPage(),
           key: _scaffoldKey,
-          backgroundColor: AppColorResources.bgColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           appBar: AppBar(
             backgroundColor: AppColorResources.appBarColor,
             centerTitle: false,
@@ -105,14 +105,14 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                 children: [
                   Row(
                     children: [
-                      Text("Add Customer",style: myStyleMontserrat(18.sp, AppColorResources.primaryBlack, FontWeight.w500),),
+                      Text("Add Customer",style: myStyleMontserrat(18.sp, Theme.of(context).highlightColor, FontWeight.w500),),
                     ],
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 12.h),
                     padding: EdgeInsets.all(12),
                     width: double.infinity,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0.r), color: AppColorResources.primaryWhite),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0.r), color: Theme.of(context).cardColor),
                     child: Column(
                       children: [
                         Container(
@@ -120,7 +120,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Customer Name",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Name",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 keyboardType: TextInputType.text,
@@ -139,7 +139,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Customer Mobile",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Mobile",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 keyboardType: TextInputType.number,
@@ -158,7 +158,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Customer Email",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Email",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 keyboardType: TextInputType.emailAddress,
@@ -177,7 +177,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Customer District",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer District",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               districtThanaAreaProvider.districtNameList != null?Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
@@ -208,7 +208,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 ),
                               ): Center(child: Text(" ")),
                               SizedBox(height: 10.h,),
-                              Text("Customer Thana",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Thana",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               districtThanaAreaProvider.thanaNameList != null?Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
@@ -233,7 +233,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 ),
                               ): Center(child: Text(" ")),
                               SizedBox(height: 10.h,),
-                              Text("Customer Area",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Area",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               districtThanaAreaProvider.areaNameList != null?Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
@@ -255,7 +255,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                                 ),
                               ): Center(child: Text(" ")),
                               SizedBox(height: 10.h,),
-                              Text("Customer Local Address",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Local Address",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 keyboardType: TextInputType.text,
