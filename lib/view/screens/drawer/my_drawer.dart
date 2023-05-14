@@ -444,12 +444,26 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Change Theme",
-                              style: myStyleMontserrat(
-                                  16.sp,
-                                  AppColorResources.primaryGreen,
-                                  FontWeight.w500)),
+                          Row(
+                            children: [
+                              Image.asset(
+                                "images/theme.png",
+                                height: 22.h,
+                                width: 22.w,
+                                color: AppColorResources.drawerItemColor,
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Text("Change Theme",
+                                  style: myStyleMontserrat(
+                                      16.sp,
+                                      AppColorResources.drawerItemColor,
+                                      FontWeight.w500)),
+                            ],
+                          ),
                           FlutterSwitch(
+                            width: 65.w,
                             activeText: "Light",
                             inactiveText: "Dark",
                             activeTextColor: AppColorResources.primaryWhite,
