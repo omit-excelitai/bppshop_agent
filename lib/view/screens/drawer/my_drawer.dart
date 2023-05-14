@@ -108,7 +108,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               width: 18.w,
                               color: count == 1
                                   ? AppColorResources.primaryOrange
-                                  : AppColorResources.drawerItemColor,
+                                  : Theme.of(context).unselectedWidgetColor,
                             ),
                             SizedBox(
                               width: 12.w,
@@ -119,7 +119,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                   16.sp,
                                   count == 1
                                       ? AppColorResources.primaryOrange
-                                      : AppColorResources.drawerItemColor,
+                                      : Theme.of(context).unselectedWidgetColor,
                                   FontWeight.w500),
                             ),
                           ],
@@ -132,7 +132,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: ExpansionTile(
-                        iconColor: AppColorResources.primaryOrange,
+                        iconColor: Theme.of(context).unselectedWidgetColor,
                         title: Row(
                           children: [
                             Image.asset("images/people.png",
@@ -144,7 +144,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               "Customer",
                               style: myStyleMontserrat(
                                   16.sp,
-                                  AppColorResources.drawerItemColor,
+                                  Theme.of(context).unselectedWidgetColor,
                                   FontWeight.w500),
                             ),
                           ],
@@ -170,7 +170,8 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                     width: 18.w,
                                     color: count == 2
                                         ? AppColorResources.primaryOrange
-                                        : AppColorResources.drawerItemColor,
+                                        : Theme.of(context)
+                                            .unselectedWidgetColor,
                                   ),
                                   SizedBox(
                                     width: 12.w,
@@ -181,7 +182,8 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                         14.sp,
                                         count == 2
                                             ? AppColorResources.primaryOrange
-                                            : AppColorResources.drawerItemColor,
+                                            : Theme.of(context)
+                                                .unselectedWidgetColor,
                                         FontWeight.w500),
                                   ),
                                 ],
@@ -210,7 +212,8 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                     width: 18.w,
                                     color: count == 3
                                         ? AppColorResources.primaryOrange
-                                        : AppColorResources.drawerItemColor,
+                                        : Theme.of(context)
+                                            .unselectedWidgetColor,
                                   ),
                                   SizedBox(
                                     width: 12.w,
@@ -221,7 +224,8 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                         14.sp,
                                         count == 3
                                             ? AppColorResources.primaryOrange
-                                            : AppColorResources.drawerItemColor,
+                                            : Theme.of(context)
+                                                .unselectedWidgetColor,
                                         FontWeight.w500),
                                   ),
                                 ],
@@ -249,7 +253,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               width: 20.w,
                               color: count == 4
                                   ? AppColorResources.primaryOrange
-                                  : AppColorResources.drawerItemColor,
+                                  : Theme.of(context).unselectedWidgetColor,
                             ),
                             SizedBox(
                               width: 12.w,
@@ -260,7 +264,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                   16.sp,
                                   count == 4
                                       ? AppColorResources.primaryOrange
-                                      : AppColorResources.drawerItemColor,
+                                      : Theme.of(context).unselectedWidgetColor,
                                   FontWeight.w500),
                             ),
                           ],
@@ -271,7 +275,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                       height: 18.h,
                     ),
                     ExpansionTile(
-                      iconColor: AppColorResources.primaryOrange,
+                      iconColor: Theme.of(context).unselectedWidgetColor,
                       title: Row(
                         children: [
                           Image.asset(
@@ -286,7 +290,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                             "My Commission",
                             style: myStyleMontserrat(
                                 16.sp,
-                                AppColorResources.drawerItemColor,
+                                Theme.of(context).unselectedWidgetColor,
                                 FontWeight.w500),
                           ),
                         ],
@@ -310,7 +314,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                   width: 13.5.w,
                                   color: count == 5
                                       ? AppColorResources.primaryOrange
-                                      : AppColorResources.drawerItemColor,
+                                      : Theme.of(context).unselectedWidgetColor,
                                 ),
                                 SizedBox(
                                   width: 12.w,
@@ -321,7 +325,8 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                       14.sp,
                                       count == 5
                                           ? AppColorResources.primaryOrange
-                                          : AppColorResources.drawerItemColor,
+                                          : Theme.of(context)
+                                              .unselectedWidgetColor,
                                       FontWeight.w500),
                                 ),
                               ],
@@ -347,7 +352,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                   width: 15.w,
                                   color: count == 6
                                       ? AppColorResources.primaryOrange
-                                      : AppColorResources.drawerItemColor,
+                                      : Theme.of(context).unselectedWidgetColor,
                                 ),
                                 SizedBox(
                                   width: 12.w,
@@ -358,7 +363,8 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                       14.sp,
                                       count == 6
                                           ? AppColorResources.primaryOrange
-                                          : AppColorResources.drawerItemColor,
+                                          : Theme.of(context)
+                                              .unselectedWidgetColor,
                                       FontWeight.w500),
                                 ),
                               ],
@@ -384,7 +390,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               width: 24.w,
                               color: count == 7
                                   ? AppColorResources.primaryOrange
-                                  : AppColorResources.drawerItemColor,
+                                  : Theme.of(context).unselectedWidgetColor,
                             ),
                             SizedBox(
                               width: 10.w,
@@ -395,7 +401,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                   16.sp,
                                   count == 7
                                       ? AppColorResources.primaryOrange
-                                      : AppColorResources.drawerItemColor,
+                                      : Theme.of(context).unselectedWidgetColor,
                                   FontWeight.w500),
                             ),
                           ],
@@ -421,7 +427,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               width: 20.w,
                               color: count == 8
                                   ? AppColorResources.primaryOrange
-                                  : AppColorResources.drawerItemColor,
+                                  : Theme.of(context).unselectedWidgetColor,
                             ),
                             SizedBox(
                               width: 12.w,
@@ -432,7 +438,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                   16.sp,
                                   count == 8
                                       ? AppColorResources.primaryOrange
-                                      : AppColorResources.drawerItemColor,
+                                      : Theme.of(context).unselectedWidgetColor,
                                   FontWeight.w500),
                             ),
                           ],
@@ -440,7 +446,8 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 20.h, bottom: 20.h),
+                      padding: EdgeInsets.only(
+                          left: 16.w, right: 16.w, top: 20.h, bottom: 20.h),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -450,7 +457,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                 "images/theme.png",
                                 height: 22.h,
                                 width: 22.w,
-                                color: AppColorResources.drawerItemColor,
+                                color: Theme.of(context).unselectedWidgetColor,
                               ),
                               SizedBox(
                                 width: 10.w,
@@ -458,7 +465,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               Text("Change Theme",
                                   style: myStyleMontserrat(
                                       16.sp,
-                                      AppColorResources.drawerItemColor,
+                                      Theme.of(context).unselectedWidgetColor,
                                       FontWeight.w500)),
                             ],
                           ),
