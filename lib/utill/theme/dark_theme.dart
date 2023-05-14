@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../app_color_resources.dart';
 
 ThemeData darkTheme = ThemeData(
@@ -29,9 +28,7 @@ ThemeData darkTheme = ThemeData(
   primaryColorLight: null,
 
   //splashColor: Color(0xffFFFFFF),
-  unselectedWidgetColor: null,
 
-  //hintColor: Color(0xFFc7c7c7),
   pageTransitionsTheme: PageTransitionsTheme(builders: {
     TargetPlatform.android: ZoomPageTransitionsBuilder(),
     TargetPlatform.iOS: ZoomPageTransitionsBuilder(),

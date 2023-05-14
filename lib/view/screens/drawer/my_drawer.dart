@@ -132,11 +132,15 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: ExpansionTile(
-                        iconColor: Theme.of(context).unselectedWidgetColor,
+                        iconColor: AppColorResources.primaryOrange,
                         title: Row(
                           children: [
-                            Image.asset("images/people.png",
-                                height: 15.h, width: 20.w),
+                            Image.asset(
+                              "images/people.png",
+                              height: 15.h,
+                              width: 20.w,
+                              color: Theme.of(context).unselectedWidgetColor,
+                            ),
                             SizedBox(
                               width: 12.w,
                             ),
@@ -275,13 +279,14 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                       height: 18.h,
                     ),
                     ExpansionTile(
-                      iconColor: Theme.of(context).unselectedWidgetColor,
+                      iconColor: AppColorResources.primaryOrange,
                       title: Row(
                         children: [
                           Image.asset(
                             "images/cash.png",
                             height: 14.h,
                             width: 20.w,
+                            color: Theme.of(context).unselectedWidgetColor,
                           ),
                           SizedBox(
                             width: 12.h,
