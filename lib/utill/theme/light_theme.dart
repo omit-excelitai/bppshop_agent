@@ -10,8 +10,8 @@ ThemeData lightTheme = ThemeData(
   dialogBackgroundColor: AppColorResources.primaryWhite,
   buttonTheme: ButtonThemeData(buttonColor: AppColorResources.primaryDeepBlue),
   drawerTheme: DrawerThemeData(backgroundColor: AppColorResources.primaryWhite),
+  cardColor: AppColorResources.primaryWhite,
 
-  cardColor: null,
   canvasColor: null,
   disabledColor: null,
   applyElevationOverlayColor: null,

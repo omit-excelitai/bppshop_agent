@@ -4,13 +4,14 @@ import '../app_color_resources.dart';
 
 ThemeData darkTheme = ThemeData(
   primaryColor: Color(0xFF0B4461),
-  cardColor: null,
+  cardColor: AppColorResources.appBarColor,
   drawerTheme: DrawerThemeData(backgroundColor: Color(0xFF0B4461)),
   brightness: Brightness.dark,
   scaffoldBackgroundColor: Color(0xFF0B4461),
   buttonTheme: ButtonThemeData(buttonColor: AppColorResources.primaryOrange),
   shadowColor: AppColorResources.appBarColor,
   dialogBackgroundColor: AppColorResources.appBarColor,
+
 
   disabledColor: null,
   applyElevationOverlayColor: null,

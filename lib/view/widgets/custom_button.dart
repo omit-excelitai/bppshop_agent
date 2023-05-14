@@ -68,7 +68,7 @@ class CustomHomePageContainer extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 115.h,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: AppColorResources.primaryWhite,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: Theme.of(context).cardColor,
           border: Border.all(color: AppColorResources.borderColor, width: 1.4.w),
           boxShadow: [
             BoxShadow(
