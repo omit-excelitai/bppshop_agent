@@ -9,34 +9,60 @@ class AppLocalizations {
 
   static final Map<String, Map<String, String>> _localizedValues = {
     'en': {
-      'title': 'Localization App',
-      'greeting': 'Name: Omit Kumar',
+      'dashboard': 'Dashboard',
+      'customer': 'Customer',
+      'my_commission': 'My Commission',
+      'order_history': 'Order History',
+      'wallet': 'Wallet',
+      'logout': 'Log out',
+      'theme': 'Change Theme',
       'switchButton': 'Language',
-      'address': 'Address: Shewrapara, Mirpur, Dhaka',
     },
     'bn': {
-      'title': 'লোকালাইজেশন অ্যাপ',
-      'greeting': 'নাম: অমিত কুমার',
+      'dashboard': 'ড্যাশবোর্ড',
+      'customer': 'কাস্টমার',
+      'my_commission': 'আমার কমিশন',
+      'order_history': 'অর্ডার হিস্ট্রি',
+      'wallet': 'ওয়ালেট',
+      'logout': 'লগ আউট',
+      'theme': 'চেঞ্জ থিম',
       'switchButton': 'ভাষা',
-      'address': 'ঠিকানা: শেওড়াপাড়া, মিরপুর, ঢাকা',
     },
   };
 
-  String? get title {
-    return _localizedValues[locale.languageCode]!['title'];
+  String? get dashboard {
+    return _localizedValues[locale.languageCode]!['dashboard'];
   }
 
-  String? get greeting {
-    return _localizedValues[locale.languageCode]!['greeting'];
+  String? get customer {
+    return _localizedValues[locale.languageCode]!['customer'];
   }
 
   String? get switchButton {
     return _localizedValues[locale.languageCode]!['switchButton'];
   }
 
-  String? get address {
-    return _localizedValues[locale.languageCode]!['address'];
+  String? get my_commission {
+    return _localizedValues[locale.languageCode]!['my_commission'];
   }
+
+  String? get order_history {
+    return _localizedValues[locale.languageCode]!['order_history'];
+  }
+
+  String? get wallet {
+    return _localizedValues[locale.languageCode]!['wallet'];
+  }
+
+  String? get logout {
+    return _localizedValues[locale.languageCode]!['logout'];
+  }
+
+  String? get theme {
+    return _localizedValues[locale.languageCode]!['theme'];
+  }
+
+
 
   static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
