@@ -17,6 +17,7 @@ class AppLocalizations {
       'logout': 'Log out',
       'theme': 'Change Theme',
       'home': 'Home',
+      'agent_profile': 'Agent Profile',
       'profile': 'Profile',
       'add_customer': 'Add Customer',
       'bpp_shop': 'BPPSHOP',
@@ -35,6 +36,7 @@ class AppLocalizations {
       'logout': 'লগ আউট',
       'theme': 'চেঞ্জ থিম',
       'home': 'হোম',
+      'agent_profile': 'এজেন্ট প্রোফাইল',
       'profile': 'প্রোফাইল',
       'add_customer': 'অ্যাড কাস্টমার',
       'bpp_shop': 'বিপ্পশপ',
@@ -84,6 +86,10 @@ class AppLocalizations {
 
   String? get profile {
     return _localizedValues[locale.languageCode]!['profile'];
+  }
+
+  String? get agent_profile {
+    return _localizedValues[locale.languageCode]!['agent_profile'];
   }
 
   String? get add_customer {

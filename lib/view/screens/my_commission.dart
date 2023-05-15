@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
+import '../../localization/app_localization.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
@@ -35,7 +36,7 @@ class _MyCommissionPageState extends State<MyCommissionPage> {
                   Navigator.of(context).pop();
                 },
                 child: Icon(Icons.arrow_back_outlined, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
-            title: Text("My Commission", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
+            title: Text(AppLocalizations.of(context)!.my_commission.toString(), style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
           ),
           body: Provider.of<InternetConnectionStatus>(context) ==
               InternetConnectionStatus.disconnected ?
@@ -58,7 +59,7 @@ class _MyCommissionPageState extends State<MyCommissionPage> {
                       onTap: (){
                         Navigator.of(context).pushNamed(PendingCommissionPage.routeName);
                       },
-                      title: "Pending Commission",
+                      title: AppLocalizations.of(context)!.pending_commission.toString(),
                       image: "images/customerlist.png",
                     ),
                   ),
@@ -69,7 +70,7 @@ class _MyCommissionPageState extends State<MyCommissionPage> {
                       onTap: (){
                         Navigator.of(context).pushNamed(CommissionHistoryPage.routeName);
                       },
-                      title: "Commission History",
+                      title: AppLocalizations.of(context)!.commission_history.toString(),
                       image: "images/commissionhistory.png",
                     ),),
                 ],),

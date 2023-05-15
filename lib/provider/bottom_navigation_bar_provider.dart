@@ -31,25 +31,25 @@ class BottomNavigationBarProvider with ChangeNotifier{
       selectedLabelStyle: myStyleMontserrat(11.sp, AppColorResources.bottomLabelColor, FontWeight.w500),
       selectedItemColor: AppColorResources.primaryOrange,
       unselectedItemColor: AppColorResources.bottomLabelColor,
-      items: const <BottomNavigationBarItem>[
+      items:  <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           //backgroundColor: navBarBgColor,
           icon: Icon(Icons.home),
-          label: "Home",
+          label: AppLocalizations.of(context)!.home.toString(),
         ),
         BottomNavigationBarItem(
           //backgroundColor: navBarBgColor,
           icon: Icon(Icons.access_time_filled_outlined),
-          label: 'Order History',
+          label: AppLocalizations.of(context)!.order_history.toString(),
         ),
         BottomNavigationBarItem(
           //backgroundColor: navBarBgColor,
           icon: Icon(Icons.person),
-          label: 'Profile',
+          label: AppLocalizations.of(context)!.profile.toString(),
         ),BottomNavigationBarItem(
           //backgroundColor: navBarBgColor,
           icon: Icon(Icons.person_add_alt_1),
-          label: 'Add Customer',
+          label: AppLocalizations.of(context)!.add_customer.toString(),
         ),
       ],
       currentIndex: _selectedIndex,
