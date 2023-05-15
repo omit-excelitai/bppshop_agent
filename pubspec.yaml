@@ -44,7 +44,7 @@ dependencies:
   http:
   provider:
   list_tile_switch:
-  flutter_svg:
+  flutter_svg: ^2.0.5
   photo_view:
   cached_network_image:
   package_info_plus:
@@ -68,6 +68,9 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
   dropdown_search: ^5.0.6
   infinite_scroll_pagination: ^3.2.0
+  flutter_switch: ^0.3.2
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +83,8 @@ flutter_icons:
   adaptive_icon_background: "#0F2333"
   adaptive_icon_foreground: "images/icon_foreground.png"
   min_sdk_android: 21
+
+  #flutter build apk --split-per-abi
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

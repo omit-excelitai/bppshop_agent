@@ -1,4 +1,5 @@
 
+import 'package:bppshop_agent/localization/app_localization.dart';
 import 'package:bppshop_agent/provider/add_customer_provider.dart';
 import 'package:bppshop_agent/provider/agent_dashboard_provider.dart';
 import 'package:bppshop_agent/provider/agent_profile_provider.dart';
@@ -8,9 +9,11 @@ import 'package:bppshop_agent/provider/commission_history_provider.dart';
 import 'package:bppshop_agent/provider/customer_details_provider.dart';
 import 'package:bppshop_agent/provider/customer_list_provider.dart';
 import 'package:bppshop_agent/provider/district_thana_area_provider.dart';
+import 'package:bppshop_agent/provider/locale_provider.dart';
 import 'package:bppshop_agent/provider/order_details_provider.dart';
 import 'package:bppshop_agent/provider/order_history_provider.dart';
 import 'package:bppshop_agent/provider/pending_commission_provider.dart';
+import 'package:bppshop_agent/provider/theme_provider.dart';
 import 'package:bppshop_agent/provider/transaction_history_provider.dart';
 import 'package:bppshop_agent/provider/update_agent_profile_provider.dart';
 import 'package:bppshop_agent/provider/update_customer_profile_provider.dart';
@@ -37,6 +40,7 @@ import 'package:bppshop_agent/view/screens/update_customer_page.dart';
 import 'package:bppshop_agent/view/screens/wallet_page.dart';
 import 'package:bppshop_agent/view/widgets/navigation_service_without_context.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'di_container.dart' as di;
 import 'package:flutter/material.dart';
@@ -49,6 +53,8 @@ void main() async {
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp],
   );
+
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   await di.init();
   runApp( MultiProvider(
       providers: [
@@ -67,6 +73,8 @@ void main() async {
         ChangeNotifierProvider(create: (context)=> di.sl<CommissionHistoryProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<TransactionHistoryProvider>()),
         ChangeNotifierProvider(create: (context)=> di.sl<OrderDetailsProvider>()),
+        ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
+        ChangeNotifierProvider(create: (context) => di.sl<LocaleProvider>()),
       ],
       child: MyApp()),
   );
@@ -116,8 +124,8 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return Consumer<AuthProvider>(
-            builder: (BuildContext context, authProvider, Widget? child) {
+          return Consumer3<AuthProvider, ThemeProvider, LocaleProvider>(
+            builder: (BuildContext context, authProvider, themeProvider, localeProvider, Widget? child) {
               return StreamProvider<InternetConnectionStatus>(
                   initialData: InternetConnectionStatus.connected,
                   create: (_) {
@@ -129,9 +137,18 @@ class MyApp extends StatelessWidget {
                   navigatorKey: NavigationService.navigatorKey,
                   onGenerateRoute: RouteGenerator.generateRoutes,
                   builder: EasyLoading.init(),
-                  theme: ThemeData(
-                    primarySwatch: AppColorResources.statusBarColor,
-                  ),
+                  theme: themeProvider.themeData,
+                  locale: localeProvider.locale,
+                  supportedLocales: const [
+                    Locale('en', 'US'),
+                    Locale('bn', 'BD'),
+                  ],
+                  localizationsDelegates: const [
+                    AppLocalizations.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
                   initialRoute: checkToken(authProvider.getUserToken()) != false?LandingPage.routeName:SignInPage.routeName,
                   routes: {
                     SignUpPage.routeName : (context) => SignUpPage(),

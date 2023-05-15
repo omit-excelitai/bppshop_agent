@@ -82,7 +82,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
     return Consumer2<BottomNavigationBarProvider, DistrictThanaAreaProvider>(
       builder: (BuildContext context, bottomNavigationBarProvider, districtThanaAreaProvider, Widget? child) {
         return Scaffold(
-          backgroundColor: AppColorResources.bgColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           appBar: AppBar(
             backgroundColor: AppColorResources.appBarColor,
             centerTitle: false,
@@ -113,7 +113,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                   Container(
                     padding: EdgeInsets.all(12),
                     width: double.infinity,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0.r), color: AppColorResources.primaryWhite),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0.r), color: Theme.of(context).cardColor),
                     child: Column(
                       children: [
                         Container(
@@ -121,7 +121,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Customer Name",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Name",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 keyboardType: TextInputType.text,
@@ -140,7 +140,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Customer Mobile",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Mobile",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 readOnly: true,
@@ -160,7 +160,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Customer Email",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Email",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 readOnly: true,
@@ -180,7 +180,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Customer District",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer District",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               districtThanaAreaProvider.districtNameList != null?Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
@@ -207,7 +207,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                                 ),
                               ): Center(child: Text(" ")),
                               SizedBox(height: 10.h,),
-                              Text("Customer Thana",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Thana",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               districtThanaAreaProvider.thanaNameList != null?Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
@@ -232,7 +232,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                                 ),
                               ): Center(child: Text(" ")),
                               SizedBox(height: 10.h,),
-                              Text("Customer Area",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Area",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               districtThanaAreaProvider.areaNameList != null?Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
@@ -254,7 +254,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                                 ),
                               ): Center(child: Text(" ")),
                               SizedBox(height: 10.h,),
-                              Text("Customer Local Address",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Customer Local Address",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 keyboardType: TextInputType.text,

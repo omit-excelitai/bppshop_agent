@@ -126,7 +126,7 @@ class _CustomerListTableState extends State<CustomerListTable> {
         }
         else{
           return Center(
-            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, AppColorResources.secondaryBlack, FontWeight.w500),),
+            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, Theme.of(context).hintColor, FontWeight.w500),),
           );
         }
       },
@@ -199,7 +199,7 @@ class CustomerListTableDataSource extends DataGridSource {
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.symmetric(horizontal: 12.w),
           child: Text(e.value.toString(),
-            style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),
+            style: myStyleMontserrat(12.sp, Theme.of(NavigationService.navigatorKey.currentContext!).secondaryHeaderColor, FontWeight.w500),
           ),
         );
       }).toList(),

@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
+import '../../localization/app_localization.dart';
 import '../../provider/agent_profile_provider.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
@@ -53,7 +54,7 @@ class _DashboardPageState extends State<DashboardPage> {
           child: Scaffold(
             drawer: MyDrawerPage(),
             key: _scaffoldkey,
-            backgroundColor: AppColorResources.bgColor,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             appBar: AppBar(
               backgroundColor: AppColorResources.appBarColor,
               centerTitle: false,
@@ -62,7 +63,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     _scaffoldkey.currentState!.openDrawer();
                   },
                   child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
-              title: Text("Dashboard", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
+              title: Text(AppLocalizations.of(context)!.dashboard.toString(), style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
             ),
             body: Provider.of<InternetConnectionStatus>(context) ==
                 InternetConnectionStatus.disconnected ?
@@ -84,41 +85,41 @@ class _DashboardPageState extends State<DashboardPage> {
                       margin: EdgeInsets.only(bottom: 12.h),
                       padding: EdgeInsets.all(12),
                       width: double.infinity,
-                      color: AppColorResources.primaryWhite,
+                      color: Theme.of(context).cardColor,
                       child: Column(
                         children: [
                           Row(children: [
                             Expanded(
                               flex: 2,
-                              child: DashboardCustomContainer(onTap: (){}, title: "Total Customer", amount: "${agentDashboardProvider.agentDashboardModelData!.data!.totalCustomers}", image: "images/totalcustomer.png", color: AppColorResources.primaryOrange,),
+                              child: DashboardCustomContainer(onTap: (){}, title: AppLocalizations.of(context)!.total_customer.toString(), amount: "${agentDashboardProvider.agentDashboardModelData!.data!.totalCustomers}", image: "images/totalcustomer.png", color: AppColorResources.primaryOrange,),
                             ),
                             SizedBox(width: 12.w,),
                             Expanded(
                               flex: 2,
-                              child: DashboardCustomContainer(onTap: (){}, title: "Total Withdraw", amount: "${agentDashboardProvider.agentDashboardModelData!.data!.totalWithdraw}", image: "images/withdraw.png", color: AppColorResources.primaryNaviBlue,),),
+                              child: DashboardCustomContainer(onTap: (){}, title: AppLocalizations.of(context)!.total_withdraw.toString(), amount: "${agentDashboardProvider.agentDashboardModelData!.data!.totalWithdraw}", image: "images/withdraw.png", color: AppColorResources.primaryNaviBlue,),),
                           ],),
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 12.h),
                             child: Row(children: [
                               Expanded(
                                 flex: 2,
-                                child: DashboardCustomContainer(onTap: (){}, title: "Total Sale Amount", amount: "৳${agentDashboardProvider.agentDashboardModelData!.data!.totalSaleAmount}", image: "images/cashcoin.png", color: AppColorResources.primaryGreen,),
+                                child: DashboardCustomContainer(onTap: (){}, title: AppLocalizations.of(context)!.total_sale_amount.toString(), amount: "৳${agentDashboardProvider.agentDashboardModelData!.data!.totalSaleAmount}", image: "images/cashcoin.png", color: AppColorResources.primaryGreen,),
                               ),
                               SizedBox(width: 12.w,),
                               Expanded(
                                 flex: 2,
-                                child: DashboardCustomContainer(onTap: (){}, title: "Total Orders", amount: "${agentDashboardProvider.agentDashboardModelData!.data!.totalOrders}", image: "images/cartcheck.png", color: AppColorResources.beguniColor,),),
+                                child: DashboardCustomContainer(onTap: (){}, title: AppLocalizations.of(context)!.total_orders.toString(), amount: "${agentDashboardProvider.agentDashboardModelData!.data!.totalOrders}", image: "images/cartcheck.png", color: AppColorResources.beguniColor,),),
                             ],),
                           ),
                           Row(children: [
                             Expanded(
                               flex: 2,
-                              child: DashboardCustomContainer(onTap: (){}, title: "Total Commission", amount: "৳${agentDashboardProvider.agentDashboardModelData!.data!.totalCommission}", image: "images/cashstack.png", color: AppColorResources.lightGreen,),
+                              child: DashboardCustomContainer(onTap: (){}, title: AppLocalizations.of(context)!.total_commission.toString(), amount: "৳${agentDashboardProvider.agentDashboardModelData!.data!.totalCommission}", image: "images/cashstack.png", color: AppColorResources.lightGreen,),
                             ),
                             SizedBox(width: 12.w,),
                             Expanded(
                               flex: 2,
-                              child: DashboardCustomContainer(onTap: (){}, title: "Total Purchase", amount: "${agentDashboardProvider.agentDashboardModelData!.data!.totalPurchase}", image: "images/cartplus.png", color: AppColorResources.secondaryRed,),),
+                              child: DashboardCustomContainer(onTap: (){}, title: AppLocalizations.of(context)!.total_purchase.toString(), amount: "${agentDashboardProvider.agentDashboardModelData!.data!.totalPurchase}", image: "images/cartplus.png", color: AppColorResources.secondaryRed,),),
                           ],),
                         ],
                       ),

@@ -1,4 +1,5 @@
 
+
 import 'package:bppshop_agent/provider/order_history_provider.dart';
 import 'package:bppshop_agent/view/screens/order_details_page.dart';
 import 'package:bppshop_agent/view/widgets/navigation_service_without_context.dart';
@@ -120,7 +121,7 @@ class _OrderHistoryTableState extends State<OrderHistoryTable> {
         }
         else{
           return Center(
-            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, AppColorResources.secondaryBlack, FontWeight.w500),),
+            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, Theme.of(context).hintColor, FontWeight.w500),),
           );
         }
 
@@ -148,6 +149,7 @@ class OrderHistoryTableDataSource extends DataGridSource {
   List<DataGridRow> _orderHistoryData = [];
   @override
   List<DataGridRow> get rows => _orderHistoryData;
+
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
@@ -201,7 +203,7 @@ class OrderHistoryTableDataSource extends DataGridSource {
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.all(12),
           child: Text(e.value.toString(),
-            style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),
+            style: myStyleMontserrat(12.sp, Theme.of(NavigationService.navigatorKey.currentContext!).secondaryHeaderColor, FontWeight.w500),
           ),
         );
       }).toList(),

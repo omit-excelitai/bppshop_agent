@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
@@ -67,11 +68,11 @@ class CustomHomePageContainer extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 115.h,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: AppColorResources.primaryWhite,
-          border: Border.all(color: AppColorResources.borderColor, width: 1.4.w),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: Theme.of(context).cardColor,
+          border: Border.all(color: Theme.of(context).primaryColor, width: 1.4.w),
           boxShadow: [
             BoxShadow(
-              color: AppColorResources.shadowColor,
+              color: Theme.of(context).shadowColor,
               offset: Offset(
                 3.0,
                 3.0,
@@ -85,7 +86,7 @@ class CustomHomePageContainer extends StatelessWidget {
           children: [
             Image.asset("$image", height: 50.h, width: 50.w,),
             SizedBox(height: 10.h,),
-            Text("$title", style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w700),),
+            Text("$title", style: myStyleMontserrat(12.sp, Theme.of(context).highlightColor, FontWeight.w700),),
           ],
         ),
       ),

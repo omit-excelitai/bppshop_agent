@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
+import '../../../localization/app_localization.dart';
 import '../../../provider/agent_profile_provider.dart';
 import '../../../utill/app_color_resources.dart';
 import '../../../utill/app_style.dart';
@@ -46,7 +47,7 @@ class _AgentProfilePageState extends State<AgentProfilePage> {
       child: Scaffold(
         drawer: MyDrawerPage(),
         key: _scaffoldKey,
-        backgroundColor: AppColorResources.bgColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           backgroundColor: AppColorResources.appBarColor,
           centerTitle: false,
@@ -55,7 +56,7 @@ class _AgentProfilePageState extends State<AgentProfilePage> {
                 _scaffoldKey.currentState!.openDrawer();
               },
               child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
-          title: Text("Agent Profile", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
+          title: Text(AppLocalizations.of(context)!.profile.toString(), style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
         ),
         body: Provider.of<InternetConnectionStatus>(context) ==
             InternetConnectionStatus.disconnected ?
@@ -121,7 +122,7 @@ class _ProfileSectionState extends State<ProfileSection> {
             margin: EdgeInsets.symmetric(vertical: 12.h),
             padding: EdgeInsets.all(12),
             width: double.infinity,
-            color: AppColorResources.primaryWhite,
+            color: Theme.of(context).cardColor,
             child: Column(
               children: [
                 Row(
@@ -158,8 +159,8 @@ class _ProfileSectionState extends State<ProfileSection> {
                               },
                               child: Image.asset("images/edit.png", height: 32.h, width: 32.h,)),
                           SizedBox(height: 16.h,),
-                          Text("${agentProfileProvider.agentProfileModelData!.data!.name}", style: myStyleMontserrat(16.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                          Text("${agentProfileProvider.agentProfileModelData!.data!.email}", style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w400),),
+                          Text("${agentProfileProvider.agentProfileModelData!.data!.name}", style: myStyleMontserrat(16.sp, Theme.of(context).highlightColor, FontWeight.w600),),
+                          Text("${agentProfileProvider.agentProfileModelData!.data!.email}", style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                         ],
                       ),
                       flex: 2,),
@@ -170,44 +171,44 @@ class _ProfileSectionState extends State<ProfileSection> {
                   endIndent: 0,
                   indent: 0,
                   thickness: 1.h,
-                  color: AppColorResources.bottomLabelColor,
+                  color: Theme.of(context).dividerColor,
                 ),
-                Text("Balance", style: myStyleMontserrat(16.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                Text("৳${agentProfileProvider.agentProfileModelData!.data!.walletBalance}", style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                Text("Balance", style: myStyleMontserrat(16.sp, Theme.of(context).highlightColor, FontWeight.w600),),
+                Text("৳${agentProfileProvider.agentProfileModelData!.data!.walletBalance}", style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w500),),
                 Divider(
                   endIndent: 0,
                   indent: 0,
                   thickness: 1.h,
-                  color: AppColorResources.bottomLabelColor,
+                  color: Theme.of(context).dividerColor,
                 ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Role: ${agentProfileProvider.agentProfileModelData!.role}", style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                      Text("Role: ${agentProfileProvider.agentProfileModelData!.role}", style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
                       SizedBox(height: 8.h,),
-                      Text("CONTACT INFORMATION:", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                      Text("CONTACT INFORMATION:", style: myStyleMontserrat(14.sp, Theme.of(context).highlightColor, FontWeight.w600),),
                       ListTile(
                         leading: Padding(
                             padding: EdgeInsets.only(top: 10.h),
                             child: Image.asset("images/call.png")),
-                        title: Text("Mobile", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                        subtitle: Text("${agentProfileProvider.agentProfileModelData!.data!.phone}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                        title: Text("Mobile", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                        subtitle: Text("${agentProfileProvider.agentProfileModelData!.data!.phone}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
                       ),
                       ListTile(
                         leading: Padding(
                             padding: EdgeInsets.only(top: 12.h),
                             child: Image.asset("images/mail.png")),
-                        title: Text("Email", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                        subtitle: Text("${agentProfileProvider.agentProfileModelData!.data!.email}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                        title: Text("Email", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                        subtitle: Text("${agentProfileProvider.agentProfileModelData!.data!.email}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
                       ),
                       ListTile(
                         leading: Padding(
                             padding: EdgeInsets.only(top: 10.h),
                             child: Image.asset("images/home.png")),
-                        title: Text("Address", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                        subtitle: Text("${agentProfileProvider.agentProfileModelData!.data!.areaName}, ${agentProfileProvider.agentProfileModelData!.data!.thanaName}, ${agentProfileProvider.agentProfileModelData!.data!.districtName}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600), maxLines: 2,),
+                        title: Text("Address", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                        subtitle: Text("${agentProfileProvider.agentProfileModelData!.data!.areaName}, ${agentProfileProvider.agentProfileModelData!.data!.thanaName}, ${agentProfileProvider.agentProfileModelData!.data!.districtName}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600), maxLines: 2,),
                       ),
                     ],
                   ),

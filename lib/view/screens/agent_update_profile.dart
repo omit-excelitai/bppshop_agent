@@ -87,7 +87,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
     return Consumer2<BottomNavigationBarProvider, DistrictThanaAreaProvider>(
       builder: (BuildContext context, bottomNavigationBarProvider, districtThanaAreaProvider, Widget? child) {
         return Scaffold(
-          backgroundColor: AppColorResources.bgColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           appBar: AppBar(
             backgroundColor: AppColorResources.appBarColor,
             centerTitle: false,
@@ -118,7 +118,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                   Container(
                     padding: EdgeInsets.all(12),
                     width: double.infinity,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0.r), color: AppColorResources.primaryWhite),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0.r), color: Theme.of(context).cardColor),
                     child: Column(
                       children: [
                         Stack(
@@ -165,7 +165,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Agent Name",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Agent Name",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 keyboardType: TextInputType.text,
@@ -184,7 +184,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Agent Mobile",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Agent Mobile",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 readOnly: true,
@@ -204,7 +204,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Agent Email",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Agent Email",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 readOnly: true,
@@ -224,7 +224,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Agent District",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Agent District",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
@@ -250,7 +250,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                   selectedValue: districtThanaAreaProvider.districtDropdownValue,
                                 )),
                                SizedBox(height: 10.h,),
-                              Text("Agent Thana",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Agent Thana",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
@@ -275,7 +275,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Agent Area",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Agent Area",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 12.w,),
@@ -297,7 +297,7 @@ class _AgentUpdateProfileState extends State<AgentUpdateProfile> {
                                 ),
                               ),
                               SizedBox(height: 10.h,),
-                              Text("Agent Local Address",style: myStyleMontserrat(12.sp, AppColorResources.primaryBlack, FontWeight.w400),),
+                              Text("Agent Local Address",style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                               SizedBox(height: 4.h,),
                               TextFormField(
                                 readOnly: true,

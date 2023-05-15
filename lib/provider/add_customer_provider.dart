@@ -4,8 +4,11 @@ import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../data/model/base_model/api_response.dart';
 import '../data/model/base_model/error_response.dart';
+import '../utill/app_style.dart';
+import '../view/widgets/navigation_service_without_context.dart';
 
 class AddCustomerProvider with ChangeNotifier{
 
@@ -30,16 +33,12 @@ class AddCustomerProvider with ChangeNotifier{
         areaId: areaId
     );
 
-    // if(kDebugMode){
-    //   print("addNewAddress statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
-    // }
-
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
 
       EasyLoading.dismiss();
       notifyListeners();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(apiResponse.response!.data["message"]),
+        content: Text(apiResponse.response!.data["message"], style: myStyleMontserrat(14.sp, Theme.of(NavigationService.navigatorKey.currentContext!).secondaryHeaderColor, FontWeight.w500),),
         backgroundColor: AppColorResources.primaryMaterial,
       ));
       notifyListeners();

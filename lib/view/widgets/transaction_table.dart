@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../utill/app_color_resources.dart';
+import 'navigation_service_without_context.dart';
 
 class ReusableTransactionTablePage extends StatefulWidget {
   ReusableTransactionTablePage({Key? key}) : super(key: key);
@@ -130,7 +131,7 @@ class _MyHomePageState extends State<ReusableTransactionTablePage> {
           );
         }else{
           return Center(
-            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, AppColorResources.secondaryBlack, FontWeight.w500),),
+            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, Theme.of(context).hintColor, FontWeight.w500),),
           );
         }
 
@@ -176,13 +177,14 @@ class TransactionTableDataSource extends DataGridSource {
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
+    NavigationService routeService = NavigationService();
     return DataGridRowAdapter(
         cells: row.getCells().map<Widget>((e) {
           return Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: Text(e.value.toString(),
-              style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),
+              style: myStyleMontserrat(12.sp, Theme.of(NavigationService.navigatorKey.currentContext!).secondaryHeaderColor, FontWeight.w500),
             ),
           );
         }).toList());
