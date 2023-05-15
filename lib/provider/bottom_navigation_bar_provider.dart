@@ -1,4 +1,5 @@
 
+import 'package:bppshop_agent/localization/app_localization.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/add_customer_page.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/agent_profile_page.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/home_page.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utill/app_color_resources.dart';
 import '../utill/app_style.dart';
 import '../view/screens/landing_page.dart';
+import '../view/widgets/navigation_service_without_context.dart';
 
 class BottomNavigationBarProvider with ChangeNotifier{
   int _selectedIndex = 0;
@@ -33,7 +35,7 @@ class BottomNavigationBarProvider with ChangeNotifier{
         BottomNavigationBarItem(
           //backgroundColor: navBarBgColor,
           icon: Icon(Icons.home),
-          label: 'Home',
+          label: "Home",
         ),
         BottomNavigationBarItem(
           //backgroundColor: navBarBgColor,

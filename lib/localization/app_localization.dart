@@ -16,6 +16,14 @@ class AppLocalizations {
       'wallet': 'Wallet',
       'logout': 'Log out',
       'theme': 'Change Theme',
+      'home': 'Home',
+      'profile': 'Profile',
+      'add_customer': 'Add Customer',
+      'bpp_shop': 'BPPSHOP',
+      'agent_panel': 'Agent Panel',
+      'customer_list': 'Customer List',
+      'pending_commission': 'Pending Commission',
+      'commission_history': 'Commission History',
       'switchButton': 'Language',
     },
     'bn': {
@@ -26,6 +34,14 @@ class AppLocalizations {
       'wallet': 'ওয়ালেট',
       'logout': 'লগ আউট',
       'theme': 'চেঞ্জ থিম',
+      'home': 'হোম',
+      'profile': 'প্রোফাইল',
+      'add_customer': 'অ্যাড কাস্টমার',
+      'bpp_shop': 'বিপ্পশপ',
+      'agent_panel': 'এজেন্ট প্যানেল',
+      'customer_list': 'কাস্টমার লিস্ট',
+      'pending_commission': 'পেন্ডিং কমিশন',
+      'commission_history': 'কমিশন হিস্ট্রি',
       'switchButton': 'ভাষা',
     },
   };
@@ -60,6 +76,38 @@ class AppLocalizations {
 
   String? get theme {
     return _localizedValues[locale.languageCode]!['theme'];
+  }
+
+  String? get home {
+    return _localizedValues[locale.languageCode]!['home'];
+  }
+
+  String? get profile {
+    return _localizedValues[locale.languageCode]!['profile'];
+  }
+
+  String? get add_customer {
+    return _localizedValues[locale.languageCode]!['add_customer'];
+  }
+
+  String? get bpp_shop {
+    return _localizedValues[locale.languageCode]!['bpp_shop'];
+  }
+
+  String? get agent_panel {
+    return _localizedValues[locale.languageCode]!['agent_panel'];
+  }
+
+  String? get customer_list {
+    return _localizedValues[locale.languageCode]!['customer_list'];
+  }
+
+  String? get pending_commission {
+    return _localizedValues[locale.languageCode]!['pending_commission'];
+  }
+
+  String? get commission_history {
+    return _localizedValues[locale.languageCode]!['commission_history'];
   }
 
 

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
+import '../../../localization/app_localization.dart';
 import '../../../utill/app_color_resources.dart';
 import '../../../utill/app_style.dart';
 import '../../widgets/custom_button.dart';
@@ -41,7 +42,7 @@ class _HomePageState extends State<HomePage> {
               _scaffoldKey.currentState!.openDrawer();
             },
             child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
-        title: Text("Home", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
+        title: Text(AppLocalizations.of(context)!.home.toString(), style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
       ),
       body: Provider.of<InternetConnectionStatus>(context) ==
           InternetConnectionStatus.disconnected ?
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: (){
                       Navigator.of(context).pushNamed(DashboardPage.routeName);
                     },
-                  title: "Dashboard",
+                  title: AppLocalizations.of(context)!.dashboard.toString(),
                   image: "images/dashboard.png",
                 ),
               ),
@@ -75,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                   onTap: (){
                     Navigator.of(context).pushNamed(CustomerPage.routeName);
                   },
-                  title: "Customer",
+                  title: AppLocalizations.of(context)!.customer.toString(),
                   image: "images/customer.png",
                 ),),
             ],),
@@ -88,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: (){
                       Navigator.of(context).pushNamed(OrderHistoryPage.routeName);
                     },
-                    title: "Order History",
+                    title: AppLocalizations.of(context)!.order_history.toString(),
                     image: "images/clock.png",
                   ),
                 ),
@@ -99,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: (){
                       Navigator.of(context).pushNamed(MyCommissionPage.routeName);
                     },
-                    title: "My Commission",
+                    title: AppLocalizations.of(context)!.my_commission.toString(),
                     image: "images/mycommission.png",
                   ),),
               ],),
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                     //routeService.routeTo(CustomerProfilePage.routeName);
                     Navigator.of(context).pushNamed(WalletPage.routeName);
                   },
-                  title: "Wallet",
+                  title: AppLocalizations.of(context)!.wallet.toString(),
                   image: "images/wallet.png",
                 ),
               ),

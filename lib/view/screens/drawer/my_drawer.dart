@@ -69,14 +69,16 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "BPPSHOP",
+                            AppLocalizations.of(context)!.bpp_shop.toString(),
                             style: myStyleMontserrat(
                                 16.sp,
                                 AppColorResources.secondaryWhite,
                                 FontWeight.w500),
                           ),
                           Text(
-                            "Agent Panel",
+                            AppLocalizations.of(context)!
+                                .agent_panel
+                                .toString(),
                             style: myStyleMontserrat(
                                 16.sp,
                                 AppColorResources.secondaryWhite,
@@ -117,7 +119,9 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               width: 12.w,
                             ),
                             Text(
-                              "Dashboard",
+                              AppLocalizations.of(context)!
+                                  .dashboard
+                                  .toString(),
                               style: myStyleMontserrat(
                                   16.sp,
                                   count == 1
@@ -148,7 +152,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               width: 12.w,
                             ),
                             Text(
-                              "Customer",
+                              AppLocalizations.of(context)!.customer.toString(),
                               style: myStyleMontserrat(
                                   16.sp,
                                   Theme.of(context).unselectedWidgetColor,
@@ -184,7 +188,9 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                     width: 12.w,
                                   ),
                                   Text(
-                                    "Customer List",
+                                    AppLocalizations.of(context)!
+                                        .customer_list
+                                        .toString(),
                                     style: myStyleMontserrat(
                                         14.sp,
                                         count == 2
@@ -226,7 +232,9 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                     width: 12.w,
                                   ),
                                   Text(
-                                    "Add Customer",
+                                    AppLocalizations.of(context)!
+                                        .add_customer
+                                        .toString(),
                                     style: myStyleMontserrat(
                                         14.sp,
                                         count == 3
@@ -266,7 +274,9 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               width: 12.w,
                             ),
                             Text(
-                              "Order History",
+                              AppLocalizations.of(context)!
+                                  .order_history
+                                  .toString(),
                               style: myStyleMontserrat(
                                   16.sp,
                                   count == 4
@@ -295,7 +305,9 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                             width: 12.h,
                           ),
                           Text(
-                            "My Commission",
+                            AppLocalizations.of(context)!
+                                .my_commission
+                                .toString(),
                             style: myStyleMontserrat(
                                 16.sp,
                                 Theme.of(context).unselectedWidgetColor,
@@ -328,7 +340,9 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                   width: 12.w,
                                 ),
                                 Text(
-                                  "Pending Commission",
+                                  AppLocalizations.of(context)!
+                                      .pending_commission
+                                      .toString(),
                                   style: myStyleMontserrat(
                                       14.sp,
                                       count == 5
@@ -366,7 +380,9 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                                   width: 12.w,
                                 ),
                                 Text(
-                                  "Commission History",
+                                  AppLocalizations.of(context)!
+                                      .commission_history
+                                      .toString(),
                                   style: myStyleMontserrat(
                                       14.sp,
                                       count == 6
@@ -404,7 +420,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               width: 10.w,
                             ),
                             Text(
-                              "Wallet",
+                              AppLocalizations.of(context)!.wallet.toString(),
                               style: myStyleMontserrat(
                                   16.sp,
                                   count == 7
@@ -441,7 +457,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               width: 12.w,
                             ),
                             Text(
-                              "Logout",
+                              AppLocalizations.of(context)!.logout.toString(),
                               style: myStyleMontserrat(
                                   16.sp,
                                   count == 8
@@ -470,7 +486,10 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                               SizedBox(
                                 width: 10.w,
                               ),
-                              Text("Change Theme",
+                              Text(
+                                  AppLocalizations.of(context)!
+                                      .theme
+                                      .toString(),
                                   style: myStyleMontserrat(
                                       16.sp,
                                       Theme.of(context).unselectedWidgetColor,
@@ -517,11 +536,11 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                             children: [
                               Icon(
                                 Icons.language_outlined,
-                                size: 22.sp,
+                                size: 23.sp,
                                 color: Theme.of(context).unselectedWidgetColor,
                               ),
                               SizedBox(
-                                width: 10.w,
+                                width: 12.w,
                               ),
                               Text(
                                 AppLocalizations.of(context)!
