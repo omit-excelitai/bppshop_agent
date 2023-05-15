@@ -6,6 +6,7 @@ import '../../data/model/response_model/order_details_response_model.dart';
 import '../../provider/order_details_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
+import 'navigation_service_without_context.dart';
 
 class ProductsTablePage extends StatefulWidget {
   /// Creates the home page.
@@ -120,13 +121,14 @@ class ProductDataSource extends DataGridSource {
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
+    NavigationService routeService = NavigationService();
     return DataGridRowAdapter(
         cells: row.getCells().map<Widget>((e) {
           return Container(
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: Text(e.value.toString(),
-              style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),
+              style: myStyleMontserrat(12.sp, Theme.of(NavigationService.navigatorKey.currentContext!).secondaryHeaderColor, FontWeight.w500),
             ),
           );
         }).toList());

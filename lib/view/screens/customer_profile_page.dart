@@ -76,7 +76,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                       margin: EdgeInsets.symmetric(vertical: 12.h),
                       padding: EdgeInsets.all(12),
                       width: double.infinity,
-                      color: AppColorResources.primaryWhite,
+                      color: Theme.of(context).cardColor,
                       child: Column(
                         children: [
                           Row(
@@ -88,7 +88,6 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                                     height: 116.h,
                                     width: 116.w,
                                     decoration: BoxDecoration(shape: BoxShape.circle,
-                                        //color: AppColorResources.primaryOrange,
                                     image: DecorationImage(image: AssetImage("images/customerpic.png",)),),
                                   ),
                                 ),
@@ -97,8 +96,8 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Text("Customer ID:", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w400),),
-                                    Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.id}", style: myStyleMontserrat(24.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                                    Text("Customer ID:", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
+                                    Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.id}", style: myStyleMontserrat(24.sp, Theme.of(context).highlightColor, FontWeight.w600),),
                                   ],
                                 ),
                                 flex: 2,),
@@ -110,22 +109,22 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("CONTACT INFORMATION:", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
+                                Text("CONTACT INFORMATION:", style: myStyleMontserrat(14.sp, Theme.of(context).highlightColor, FontWeight.w600),),
                                 ListTile(
-                                  title: Text("Customer Name", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                                  subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerName}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                                  title: Text("Customer Name", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                                  subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerName}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w500),),
                                 ),
                                 ListTile(
-                                  title: Text("Email", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                                  subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerEmail}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                                  title: Text("Email", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                                  subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerEmail}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w500),),
                                 ),
                                 ListTile(
-                                  title: Text("Mobile", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                                  subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerMobile}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                                  title: Text("Mobile", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                                  subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerMobile}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w500),),
                                 ),
                                 ListTile(
-                                  title: Text("Address", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w600),),
-                                  subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerAddress}", style: myStyleMontserrat(14.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                                  title: Text("Address", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                                  subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerAddress}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w500),),
                                 ),
                                 SizedBox(height: 12.h,),
                                 InkWell(

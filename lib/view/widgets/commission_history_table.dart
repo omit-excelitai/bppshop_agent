@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../data/model/request_model/commission_history_request_model.dart';
 import '../../utill/app_style.dart';
+import 'navigation_service_without_context.dart';
 
 class CommissionHistoryTable extends StatefulWidget {
   const CommissionHistoryTable({Key? key}) : super(key: key);
@@ -121,13 +122,14 @@ class CommissionHistoryDataSource extends DataGridSource {
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
+    NavigationService routeService = NavigationService();
     return DataGridRowAdapter(
         cells: row.getCells().map<Widget>((e) {
           return Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: Text(e.value.toString(),
-              style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),
+              style: myStyleMontserrat(12.sp, Theme.of(NavigationService.navigatorKey.currentContext!).secondaryHeaderColor, FontWeight.w500),
             ),
           );
         }).toList());

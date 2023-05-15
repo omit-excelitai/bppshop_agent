@@ -1,4 +1,5 @@
 
+
 import 'package:bppshop_agent/provider/order_history_provider.dart';
 import 'package:bppshop_agent/view/screens/order_details_page.dart';
 import 'package:bppshop_agent/view/widgets/navigation_service_without_context.dart';
@@ -202,7 +203,7 @@ class OrderHistoryTableDataSource extends DataGridSource {
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.all(12),
           child: Text(e.value.toString(),
-            style: myStyleMontserrat(12.sp, AppColorResources.homeItemColor, FontWeight.w500),
+            style: myStyleMontserrat(12.sp, Theme.of(NavigationService.navigatorKey.currentContext!).secondaryHeaderColor, FontWeight.w500),
           ),
         );
       }).toList(),

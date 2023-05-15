@@ -50,6 +50,8 @@ void main() async {
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp],
   );
+
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   await di.init();
   runApp( MultiProvider(
       providers: [
