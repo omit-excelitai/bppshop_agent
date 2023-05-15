@@ -26,6 +26,12 @@ class AppLocalizations {
       'pending_commission': 'Pending Commission',
       'commission_history': 'Commission History',
       'switchButton': 'Language',
+      'total_customer': 'Total Customer',
+      'total_withdraw': 'Total Withdraw',
+      'total_sale_amount': 'Total Sale Amount',
+      'total_orders': 'Total Orders',
+      'total_commission': 'Total Commission',
+      'total_purchase': 'Total Purchase',
     },
     'bn': {
       'dashboard': 'ড্যাশবোর্ড',
@@ -45,6 +51,12 @@ class AppLocalizations {
       'pending_commission': 'পেন্ডিং কমিশন',
       'commission_history': 'কমিশন হিস্ট্রি',
       'switchButton': 'ভাষা',
+      'total_customer': 'টোটাল কাস্টমার',
+      'total_withdraw': 'টোটাল উইথড্র',
+      'total_sale_amount': 'টোটাল সেল এমাউন্ট',
+      'total_orders': 'টোটাল অর্ডারস',
+      'total_commission': 'টোটাল কমিশন',
+      'total_purchase': 'টোটাল ক্রয়',
     },
   };
 
@@ -114,6 +126,30 @@ class AppLocalizations {
 
   String? get commission_history {
     return _localizedValues[locale.languageCode]!['commission_history'];
+  }
+
+  String? get total_customer {
+    return _localizedValues[locale.languageCode]!['total_customer'];
+  }
+
+  String? get total_withdraw {
+    return _localizedValues[locale.languageCode]!['total_withdraw'];
+  }
+
+  String? get total_sale_amount {
+    return _localizedValues[locale.languageCode]!['total_sale_amount'];
+  }
+
+  String? get total_orders {
+    return _localizedValues[locale.languageCode]!['total_orders'];
+  }
+
+  String? get total_commission {
+    return _localizedValues[locale.languageCode]!['total_commission'];
+  }
+
+  String? get total_purchase {
+    return _localizedValues[locale.languageCode]!['total_purchase'];
   }
 
 
