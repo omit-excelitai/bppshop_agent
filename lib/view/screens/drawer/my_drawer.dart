@@ -455,7 +455,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                          left: 16.w, right: 16.w, top: 20.h, bottom: 20.h),
+                          left: 16.w, right: 16.w, top: 25.h, bottom: 15.h),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -511,7 +511,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                       padding: EdgeInsets.only(
                           left: 16.w, right: 16.w, bottom: 20.h),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             AppLocalizations.of(context)!
