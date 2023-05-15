@@ -1,3 +1,4 @@
+import 'package:bppshop_agent/provider/locale_provider.dart';
 import 'package:bppshop_agent/utill/app_color_resources.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/add_customer_page.dart';
 import 'package:bppshop_agent/view/screens/bottom_nav_bar/home_page.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../localization/app_localization.dart';
 import '../../../provider/theme_provider.dart';
 import '../../../utill/app_style.dart';
 import '../../widgets/show_logout_alert.dart';
@@ -36,6 +38,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final localeProvider = Provider.of<LocaleProvider>(context);
     return SafeArea(
       child: Drawer(
         width: 233.w,
@@ -499,6 +502,45 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                             ),
                             onToggle: (_) {
                               themeProvider.toggleTheme();
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 16.w, right: 16.w, bottom: 20.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!
+                                .switchButton
+                                .toString(),
+                            style: myStyleMontserrat(
+                                16.sp,
+                                Theme.of(context).unselectedWidgetColor,
+                                FontWeight.w500),
+                          ),
+                          FlutterSwitch(
+                            width: 65.w,
+                            activeText: "EN",
+                            inactiveText: "BN",
+                            activeTextColor: AppColorResources.primaryWhite,
+                            inactiveTextColor: AppColorResources.primaryWhite,
+                            activeColor: AppColorResources.primaryOrange,
+                            inactiveColor: AppColorResources.primaryOrange,
+                            valueFontSize: 14.0.sp,
+                            toggleSize: 25.0.sp,
+                            value: localeProvider.locale?.languageCode == 'bn',
+                            borderRadius: 40.0.r,
+                            padding: 5,
+                            showOnOff: true,
+                            onToggle: (value) {
+                              final newLocale = value
+                                  ? const Locale('bn')
+                                  : const Locale('en');
+                              localeProvider.setLanguage(newLocale.toString());
                             },
                           ),
                         ],

@@ -1,52 +1,67 @@
-// import 'dart:convert';
-//
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-//
-//
-// class AppLocalization {
-//   AppLocalization(this.locale);
-//
-//   final Locale locale;
-//
-//   static AppLocalization? of(BuildContext context) {
-//     return Localizations.of<AppLocalization>(context, AppLocalization);
-//   }
-//
-//   Map<String, String> _localizedValues;
-//
-//   Future<void> load() async {
-//     String jsonStringValues = await rootBundle.loadString('assets/language/${locale.languageCode}.json');
-//     Map<String, dynamic> mappedJson = json.decode(jsonStringValues);
-//     _localizedValues = mappedJson.map((key, value) => MapEntry(key, value.toString()));
-//   }
-//
-//   String translate(String key) {
-//     return _localizedValues[key];
-//   }
-//
-//   static const LocalizationsDelegate<AppLocalization> delegate = _DemoLocalizationsDelegate();
-// }
-//
-// class _DemoLocalizationsDelegate extends LocalizationsDelegate<AppLocalization> {
-//   const _DemoLocalizationsDelegate();
-//
-//   @override
-//   bool isSupported(Locale locale) {
-//     List<String> _languageString = [];
-//     AppConstants.languages.forEach((language) {
-//       _languageString.add(language.languageCode);
-//     });
-//     return _languageString.contains(locale.languageCode);
-//   }
-//
-//   @override
-//   Future<AppLocalization> load(Locale locale) async {
-//     AppLocalization localization = new AppLocalization(locale);
-//     await localization.load();
-//     return localization;
-//   }
-//
-//   @override
-//   bool shouldReload(LocalizationsDelegate<AppLocalization> old) => false;
-// }
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
+
+class AppLocalizations {
+  final Locale locale;
+
+  AppLocalizations(this.locale);
+
+  static final Map<String, Map<String, String>> _localizedValues = {
+    'en': {
+      'title': 'Localization App',
+      'greeting': 'Name: Omit Kumar',
+      'switchButton': 'Change the language',
+      'address': 'Address: Shewrapara, Mirpur, Dhaka',
+    },
+    'bn': {
+      'title': 'লোকালাইজেশন অ্যাপ',
+      'greeting': 'নাম: অমিত কুমার',
+      'switchButton': 'ভাষা পরিবর্তন করুন',
+      'address': 'ঠিকানা: শেওড়াপাড়া, মিরপুর, ঢাকা',
+    },
+  };
+
+  String? get title {
+    return _localizedValues[locale.languageCode]!['title'];
+  }
+
+  String? get greeting {
+    return _localizedValues[locale.languageCode]!['greeting'];
+  }
+
+  String? get switchButton {
+    return _localizedValues[locale.languageCode]!['switchButton'];
+  }
+
+  String? get address {
+    return _localizedValues[locale.languageCode]!['address'];
+  }
+
+  static AppLocalizations? of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+  }
+
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+  _AppLocalizationsDelegate();
+}
+
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
+  const _AppLocalizationsDelegate();
+
+  @override
+  bool isSupported(Locale locale) {
+    return ['en', 'bn'].contains(locale.languageCode);
+  }
+
+  @override
+  Future<AppLocalizations> load(Locale locale) {
+    return SynchronousFuture<AppLocalizations>(AppLocalizations(locale));
+  }
+
+  @override
+  bool shouldReload(_AppLocalizationsDelegate old) {
+    return false;
+  }
+}
