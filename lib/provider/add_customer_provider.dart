@@ -33,16 +33,12 @@ class AddCustomerProvider with ChangeNotifier{
         areaId: areaId
     );
 
-    // if(kDebugMode){
-    //   print("addNewAddress statusCode >>>>>>>>>>>>>>>> ${apiResponse.response!.statusCode.toString()}");
-    // }
-
     if (apiResponse.response != null && apiResponse.response!.statusCode == 200) {
 
       EasyLoading.dismiss();
       notifyListeners();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(apiResponse.response!.data["message"], style: myStyleMontserrat(12.sp, Theme.of(NavigationService.navigatorKey.currentContext!).secondaryHeaderColor, FontWeight.w500),),
+        content: Text(apiResponse.response!.data["message"], style: myStyleMontserrat(14.sp, Theme.of(NavigationService.navigatorKey.currentContext!).secondaryHeaderColor, FontWeight.w500),),
         backgroundColor: AppColorResources.primaryMaterial,
       ));
       notifyListeners();
