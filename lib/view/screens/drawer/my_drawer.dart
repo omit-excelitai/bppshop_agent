@@ -513,14 +513,26 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)!
-                                .switchButton
-                                .toString(),
-                            style: myStyleMontserrat(
-                                16.sp,
-                                Theme.of(context).unselectedWidgetColor,
-                                FontWeight.w500),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.language_outlined,
+                                size: 22.sp,
+                                color: Theme.of(context).unselectedWidgetColor,
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!
+                                    .switchButton
+                                    .toString(),
+                                style: myStyleMontserrat(
+                                    16.sp,
+                                    Theme.of(context).unselectedWidgetColor,
+                                    FontWeight.w500),
+                              ),
+                            ],
                           ),
                           FlutterSwitch(
                             width: 65.w,
@@ -530,6 +542,14 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
                             inactiveTextColor: AppColorResources.primaryWhite,
                             activeColor: AppColorResources.primaryOrange,
                             inactiveColor: AppColorResources.primaryOrange,
+                            inactiveIcon: Icon(
+                              Icons.language_outlined,
+                              color: AppColorResources.primaryBlack,
+                            ),
+                            activeIcon: Icon(
+                              Icons.language_outlined,
+                              color: AppColorResources.primaryBlack,
+                            ),
                             valueFontSize: 14.0.sp,
                             toggleSize: 25.0.sp,
                             value: localeProvider.locale?.languageCode == 'bn',
