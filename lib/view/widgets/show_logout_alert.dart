@@ -3,6 +3,7 @@ import 'package:bppshop_agent/view/screens/auth/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../localization/app_localization.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
 
@@ -22,7 +23,7 @@ logoutAlert(BuildContext context){
                     padding: EdgeInsets.symmetric(
                         horizontal: 10.w),
                     child: Text(
-                      "Log Out",
+                      AppLocalizations.of(context)!.logout.toString(),
                       style: myStyleMontserrat(14.sp,
                           AppColorResources.primaryOrange, FontWeight.w500),
                     ),
@@ -31,7 +32,7 @@ logoutAlert(BuildContext context){
                     color: Theme.of(context).dividerColor,
                   ),
                   SizedBox(height: 10.h,),
-                  Text("Are you sure you want to log out of your account", style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor),
+                  Text(AppLocalizations.of(context)!.log_out_text.toString(), style: myStyleMontserrat(12.sp, Theme.of(context).secondaryHeaderColor),
                     textAlign: TextAlign.center,),
                   SizedBox(height: 15.h,),
                   Row(
@@ -49,7 +50,7 @@ logoutAlert(BuildContext context){
                               border: Border.all(color: AppColorResources.primaryOrange.withOpacity(0.3)),
                               borderRadius: BorderRadius.all(Radius.circular(5.r))
                           ),
-                          child: Text("No Thanks", style: myStyleMontserrat(12.sp, Theme.of(context).hintColor),),
+                          child: Text(AppLocalizations.of(context)!.no_thanks.toString(), style: myStyleMontserrat(12.sp, Theme.of(context).hintColor),),
                         ),
                       ),
                       InkWell(
@@ -66,7 +67,7 @@ logoutAlert(BuildContext context){
                               color: AppColorResources.primaryOrange,
                               borderRadius: BorderRadius.all(Radius.circular(5.r))
                           ),
-                          child: Text("Log Out", style: myStyleMontserrat(12.sp, AppColorResources.primaryWhite),),
+                          child: Text(AppLocalizations.of(context)!.logout.toString(), style: myStyleMontserrat(12.sp, AppColorResources.primaryWhite),),
                         ),
                       ),
                     ],
