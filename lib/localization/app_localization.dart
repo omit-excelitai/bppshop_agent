@@ -14,7 +14,7 @@ class AppLocalizations {
       'my_commission': 'My Commission',
       'order_history': 'Order History',
       'wallet': 'Wallet',
-      'logout': 'Log out',
+      'logout': 'Log Out',
       'theme': 'Change Theme',
       'home': 'Home',
       'agent_profile': 'Agent Profile',
@@ -52,7 +52,10 @@ class AppLocalizations {
       'customer_id': 'Customer ID',
       'update_customer': 'Update Customer',
       'order_details': 'Order Details',
+      'no_thanks': 'No Thanks',
+      'log_out_text': 'Are you sure you want to log out of your account?',
     },
+
     'bn': {
       'dashboard': 'ড্যাশবোর্ড',
       'customer': 'কাস্টমার',
@@ -97,12 +100,18 @@ class AppLocalizations {
       'customer_id': 'কাস্টমার আইডি',
       'update_customer': 'আপডেট কাস্টমার',
       'order_details': 'অর্ডার ডিটেলস',
+      'no_thanks': 'নো থাঙ্কস',
+      'log_out_text': 'আপনি কি নিশ্চিত যে আপনি আপনার অ্যাকাউন্ট থেকে লগ আউট করতে চান?',
     },
   };
 
 
   String? get dashboard {
     return _localizedValues[locale.languageCode]!['dashboard'];
+  }String? get no_thanks {
+    return _localizedValues[locale.languageCode]!['no_thanks'];
+  }String? get log_out_text {
+    return _localizedValues[locale.languageCode]!['log_out_text'];
   }String? get order_details {
     return _localizedValues[locale.languageCode]!['order_details'];
   }String? get update_customer {
