@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
+import '../../localization/app_localization.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../provider/customer_list_provider.dart';
 import '../../utill/app_color_resources.dart';
@@ -52,7 +53,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                   _scaffoldKey.currentState!.openDrawer();
                 },
                 child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
-            title: Text("Customer", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
+            title: Text(AppLocalizations.of(context)!.customer.toString(), style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
           ),
           body: Provider.of<InternetConnectionStatus>(context) ==
               InternetConnectionStatus.disconnected ?
@@ -72,7 +73,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Customer List", style: myStyleMontserrat(18.sp, AppColorResources.homeItemColor, FontWeight.w500),),
+                      Text(AppLocalizations.of(context)!.customer_list.toString(), style: myStyleMontserrat(18.sp, AppColorResources.homeItemColor, FontWeight.w500),),
                       GestureDetector(
                         onTap: (){
                           Navigator.of(context).pushNamed(AddCustomerPage.routeName);
@@ -87,7 +88,7 @@ class _CustomerListPageState extends State<CustomerListPage> {
                             children: [
                               Image.asset("images/personfilladd.png", color: AppColorResources.primaryWhite, height: 24.h, width: 24.w,),
                               SizedBox(width: 10.w,),
-                              Text("Add New Customer", style: myStyleMontserrat(12.sp, AppColorResources.primaryWhite, FontWeight.w600),),
+                              Text(AppLocalizations.of(context)!.add_new_customer.toString(), style: myStyleMontserrat(12.sp, AppColorResources.primaryWhite, FontWeight.w600),),
                             ],
                           ),
                         ),

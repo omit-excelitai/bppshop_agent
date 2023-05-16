@@ -74,7 +74,7 @@ class _WalletPageState extends State<WalletPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Available Balance", style: myStyleMontserrat(18.sp, Theme.of(context).highlightColor, FontWeight.w500),),
+                          Text(AppLocalizations.of(context)!.available_balance.toString(), style: myStyleMontserrat(18.sp, Theme.of(context).highlightColor, FontWeight.w500),),
                           SizedBox(height: 17.5.h,),
                           Row(
                             children: [

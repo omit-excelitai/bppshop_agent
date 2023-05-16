@@ -20,6 +20,7 @@ class AppLocalizations {
       'agent_profile': 'Agent Profile',
       'profile': 'Profile',
       'add_customer': 'Add Customer',
+      'add_new_customer': 'Add New Customer',
       'bpp_shop': 'BPPSHOP',
       'agent_panel': 'Agent Panel',
       'customer_list': 'Customer List',
@@ -41,6 +42,10 @@ class AppLocalizations {
       'mobile': 'Mobile',
       'email': 'Email',
       'address': 'Address',
+      'add': 'Add',
+      'update': 'Update',
+      'available_balance': 'Available Balance',
+      'no_data': 'No Data Found!',
     },
     'bn': {
       'dashboard': 'ড্যাশবোর্ড',
@@ -54,6 +59,7 @@ class AppLocalizations {
       'agent_profile': 'এজেন্ট প্রোফাইল',
       'profile': 'প্রোফাইল',
       'add_customer': 'অ্যাড কাস্টমার',
+      'add_new_customer': 'অ্যাড নিউ কাস্টমার',
       'bpp_shop': 'বিপ্পশপ',
       'agent_panel': 'এজেন্ট প্যানেল',
       'customer_list': 'কাস্টমার লিস্ট',
@@ -75,11 +81,24 @@ class AppLocalizations {
       'mobile': 'মোবাইল',
       'email': 'ইমেইল',
       'address': 'ঠিকানা',
+      'add': 'অ্যাড',
+      'update': 'আপডেট',
+      'available_balance': 'পর্যাপ্ত টাকা',
+      'no_data': 'কোন তথ্য পাওয়া যায়নি!',
     },
   };
 
+
   String? get dashboard {
     return _localizedValues[locale.languageCode]!['dashboard'];
+  }String? get available_balance {
+    return _localizedValues[locale.languageCode]!['available_balance'];
+  }String? get no_data {
+    return _localizedValues[locale.languageCode]!['no_data'];
+  }String? get add {
+    return _localizedValues[locale.languageCode]!['add'];
+  }String? get update {
+    return _localizedValues[locale.languageCode]!['update'];
   }
   String? get customer {
     return _localizedValues[locale.languageCode]!['customer'];
@@ -167,6 +186,8 @@ class AppLocalizations {
     return _localizedValues[locale.languageCode]!['email'];
   }String? get address {
     return _localizedValues[locale.languageCode]!['address'];
+  }String? get add_new_customer {
+    return _localizedValues[locale.languageCode]!['add_new_customer'];
   }
 
 
