@@ -71,7 +71,7 @@ logoutAlert(BuildContext context){
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ]),
           ),
         );
