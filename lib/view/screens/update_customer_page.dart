@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
+import '../../localization/app_localization.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../provider/district_thana_area_provider.dart';
 import '../../utill/app_color_resources.dart';
@@ -91,7 +92,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                   Navigator.of(context).pop();
                 },
                 child: Icon(Icons.arrow_back_outlined, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
-            title: Text("Update Customer", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
+            title: Text(AppLocalizations.of(context)!.update_customer.toString(), style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
           ),
           body: Provider.of<InternetConnectionStatus>(context) ==
               InternetConnectionStatus.disconnected ?
@@ -282,7 +283,7 @@ class _UpdateCustomerPageState extends State<UpdateCustomerPage> {
                           child: AddandUpdateButton(onTap: (){
                             update();
                             routeService.routeTo(CustomerProfilePage.routeName, arguments: widget.customerId.toString());
-                          }, title: "Update"),
+                          }, title: AppLocalizations.of(context)!.update.toString()),
                         )
                       ],
                     ),

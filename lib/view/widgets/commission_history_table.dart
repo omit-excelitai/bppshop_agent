@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../data/model/request_model/commission_history_request_model.dart';
+import '../../localization/app_localization.dart';
 import '../../utill/app_style.dart';
 import 'navigation_service_without_context.dart';
 
@@ -95,7 +96,7 @@ class _CommissionHistoryTableState extends State<CommissionHistoryTable> {
           );
         }else{
           return Center(
-            child: Text("No Data Found!", style: myStyleMontserrat(18.sp, Theme.of(context).hintColor, FontWeight.w500),),
+            child: Text(AppLocalizations.of(context)!.no_data.toString(), style: myStyleMontserrat(18.sp, Theme.of(context).hintColor, FontWeight.w500),),
           );
         }
       },

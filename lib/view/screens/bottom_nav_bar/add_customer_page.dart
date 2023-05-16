@@ -284,7 +284,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                           child: AddandUpdateButton(onTap: (){
                            createNewCustomerInfo(context);
                             //Navigator.of(context).pushNamed(CustomerProfilePage.routeName);
-                          }, title: "Add"),
+                          }, title: AppLocalizations.of(context)!.add.toString()),
                         )
                       ],
                     ),

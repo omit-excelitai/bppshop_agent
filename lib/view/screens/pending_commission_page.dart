@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
+import '../../localization/app_localization.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
@@ -40,7 +41,7 @@ class _PendingCommissionPageState extends State<PendingCommissionPage> {
                     _scaffoldkey.currentState!.openDrawer();
                   },
                   child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
-              title: Text("My Commission", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
+              title: Text(AppLocalizations.of(context)!.my_commission.toString(), style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
             ),
             body: Provider.of<InternetConnectionStatus>(context) ==
                 InternetConnectionStatus.disconnected ?
@@ -59,7 +60,7 @@ class _PendingCommissionPageState extends State<PendingCommissionPage> {
                     padding: EdgeInsets.only(left: 12.w,top: 12.h,right: 12.w, bottom: 18.h),
                     child: Align(
                         alignment: Alignment.topLeft,
-                        child: Text("Pending Commission", style: myStyleMontserrat(18.sp, AppColorResources.homeItemColor, FontWeight.w500),)),
+                        child: Text(AppLocalizations.of(context)!.pending_commission.toString(), style: myStyleMontserrat(18.sp, Theme.of(context).highlightColor, FontWeight.w500),)),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 12.w,right: 12.w, bottom: 12.h),
