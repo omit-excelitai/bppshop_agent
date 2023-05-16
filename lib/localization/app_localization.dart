@@ -50,6 +50,8 @@ class AppLocalizations {
       'customer_profile': 'Customer Profile',
       'customer_name': 'Customer Name',
       'customer_id': 'Customer ID',
+      'update_customer': 'Update Customer',
+      'order_details': 'Order Details',
     },
     'bn': {
       'dashboard': 'ড্যাশবোর্ড',
@@ -93,12 +95,18 @@ class AppLocalizations {
       'customer_profile': 'কাস্টমার প্রোফাইল',
       'customer_name': 'কাস্টমার নাম',
       'customer_id': 'কাস্টমার আইডি',
+      'update_customer': 'আপডেট কাস্টমার',
+      'order_details': 'অর্ডার ডিটেলস',
     },
   };
 
 
   String? get dashboard {
     return _localizedValues[locale.languageCode]!['dashboard'];
+  }String? get order_details {
+    return _localizedValues[locale.languageCode]!['order_details'];
+  }String? get update_customer {
+    return _localizedValues[locale.languageCode]!['update_customer'];
   }String? get customer_profile {
     return _localizedValues[locale.languageCode]!['customer_profile'];
   }String? get customer_name {

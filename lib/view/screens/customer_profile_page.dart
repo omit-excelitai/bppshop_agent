@@ -148,7 +148,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Image.asset("images/edit.png"),
-                                        Text("Update Customer", style: myStyleMontserrat(12.sp, AppColorResources.secondaryWhite, FontWeight.w600),),
+                                        Text(AppLocalizations.of(context)!.update_customer.toString(), style: myStyleMontserrat(12.sp, AppColorResources.secondaryWhite, FontWeight.w600),),
                                       ],
                                     ),
                                   ),
