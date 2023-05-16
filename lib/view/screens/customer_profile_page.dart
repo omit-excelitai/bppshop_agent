@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
+import '../../localization/app_localization.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
 import '../../utill/app_color_resources.dart';
 import '../../utill/app_style.dart';
@@ -55,7 +56,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                     Navigator.of(context).pop();
                   },
                   child: Icon(Icons.arrow_back_outlined, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
-              title: Text("Customer Profile", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
+              title: Text(AppLocalizations.of(context)!.customer_profile.toString(), style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
             ),
             body: Provider.of<InternetConnectionStatus>(context) ==
                 InternetConnectionStatus.disconnected ?
@@ -96,7 +97,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Text("Customer ID:", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
+                                    Text("${AppLocalizations.of(context)!.customer_id.toString()}:", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w400),),
                                     Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.id}", style: myStyleMontserrat(24.sp, Theme.of(context).highlightColor, FontWeight.w600),),
                                   ],
                                 ),
@@ -109,21 +110,21 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("CONTACT INFORMATION:", style: myStyleMontserrat(14.sp, Theme.of(context).highlightColor, FontWeight.w600),),
+                                Text("${AppLocalizations.of(context)!.contact_info.toString()}:", style: myStyleMontserrat(14.sp, Theme.of(context).highlightColor, FontWeight.w600),),
                                 ListTile(
-                                  title: Text("Customer Name", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                                  title: Text(AppLocalizations.of(context)!.customer_name.toString(), style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
                                   subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerName}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w500),),
                                 ),
                                 ListTile(
-                                  title: Text("Email", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                                  title: Text(AppLocalizations.of(context)!.email.toString(), style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
                                   subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerEmail}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w500),),
                                 ),
                                 ListTile(
-                                  title: Text("Mobile", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                                  title: Text(AppLocalizations.of(context)!.mobile.toString(), style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
                                   subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerMobile}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w500),),
                                 ),
                                 ListTile(
-                                  title: Text("Address", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
+                                  title: Text(AppLocalizations.of(context)!.address.toString(), style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w600),),
                                   subtitle: Text("${customerDetailsProvider.customerDetailsResponseModel!.data!.customerAddress}", style: myStyleMontserrat(14.sp, Theme.of(context).secondaryHeaderColor, FontWeight.w500),),
                                 ),
                                 SizedBox(height: 12.h,),

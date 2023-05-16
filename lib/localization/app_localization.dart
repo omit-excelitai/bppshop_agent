@@ -18,6 +18,7 @@ class AppLocalizations {
       'theme': 'Change Theme',
       'home': 'Home',
       'agent_profile': 'Agent Profile',
+      'update_agent_profile': 'Update Agent Profile',
       'profile': 'Profile',
       'add_customer': 'Add Customer',
       'add_new_customer': 'Add New Customer',
@@ -46,6 +47,9 @@ class AppLocalizations {
       'update': 'Update',
       'available_balance': 'Available Balance',
       'no_data': 'No Data Found!',
+      'customer_profile': 'Customer Profile',
+      'customer_name': 'Customer Name',
+      'customer_id': 'Customer ID',
     },
     'bn': {
       'dashboard': 'ড্যাশবোর্ড',
@@ -57,6 +61,7 @@ class AppLocalizations {
       'theme': 'চেঞ্জ থিম',
       'home': 'হোম',
       'agent_profile': 'এজেন্ট প্রোফাইল',
+      'update_agent_profile': 'আপডেট এজেন্ট প্রোফাইল',
       'profile': 'প্রোফাইল',
       'add_customer': 'অ্যাড কাস্টমার',
       'add_new_customer': 'অ্যাড নিউ কাস্টমার',
@@ -85,12 +90,23 @@ class AppLocalizations {
       'update': 'আপডেট',
       'available_balance': 'পর্যাপ্ত টাকা',
       'no_data': 'কোন তথ্য পাওয়া যায়নি!',
+      'customer_profile': 'কাস্টমার প্রোফাইল',
+      'customer_name': 'কাস্টমার নাম',
+      'customer_id': 'কাস্টমার আইডি',
     },
   };
 
 
   String? get dashboard {
     return _localizedValues[locale.languageCode]!['dashboard'];
+  }String? get customer_profile {
+    return _localizedValues[locale.languageCode]!['customer_profile'];
+  }String? get customer_name {
+    return _localizedValues[locale.languageCode]!['customer_name'];
+  }String? get customer_id {
+    return _localizedValues[locale.languageCode]!['customer_id'];
+  }String? get update_agent_profile {
+    return _localizedValues[locale.languageCode]!['update_agent_profile'];
   }String? get available_balance {
     return _localizedValues[locale.languageCode]!['available_balance'];
   }String? get no_data {
