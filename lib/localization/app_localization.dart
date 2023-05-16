@@ -32,6 +32,15 @@ class AppLocalizations {
       'total_orders': 'Total Orders',
       'total_commission': 'Total Commission',
       'total_purchase': 'Total Purchase',
+      'no_internet': 'No internet!',
+      'check_internet': 'Please check your internet connection',
+      'try_again': 'Try Again',
+      'balance': 'Balance',
+      'role': 'Role',
+      'contact_info': 'CONTACT INFORMATION',
+      'mobile': 'Mobile',
+      'email': 'Email',
+      'address': 'Address',
     },
     'bn': {
       'dashboard': 'ড্যাশবোর্ড',
@@ -57,99 +66,107 @@ class AppLocalizations {
       'total_orders': 'টোটাল অর্ডারস',
       'total_commission': 'টোটাল কমিশন',
       'total_purchase': 'টোটাল ক্রয়',
+      'no_internet': 'ইন্টারনেট নেই!',
+      'check_internet': 'আপনার ইন্টারনেট সংযোগ চেক করুন',
+      'try_again': 'আবার চেষ্টা করুন',
+      'balance': 'ব্যালেন্স',
+      'role': 'ভূমিকা',
+      'contact_info': 'যোগাযোগের তথ্য',
+      'mobile': 'মোবাইল',
+      'email': 'ইমেইল',
+      'address': 'ঠিকানা',
     },
   };
 
   String? get dashboard {
     return _localizedValues[locale.languageCode]!['dashboard'];
   }
-
   String? get customer {
     return _localizedValues[locale.languageCode]!['customer'];
   }
-
   String? get switchButton {
     return _localizedValues[locale.languageCode]!['switchButton'];
   }
-
   String? get my_commission {
     return _localizedValues[locale.languageCode]!['my_commission'];
   }
-
   String? get order_history {
     return _localizedValues[locale.languageCode]!['order_history'];
   }
-
   String? get wallet {
     return _localizedValues[locale.languageCode]!['wallet'];
   }
-
   String? get logout {
     return _localizedValues[locale.languageCode]!['logout'];
   }
-
   String? get theme {
     return _localizedValues[locale.languageCode]!['theme'];
   }
-
   String? get home {
     return _localizedValues[locale.languageCode]!['home'];
   }
-
   String? get profile {
     return _localizedValues[locale.languageCode]!['profile'];
   }
-
   String? get agent_profile {
     return _localizedValues[locale.languageCode]!['agent_profile'];
   }
-
   String? get add_customer {
     return _localizedValues[locale.languageCode]!['add_customer'];
   }
-
   String? get bpp_shop {
     return _localizedValues[locale.languageCode]!['bpp_shop'];
   }
-
   String? get agent_panel {
     return _localizedValues[locale.languageCode]!['agent_panel'];
   }
-
   String? get customer_list {
     return _localizedValues[locale.languageCode]!['customer_list'];
   }
-
   String? get pending_commission {
     return _localizedValues[locale.languageCode]!['pending_commission'];
   }
-
   String? get commission_history {
     return _localizedValues[locale.languageCode]!['commission_history'];
   }
-
   String? get total_customer {
     return _localizedValues[locale.languageCode]!['total_customer'];
   }
-
   String? get total_withdraw {
     return _localizedValues[locale.languageCode]!['total_withdraw'];
   }
-
   String? get total_sale_amount {
     return _localizedValues[locale.languageCode]!['total_sale_amount'];
   }
-
   String? get total_orders {
     return _localizedValues[locale.languageCode]!['total_orders'];
   }
-
   String? get total_commission {
     return _localizedValues[locale.languageCode]!['total_commission'];
   }
-
   String? get total_purchase {
     return _localizedValues[locale.languageCode]!['total_purchase'];
+  }
+  String? get no_internet {
+    return _localizedValues[locale.languageCode]!['no_internet'];
+  }
+  String? get check_internet {
+    return _localizedValues[locale.languageCode]!['check_internet'];
+  }
+  String? get try_again {
+    return _localizedValues[locale.languageCode]!['try_again'];
+  }String? get balance {
+    return _localizedValues[locale.languageCode]!['balance'];
+  }String? get role {
+    return _localizedValues[locale.languageCode]!['role'];
+  }String? get contact_info {
+    return _localizedValues[locale.languageCode]!['contact_info'];
+  }String? get mobile {
+    return _localizedValues[locale.languageCode]!['mobile'];
+  }String? get email {
+    return _localizedValues[locale.languageCode]!['email'];
+  }String? get address {
+    return _localizedValues[locale.languageCode]!['address'];
   }
 
 

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
+import '../../localization/app_localization.dart';
 import '../../provider/agent_dashboard_provider.dart';
 import '../../provider/agent_profile_provider.dart';
 import '../../provider/bottom_navigation_bar_provider.dart';
@@ -49,7 +50,7 @@ class _WalletPageState extends State<WalletPage> {
                     _scaffoldKey.currentState!.openDrawer();
                   },
                   child: Icon(Icons.menu, size: 16.5.sp, color: AppColorResources.secondaryWhite,)),
-              title: Text("Wallet", style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
+              title: Text(AppLocalizations.of(context)!.wallet.toString(), style: myStyleMontserrat(18.sp, AppColorResources.secondaryWhite, FontWeight.w400),),
             ),
             body: Provider.of<InternetConnectionStatus>(context) ==
                 InternetConnectionStatus.disconnected ?
